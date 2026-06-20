@@ -165,6 +165,17 @@
   .head h2{font-size:clamp(2rem,4.4vw,3.2rem);font-weight:700;letter-spacing:-.028em}
   .head p{color:var(--muted);margin-top:14px;font-size:clamp(15.5px,1.3vw,17px)}
 
+  /* QUOTE BAND */
+  .quoteband{padding:clamp(54px,8vw,96px) 0;background:var(--bg-deep);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+  .quoteband::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 80% at 50% 0%,var(--amber-wash),transparent 70%)}
+  .bigquote{position:relative;max-width:860px;margin:0 auto;text-align:center}
+  .bigquote .qmark{font-family:'Bricolage Grotesque';font-weight:800;font-size:clamp(3rem,7vw,5rem);line-height:.6;color:var(--amber);opacity:.45;display:block;margin-bottom:6px}
+  .bigquote p{font-family:'Bricolage Grotesque';font-weight:600;font-size:clamp(1.35rem,2.9vw,2.25rem);line-height:1.35;letter-spacing:-.02em;color:var(--ink);text-wrap:balance}
+  .bigquote .hl{color:var(--amber-hi)}
+  .bigquote .yas{color:var(--jade);font-style:italic}
+  .bigquote cite{display:inline-flex;align-items:center;gap:9px;margin-top:24px;font-style:normal;font-size:14px;color:var(--faint)}
+  .bigquote cite .pixel{font-size:11px;color:var(--amber-hi);border:1px solid var(--border);background:var(--surface);padding:4px 9px;border-radius:7px}
+
   /* TEAM */
   .makers{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,26px)}
   .maker{position:relative;padding:clamp(26px,2.6vw,34px);border:1px solid var(--border);border-radius:var(--r-lg);
@@ -482,6 +493,17 @@
         <a class="detail" href="#hiep">Chi tiết về Hiệp <span class="ar">→</span></a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quoteband">
+  <div class="wrap">
+    <blockquote class="bigquote reveal">
+      <span class="qmark" aria-hidden="true">“</span>
+      <p>Khoa học đã chứng minh bộ não con người chỉ hoạt động hết <span class="hl">100% công suất</span> khi chuẩn bị đi ngủ — đó là lý do tôi luôn nghĩ ra cách cứu vớt thế giới vào lúc <span class="hl">2 giờ sáng</span>. <span class="yas">Yasssss!</span> Làm game cũng vậy… và những ý tưởng triệu đô cứ thế đi vào giấc ngủ.</p>
+      <cite>— một đứa nào đó <span class="pixel">2:00 AM</span></cite>
+    </blockquote>
   </div>
 </section>
 
