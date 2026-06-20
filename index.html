@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>The Maniacs — Phúc & Hiệp · pixel-art game studio from Việt Nam</title>
-<meta name="description" content="The Maniacs is a two-person pixel-art game studio from Việt Nam. Phạm Duy Phúc (Lead Developer) and Trần Tuấn Hiệp (Pixel Artist) — makers of Dream Chaser, featured by Apple and played by 100,000+ people." />
+<title>The Maniacs — Phúc & Hiệp · studio game pixel từ Việt Nam</title>
+<meta name="description" content="The Maniacs — studio game pixel 2 người từ Việt Nam. Phạm Duy Phúc (Lead Dev) & Trần Tuấn Hiệp (Hoạ sĩ Pixel) — cha đẻ Dream Chaser, được Apple giới thiệu, hơn 100.000 người chơi." />
 <meta name="theme-color" content="#160f28" />
-<meta property="og:title" content="The Maniacs — pixel-art game studio" />
-<meta property="og:description" content="Two makers from Việt Nam building pixel worlds that glow after dark. Makers of Dream Chaser, featured by Apple." />
+<meta property="og:title" content="The Maniacs — studio game pixel" />
+<meta property="og:description" content="Hai người Việt làm những thế giới pixel toả sáng trong đêm. Cha đẻ Dream Chaser, được Apple giới thiệu." />
 <meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -234,6 +234,8 @@
   .award p{color:var(--muted);font-size:14px;margin-top:3px;max-width:60ch}
   .award .mark{font-family:'Silkscreen';font-size:22px;color:var(--amber-hi);text-shadow:0 0 18px oklch(0.815 0.155 58 / .4)}
   .award:nth-child(2) .mark{color:var(--jade);text-shadow:0 0 18px oklch(0.835 0.115 168 / .4)}
+  .award h4 a{color:inherit;text-decoration:underline;text-decoration-color:oklch(0.835 0.115 168 / .38);text-underline-offset:3px;transition:.2s var(--ease)}
+  .award h4 a:hover{text-decoration-color:var(--jade);color:var(--jade)}
 
   /* ---------------- CONTACT ---------------- */
   .contact{position:relative;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;
@@ -289,11 +291,11 @@
   <div class="wrap nav-inner">
     <a href="#top" class="brand"><span class="led"></span>THE MANIACS</a>
     <nav class="nav-links">
-      <a href="#team">Team</a>
+      <a href="#team">Đội ngũ</a>
       <a href="#dreamchaser">Dream Chaser</a>
-      <a href="#building">In dev</a>
-      <a href="#track">Track record</a>
-      <a href="#contact" class="nav-cta">Get in touch</a>
+      <a href="#building">Đang làm</a>
+      <a href="#track">Kinh nghiệm</a>
+      <a href="#contact" class="nav-cta">Liên hệ</a>
     </nav>
     <button class="menu-btn pixel" id="menuBtn" aria-label="Jump to team">MENU</button>
   </div>
@@ -305,23 +307,23 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="chip-status reveal"><span class="blip"></span>APPLYING — GARENA GAME JAM 2026</span>
-      <h1 class="reveal">We build pixel worlds <br>that <span class="glow">glow</span> after <span class="glow-j">dark</span>.</h1>
-      <p class="lead reveal">The Maniacs is a two-person studio from Việt Nam. <b>Phúc</b> writes the code and the systems; <b>Hiệp</b> draws every pixel. Together we made <b>Dream Chaser</b> — a game Apple featured and 100,000+ people played.</p>
+      <span class="chip-status reveal"><span class="blip"></span>ỨNG TUYỂN — GARENA GAME JAM 2026</span>
+      <h1 class="reveal">Thế giới pixel <br><span class="glow">toả sáng</span> giữa màn <span class="glow-j">đêm</span>.</h1>
+      <p class="lead reveal">Studio 2 người từ Việt Nam. <b>Phúc</b> code, <b>Hiệp</b> vẽ pixel. Cùng nhau làm <b>Dream Chaser</b> — game được Apple giới thiệu, hơn 100.000 người chơi.</p>
       <div class="cred reveal">
-        <span><span class="k">Featured by Apple</span></span><i class="sep"></i>
-        <span><span class="k">100K+</span> players</span><i class="sep"></i>
+        <span><span class="k">Apple giới thiệu</span></span><i class="sep"></i>
+        <span><span class="k">100K+</span> người chơi</span><i class="sep"></i>
         <span><span class="k">4.7★</span> App Store</span><i class="sep"></i>
-        <span>WeChoice <span class="k">2024</span> nominee</span>
+        <span>Đề cử <span class="k">WeChoice 2024</span></span>
       </div>
       <div class="hero-cta reveal">
-        <a href="#dreamchaser" class="btn btn-primary">See our games <span class="ar">→</span></a>
-        <a href="#team" class="btn btn-ghost">Meet the makers</a>
+        <a href="#dreamchaser" class="btn btn-primary">Xem game của tụi mình <span class="ar">→</span></a>
+        <a href="#team" class="btn btn-ghost">Gặp tụi mình</a>
       </div>
     </div>
     <div class="scene reveal" aria-hidden="true">
       <canvas id="cityCanvas"></canvas>
-      <span class="scene-cap pixel">DUSK CITY · 06:42 PM</span>
+      <span class="scene-cap pixel">PHỐ ĐÊM · 18:42</span>
     </div>
   </div>
 </section>
@@ -330,16 +332,15 @@
 <section id="team">
   <div class="wrap">
     <div class="head reveal">
-      <span class="tag">// THE STUDIO</span>
-      <h2>Two makers, one studio.</h2>
-      <p>A developer and an artist who shipped a hit together — and kept building. One owns the systems end to end, the other owns the art and the feeling.</p>
+      <h2>Hai đứa, một studio.</h2>
+      <p>Một lập trình viên và một hoạ sĩ từng ship game hit cùng nhau — và vẫn đang làm tiếp.</p>
     </div>
     <div class="makers">
       <div class="maker amber reveal">
         <div class="pfp">P</div>
-        <div class="role">LEAD GAME DEVELOPER</div>
+        <div class="role">LẬP TRÌNH GAME · LEAD</div>
         <h3>Phạm Duy Phúc <span class="alias">· Dan / Daniel</span></h3>
-        <p class="bio">Unity developer with 4+ years shipping production games for studios in Canada, the UK and Japan. Owns features end to end — gameplay systems, simulation, live-service, performance. Lead dev on <b>Dream Chaser</b> (featured by Apple) and <b>Strixel</b>, now building a multiplayer pet-collector RPG on SpacetimeDB. Named Employee of the Year at Magmic.</p>
+        <p class="bio">Lập trình viên Unity, 4+ năm ship game thương mại cho studio ở Canada, Anh, Nhật. Lead dev của <b>Dream Chaser</b> & <b>Strixel</b>, đang làm game multiplayer trên SpacetimeDB. Employee of the Year tại Magmic.</p>
         <div class="tags">
           <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">UniTask</span><span class="tag">UniRx</span><span class="tag">Odin</span><span class="tag">Firebase</span><span class="tag">Unity Gaming Services</span><span class="tag">SpacetimeDB</span><span class="tag">Multiplayer</span><span class="tag">AdMob / IAP</span>
         </div>
@@ -352,11 +353,11 @@
       </div>
       <div class="maker jade reveal">
         <div class="pfp">H</div>
-        <div class="role">PIXEL &amp; 2D ARTIST</div>
+        <div class="role">HOẠ SĨ PIXEL / 2D</div>
         <h3>Trần Tuấn Hiệp <span class="alias">· Winbee</span></h3>
-        <p class="bio">Pixel and 2D artist with 3 years of experience, weaving Vietnamese culture and history into every frame. Co-creator of <b>Dream Chaser</b>, whose art style and emotional storytelling earned it an Apple feature. Active in Việt Nam's indie game community, and now shaping the art of our new project with Phúc.</p>
+        <p class="bio">Hoạ sĩ pixel & 2D, 3 năm kinh nghiệm, đưa văn hoá – lịch sử Việt vào từng khung hình. Đồng tác giả <b>Dream Chaser</b> — tựa game được Apple giới thiệu nhờ nghệ thuật và cảm xúc.</p>
         <div class="tags">
-          <span class="tag">Pixel Art</span><span class="tag">2D Art</span><span class="tag">Character Design</span><span class="tag">Environment Art</span><span class="tag">Animation</span><span class="tag">Aseprite</span><span class="tag">Vietnamese Culture</span>
+          <span class="tag">Pixel Art</span><span class="tag">Vẽ 2D</span><span class="tag">Thiết kế nhân vật</span><span class="tag">Vẽ bối cảnh</span><span class="tag">Animation</span><span class="tag">Aseprite</span><span class="tag">Văn hoá Việt</span>
         </div>
         <div class="links">
           <a href="https://www.facebook.com/tran.tuan.hiep.886491" target="_blank" rel="noopener"><span class="ar">↗</span> Facebook</a>
@@ -372,24 +373,24 @@
   <div class="wrap">
     <div class="flag">
       <div class="reveal">
-        <span class="badge"><span class="dot"></span>SHIPPED · DEC 2023 · iOS &amp; ANDROID</span>
+        <span class="badge"><span class="dot"></span>ĐÃ PHÁT HÀNH · 12/2023 · iOS &amp; ANDROID</span>
         <h3>Dream Chaser</h3>
         <div class="vn">Chạy Trốn Phồn Hoa</div>
-        <p class="desc">A pixel-art endless runner about Vietnamese culture — players run through contrasting worlds, from the rush of the city to the calm of the countryside. Known for its cultural depth, its art, and its quiet emotional storytelling.</p>
+        <p class="desc">Game pixel endless-runner về văn hoá Việt — chạy qua những thế giới đối lập, từ phố thị náo nhiệt đến làng quê yên bình.</p>
         <div class="facts">
-          <div class="fact"><div class="n a">100K</div><div class="l">downloads · ~71% iOS</div></div>
-          <div class="fact"><div class="n">4.7★</div><div class="l">~3,000 ratings</div></div>
-          <div class="fact"><div class="n j">23.3M</div><div class="l">lifetime impressions</div></div>
+          <div class="fact"><div class="n a">100K</div><div class="l">lượt tải · ~71% iOS</div></div>
+          <div class="fact"><div class="n">4.7★</div><div class="l">~3.000 đánh giá</div></div>
+          <div class="fact"><div class="n j">23.3M</div><div class="l">lượt hiển thị</div></div>
         </div>
         <div class="store">
           <a href="https://apps.apple.com/vn/app/id6474929639" target="_blank" rel="noopener"><span class="g">iOS</span> App Store</a>
           <a href="https://play.google.com/store/apps/details?id=com.themaniacs.dreamchaser" target="_blank" rel="noopener"><span class="g">AND</span> Google Play</a>
-          <a href="https://apple.co/dreamchaser" target="_blank" rel="noopener"><span class="g">★</span> Apple “Dare to Dream”</a>
+          <a href="https://apps.apple.com/story/id1750600803" target="_blank" rel="noopener"><span class="g">★</span> Apple “Dare to Dream”</a>
         </div>
       </div>
       <div class="scene reveal" aria-hidden="true">
         <canvas id="runCanvas"></canvas>
-        <span class="scene-cap pixel">CITY → COUNTRYSIDE</span>
+        <span class="scene-cap pixel">PHỐ THỊ → LÀNG QUÊ</span>
       </div>
     </div>
   </div>
@@ -399,27 +400,26 @@
 <section id="building">
   <div class="wrap">
     <div class="head reveal">
-      <span class="tag">// IN THE WORKSHOP</span>
-      <h2>What we're building now.</h2>
-      <p>One project we just started together, and one deep simulation we're keeping warm on the side.</p>
+      <h2>Đang làm gì.</h2>
+      <p>Một dự án mới làm chung, một mô phỏng để dành làm tiếp.</p>
     </div>
     <div class="building">
       <div class="proj amber reveal">
         <div class="mini" aria-hidden="true"><canvas id="mmCanvas"></canvas></div>
-        <span class="pbadge"><span class="dot"></span>IN PROGRESS · TOGETHER · NEW</span>
-        <h3>Magic Monster <span class="wt">· working title</span></h3>
-        <p class="desc">A pet-collector × idle RPG for mobile. Hatch eggs, raise and evolve cute pixel pets, send them on idle expeditions to farm resources, and wander a shared-map plaza where players see each other but never fight. Built by the full duo — <b>Phúc</b> on systems &amp; backend, <b>Hiệp</b> on pixel art.</p>
+        <span class="pbadge"><span class="dot"></span>ĐANG LÀM · CHUNG · MỚI</span>
+        <h3>Magic Monster <span class="wt">· tên tạm</span></h3>
+        <p class="desc">Game nuôi thú × idle RPG mobile. Ấp trứng, nuôi và tiến hoá thú pixel, gửi đi farm idle, dạo quảng trường chung nơi người chơi thấy nhau mà không đánh nhau. <b>Phúc</b> lo hệ thống & backend, <b>Hiệp</b> lo pixel art.</p>
         <div class="tags">
-          <span class="tag">Pet Collector</span><span class="tag">Idle RPG</span><span class="tag">Unity 6</span><span class="tag">URP 2D</span><span class="tag">SpacetimeDB</span><span class="tag">Evolution</span><span class="tag">Shared-map plaza</span>
+          <span class="tag">Nuôi thú</span><span class="tag">Idle RPG</span><span class="tag">Unity 6</span><span class="tag">URP 2D</span><span class="tag">SpacetimeDB</span><span class="tag">Tiến hoá</span><span class="tag">Bản đồ chung</span>
         </div>
       </div>
       <div class="proj jade reveal">
         <div class="mini" aria-hidden="true"><canvas id="sxCanvas"></canvas></div>
-        <span class="pbadge"><span class="dot"></span>SIDE PROJECT · PAUSED · SINCE JUN 2024</span>
+        <span class="pbadge"><span class="dot"></span>DỰ ÁN PHỤ · TẠM DỪNG · TỪ 6/2024</span>
         <h3>Strixel</h3>
-        <p class="desc">An idle tycoon set on an old Saigon-style street — build food stalls, hire staff, grow a buzzing food block full of personality. About <b>10 months</b> of work built a deep simulation (building, character AI, day/night cycle, economy); now paused while we focus resources, still moving as a side project. Pixel art inspired by <em>Đất Ba Miền</em> and <em>Eastward</em>.</p>
+        <p class="desc">Idle tycoon trên con phố Sài Gòn xưa — xây quán ăn, thuê nhân viên, phát triển khu phố ẩm thực. <b>~10 tháng</b> dựng nền mô phỏng sâu (xây dựng, AI nhân vật, ngày/đêm, kinh tế); hiện tạm dừng vì thiếu nguồn lực, vẫn làm dạng side project. Cảm hứng từ <em>Đất Ba Miền</em> và <em>Eastward</em>.</p>
         <div class="tags">
-          <span class="tag">Idle Tycoon</span><span class="tag">Building System</span><span class="tag">Character AI</span><span class="tag">Day / Night Cycle</span><span class="tag">Hiring &amp; Economy</span><span class="tag">Pathfinding</span>
+          <span class="tag">Idle Tycoon</span><span class="tag">Hệ thống xây dựng</span><span class="tag">AI nhân vật</span><span class="tag">Chu kỳ ngày/đêm</span><span class="tag">Tuyển dụng & kinh tế</span><span class="tag">Tìm đường</span>
         </div>
       </div>
     </div>
@@ -430,30 +430,29 @@
 <section id="track">
   <div class="wrap">
     <div class="head reveal">
-      <span class="tag">// PHÚC'S TRACK RECORD</span>
-      <h2>Where Phúc has shipped.</h2>
-      <p>Production games built with international studios across Canada, the UK and Japan.</p>
+      <h2>Nơi Phúc từng ship game.</h2>
+      <p>Game thương mại làm cùng studio ở Canada, Anh và Nhật.</p>
     </div>
     <div class="tl">
       <div class="tl-item now reveal">
-        <div class="tl-when">JAN 2025 — PRESENT</div>
-        <h4>Unity Game Developer · <span class="co">IndiGames (Remote)</span></h4>
-        <p>Outsourcing studio delivering Unity projects for Japanese clients. 4+ mobile projects (2 shipped, 2 in development) — gameplay systems across casual, puzzle and simulation games, complex UI, REST/Firebase live-service, IAP &amp; ad monetization, and on-device performance work. <span class="nda">Most titles are under NDA and can't be shown publicly.</span></p>
+        <div class="tl-when">01/2025 — HIỆN TẠI</div>
+        <h4>Lập trình Game · <span class="co">IndiGames (Remote)</span></h4>
+        <p>Studio outsourcing làm game Unity cho khách Nhật. 4+ dự án mobile (2 đã ship, 2 đang làm) — hệ thống gameplay, UI phức tạp, live-service Firebase, IAP & quảng cáo, tối ưu hiệu năng. <span class="nda">Phần lớn dính NDA nên không công khai được.</span></p>
       </div>
       <div class="tl-item reveal">
-        <div class="tl-when">AUG 2022 — AUG 2024</div>
-        <h4>Unity Game Developer · <span class="co">Magmic, Canada (Remote)</span></h4>
-        <p>Built and maintained production Unity games for live players, including <a href="https://apps.apple.com/vn/app/the-ball-game-by-playbrk/id6758020837" target="_blank" rel="noopener">The Ball Game by Playbrk</a> — a baseball management &amp; tycoon sim with a visual simulation layer driven by runtime match data. Mentored junior developers through code reviews. <strong>Selected as one of three Employees of the Year (2024).</strong></p>
+        <div class="tl-when">08/2022 — 08/2024</div>
+        <h4>Lập trình Game · <span class="co">Magmic, Canada (Remote)</span></h4>
+        <p>Làm và bảo trì game Unity cho người chơi thật, gồm <a href="https://apps.apple.com/vn/app/the-ball-game-by-playbrk/id6758020837" target="_blank" rel="noopener">The Ball Game by Playbrk</a> — sim quản lý bóng chày với lớp mô phỏng hình ảnh chạy theo dữ liệu trận đấu. Mentor junior qua code review. <strong>Một trong ba Employee of the Year (2024).</strong></p>
       </div>
       <div class="tl-item reveal">
-        <div class="tl-when">JAN 2022 — JUL 2022</div>
-        <h4>Client Game Developer · <span class="co">Intouch Games — Fairdos Studio (Hybrid)</span></h4>
-        <p>Implemented gameplay and visuals on an in-house engine with UK-based producers and artists. Delivered optimized, maintainable code and fixed performance bottlenecks across client projects.</p>
+        <div class="tl-when">01/2022 — 07/2022</div>
+        <h4>Lập trình Game (khách hàng) · <span class="co">Intouch Games — Fairdos Studio (Hybrid)</span></h4>
+        <p>Làm gameplay và hình ảnh trên engine nội bộ cùng producer & hoạ sĩ ở Anh. Code tối ưu, sửa các nút thắt hiệu năng.</p>
       </div>
       <div class="tl-item reveal">
-        <div class="tl-when">EDUCATION</div>
-        <h4>B.Sc. Information Technology · <span class="co">Saigon Technology University (STU)</span></h4>
-        <p>A foundation in software engineering, now applied full-time to building and shipping games.</p>
+        <div class="tl-when">HỌC VẤN</div>
+        <h4>Cử nhân CNTT · <span class="co">Đại học Công nghệ Sài Gòn (STU)</span></h4>
+        <p>Nền tảng kỹ thuật phần mềm, giờ dồn hết vào làm và ship game.</p>
       </div>
     </div>
   </div>
@@ -463,33 +462,40 @@
 <section id="recognition">
   <div class="wrap">
     <div class="head reveal">
-      <span class="tag">// RECOGNITION</span>
-      <h2>Where the work landed.</h2>
+      <h2>Thành tựu.</h2>
     </div>
     <div class="awards">
       <div class="award reveal">
         <div class="mark pixel">A</div>
         <div>
-          <h4>Featured by Apple — “Dare to Dream”</h4>
-          <p>Dream Chaser featured in Apple's “Here's to the Dreamers — Dare to Dream” campaign across South-East Asia.</p>
+          <h4><a href="https://apps.apple.com/story/id1750600803" target="_blank" rel="noopener">Được Apple giới thiệu — “Dare to Dream”</a></h4>
+          <p>Dream Chaser xuất hiện trong chiến dịch “Here's to the Dreamers — Dare to Dream” của Apple khắp Đông Nam Á.</p>
         </div>
-        <div class="yr">AUG 2024</div>
+        <div class="yr">08/2024</div>
       </div>
       <div class="award reveal">
         <div class="mark pixel">W</div>
         <div>
-          <h4>WeChoice Awards — Nominee</h4>
-          <p>Trần Tuấn Hiệp &amp; Phạm Duy Phúc nominated as part of Z-Team — talented Gen-Z creators.</p>
+          <h4><a href="https://wechoice.vn/chi-tiet-de-cu-12/tran-tuan-hiep-va-pham-duy-phuc-496.htm" target="_blank" rel="noopener">Đề cử WeChoice Awards 2024 — Z-Team</a></h4>
+          <p>Hạng mục <b>Nhóm Gen Z Tài Năng</b>. Trần Tuấn Hiệp &amp; Phạm Duy Phúc — vinh danh nhóm Gen Z có sức ảnh hưởng tới giới trẻ Việt.</p>
         </div>
-        <div class="yr">DEC 2024</div>
+        <div class="yr">12/2024</div>
+      </div>
+      <div class="award reveal">
+        <div class="mark pixel">P</div>
+        <div>
+          <h4><a href="https://www.hardwarezone.com.sg/entertainment/gaming/feature-apple-app-store-game-development-dreamchaser-vietnam" target="_blank" rel="noopener">Báo quốc tế đưa tin — HardwareZone SG</a></h4>
+          <p>Bài viết về hành trình hai người Việt làm Dream Chaser ngoài giờ, vừa đi làm full-time vừa làm game.</p>
+        </div>
+        <div class="yr">2024</div>
       </div>
       <div class="award reveal">
         <div class="mark pixel">★</div>
         <div>
           <h4>Employee of the Year — Magmic</h4>
-          <p>Phúc named one of three honored for exceptional performance and teamwork over the year.</p>
+          <p>Phúc là một trong ba người được vinh danh vì thành tích và tinh thần đồng đội.</p>
         </div>
-        <div class="yr">MAR 2024</div>
+        <div class="yr">03/2024</div>
       </div>
     </div>
   </div>
@@ -500,14 +506,14 @@
   <div class="wrap">
     <div class="contact reveal">
       <canvas id="contactCanvas" aria-hidden="true"></canvas>
-      <h2>Let's build something<br>worth remembering.</h2>
-      <p>We're applying to Garena Game Jam 2026 and ready for the offline round. If you're reading this — let's talk.</p>
+      <h2>Cùng tạo nên điều<br>đáng nhớ.</h2>
+      <p>Tụi mình đang ứng tuyển Garena Game Jam 2026 và sẵn sàng cho vòng offline. Nếu bạn đang đọc dòng này — mình nói chuyện nhé.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="mailto:phamphuc0603@gmail.com">✉ phamphuc0603@gmail.com</a>
         <a class="btn btn-ghost" href="https://github.com/Daniel-Pham831" target="_blank" rel="noopener">GitHub</a>
         <a class="btn btn-ghost" href="https://www.linkedin.com/in/danielpham831/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
-      <div class="meta pixel">+84 926 624 129 · HO CHI MINH CITY, VIỆT NAM</div>
+      <div class="meta pixel">+84 926 624 129 · TP. HỒ CHÍ MINH, VIỆT NAM</div>
     </div>
   </div>
 </section>
@@ -515,7 +521,7 @@
 <footer>
   <div class="wrap foot">
     <span>© 2026 The Maniacs — Phạm Duy Phúc &amp; Trần Tuấn Hiệp</span>
-    <span class="pixel">MADE FOR GARENA GAME JAM 2026</span>
+    <span class="pixel">LÀM CHO GARENA GAME JAM 2026</span>
   </div>
 </footer>
 
