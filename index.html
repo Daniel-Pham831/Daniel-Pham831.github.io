@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Maniacs — Phúc & Hiệp · Indie Game Studio</title>
+<meta name="description" content="The Maniacs — a two-person indie game team from Vietnam. Phạm Duy Phúc (Lead Developer) & Trần Tuấn Hiệp (Pixel Artist). Makers of Dream Chaser, featured by Apple." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#08080a;
+    --bg-soft:#101013;
+    --surface:#141418;
+    --surface-2:#1b1b21;
+    --border:#26262e;
+    --text:#ECECEE;
+    --muted:#9A9AA5;
+    --faint:#65656f;
+    --accent:#6EE7B7;      /* mint */
+    --accent-2:#7C9CFF;    /* periwinkle */
+    --accent-3:#F0B86E;    /* warm amber */
+    --radius:16px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* ambient background glow */
+  body::before{
+    content:"";
+    position:fixed;inset:0;z-index:-1;
+    background:
+      radial-gradient(620px 420px at 12% -8%, rgba(124,156,255,.10), transparent 70%),
+      radial-gradient(560px 380px at 92% 4%, rgba(110,231,183,.08), transparent 70%),
+      radial-gradient(700px 500px at 50% 120%, rgba(240,184,110,.06), transparent 70%);
+  }
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-height:1.1}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .accent{color:var(--accent)}
+  .accent2{color:var(--accent-2)}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(8,8,10,.66);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s;
+  }
+  header.nav.scrolled{border-bottom-color:var(--border)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;font-size:16px}
+  .brand .dot{width:10px;height:10px;border-radius:3px;background:var(--accent);box-shadow:0 0 16px var(--accent)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .nav-cta{border:1px solid var(--border);padding:8px 14px;border-radius:10px;font-size:13px;color:var(--text)!important;transition:.2s}
+  .nav-cta:hover{border-color:var(--accent);color:var(--accent)!important}
+  .menu-btn{display:none;background:none;border:0;color:var(--text);font-size:22px;cursor:pointer}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:96px 0 72px;position:relative}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:7px 14px;border-radius:999px;background:var(--surface)}
+  .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(110,231,183,.6);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(110,231,183,.5)}70%{box-shadow:0 0 0 10px rgba(110,231,183,0)}100%{box-shadow:0 0 0 0 rgba(110,231,183,0)}}
+  .hero h1{font-size:clamp(40px,7vw,76px);font-weight:700;margin:26px 0 0}
+  .hero h1 .grad{background:linear-gradient(120deg,var(--accent),var(--accent-2) 60%,var(--accent-3));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{font-size:clamp(16px,2.2vw,20px);color:var(--muted);max-width:620px;margin:24px 0 0}
+  .hero-cta{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:12px;font-weight:600;font-size:15px;transition:.2s;cursor:pointer;border:1px solid transparent}
+  .btn-primary{background:var(--accent);color:#062a1c}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(110,231,183,.5)}
+  .btn-ghost{border-color:var(--border);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--muted);background:var(--surface)}
+
+  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:64px;border-top:1px solid var(--border);padding-top:34px}
+  .stat .n{font-family:'Space Grotesk';font-size:clamp(26px,4vw,38px);font-weight:700}
+  .stat .l{font-size:13px;color:var(--muted);margin-top:2px}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:84px 0}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:44px}
+  .sec-num{font-family:'JetBrains Mono';font-size:13px;color:var(--accent)}
+  .sec-head h2{font-size:clamp(28px,4vw,42px);font-weight:700}
+  .sec-sub{color:var(--muted);max-width:560px;margin-top:10px;font-size:15.5px}
+
+  /* about cards */
+  .people{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .person{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:30px;position:relative;overflow:hidden;transition:.3s}
+  .person:hover{border-color:#34343f;transform:translateY(-3px)}
+  .person::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(380px 200px at var(--gx,80%) -10%,var(--gc,rgba(110,231,183,.10)),transparent 70%)}
+  .person .avatar{width:62px;height:62px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:24px;color:#08080a}
+  .p-role{font-family:'JetBrains Mono';font-size:12.5px;letter-spacing:.04em;color:var(--muted);margin-top:18px;text-transform:uppercase}
+  .person h3{font-size:24px;margin-top:6px}
+  .p-alias{color:var(--faint);font-weight:500;font-size:16px}
+  .person p.bio{color:var(--muted);font-size:14.5px;margin-top:14px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .tag{font-size:12px;font-family:'JetBrains Mono';color:var(--text);background:var(--surface-2);border:1px solid var(--border);padding:5px 10px;border-radius:8px}
+  .p-links{display:flex;gap:16px;margin-top:22px;flex-wrap:wrap}
+  .p-links a{font-size:13px;color:var(--muted);display:inline-flex;align-items:center;gap:6px;transition:.2s}
+  .p-links a:hover{color:var(--accent)}
+
+  /* project featured */
+  .proj{background:linear-gradient(180deg,var(--surface),var(--bg-soft));border:1px solid var(--border);border-radius:20px;overflow:hidden}
+  .proj-top{display:grid;grid-template-columns:1.1fr .9fr;gap:0}
+  .proj-body{padding:40px}
+  .proj-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-family:'JetBrains Mono';color:var(--accent-3);border:1px solid var(--border);padding:5px 12px;border-radius:999px}
+  .proj h3{font-size:clamp(28px,4vw,40px);margin:18px 0 4px}
+  .proj .vn{color:var(--faint);font-size:16px;font-weight:500}
+  .proj p.desc{color:var(--muted);margin-top:16px;font-size:15px;max-width:46ch}
+  .proj-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+  .proj-stats .n{font-family:'Space Grotesk';font-size:26px;font-weight:700}
+  .proj-stats .l{font-size:12px;color:var(--muted)}
+  .proj-links{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+  .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:var(--surface-2);padding:10px 16px;border-radius:11px;font-size:13.5px;font-weight:500;transition:.2s}
+  .chip:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+  .proj-visual{background:
+      radial-gradient(120% 120% at 100% 0%, rgba(124,156,255,.16), transparent 55%),
+      linear-gradient(135deg,#16161b,#0d0d11);
+      position:relative;min-height:340px;display:flex;align-items:center;justify-content:center;border-left:1px solid var(--border)}
+  /* pixel motif */
+  .pix{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;width:74%;opacity:.92}
+  .pix span{aspect-ratio:1;border-radius:5px;background:var(--surface-2);border:1px solid var(--border)}
+  .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:8px}
+  .feat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;transition:.25s}
+  .feat:hover{border-color:#34343f;transform:translateY(-3px)}
+  .feat h4{font-family:'Space Grotesk';font-size:16px;margin-bottom:6px}
+  .feat p{color:var(--muted);font-size:13.5px}
+  .feat .ic{font-size:20px;margin-bottom:10px;display:block}
+
+  /* in-development cards (two side by side) */
+  .dev-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .dev-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;transition:.3s}
+  .dev-card:hover{border-color:#34343f;transform:translateY(-3px)}
+  .dev-card h3{font-size:24px;margin:16px 0 2px}
+  .dev-card .vn{color:var(--faint);font-size:15px;font-weight:500}
+  .dev-card p.desc{color:var(--muted);font-size:14.5px;margin-top:14px}
+  .dev-card .tags{margin-top:auto;padding-top:20px}
+
+  /* experience timeline */
+  .timeline{position:relative;margin-left:6px;border-left:1px solid var(--border);padding-left:30px;display:flex;flex-direction:column;gap:34px}
+  .tl-item{position:relative}
+  .tl-item::before{content:"";position:absolute;left:-37px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+  .tl-when{font-family:'JetBrains Mono';font-size:12.5px;color:var(--accent)}
+  .tl-item h4{font-family:'Space Grotesk';font-size:18px;margin-top:4px}
+  .tl-item .co{color:var(--muted);font-size:14px}
+  .tl-item p{color:var(--muted);font-size:14px;margin-top:8px;max-width:62ch}
+
+  /* achievements */
+  .ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .ach{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px;transition:.25s}
+  .ach:hover{transform:translateY(-3px);border-color:#34343f}
+  .ach .ic{font-size:26px}
+  .ach h4{font-family:'Space Grotesk';font-size:17px;margin:14px 0 6px}
+  .ach p{color:var(--muted);font-size:13.5px}
+
+  /* contact */
+  .contact{background:linear-gradient(180deg,var(--bg-soft),var(--bg));border:1px solid var(--border);border-radius:24px;padding:56px 40px;text-align:center}
+  .contact h2{font-size:clamp(30px,5vw,48px);font-weight:700}
+  .contact p{color:var(--muted);max-width:520px;margin:16px auto 0;font-size:16px}
+  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+
+  footer{border-top:1px solid var(--border);padding:36px 0;margin-top:40px}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--faint);font-size:13px}
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:860px){
+    .nav-links{display:none}
+    .menu-btn{display:block}
+    .people{grid-template-columns:1fr}
+    .proj-top{grid-template-columns:1fr}
+    .proj-visual{border-left:0;border-top:1px solid var(--border);min-height:240px}
+    .feature-grid{grid-template-columns:1fr}
+    .dev-grid{grid-template-columns:1fr}
+    .ach-grid{grid-template-columns:1fr}
+    .stat-row{grid-template-columns:1fr 1fr;gap:26px 18px}
+  }
+  @media(max-width:520px){
+    .proj-stats{grid-template-columns:1fr 1fr}
+    .proj-body{padding:28px}
+    .contact{padding:40px 22px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand"><span class="dot"></span> THE&nbsp;MANIACS</a>
+    <nav class="nav-links">
+      <a href="#about">Team</a>
+      <a href="#dreamchaser">Dream Chaser</a>
+      <a href="#strixel">In dev</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="menu">☰</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow reveal"><span class="pulse"></span> Applying · Garena Game Jam 2026</span>
+    <h1 class="reveal">We build <span class="grad">culture-rich games</span><br>that people remember.</h1>
+    <p class="lead reveal">The Maniacs is a two-person indie team from Vietnam — <strong style="color:var(--text)">Phúc</strong>, a Unity developer with shipped commercial titles, and <strong style="color:var(--text)">Hiệp</strong>, a pixel artist weaving Vietnamese culture into every frame. Our game <em>Dream Chaser</em> was featured by Apple and played by 100,000+ people.</p>
+    <div class="hero-cta reveal">
+      <a href="#dreamchaser" class="btn btn-primary">See our work →</a>
+      <a href="#contact" class="btn btn-ghost">Contact the team</a>
+    </div>
+
+    <div class="stat-row reveal">
+      <div class="stat"><div class="n accent">100k+</div><div class="l">Downloads · Dream Chaser</div></div>
+      <div class="stat"><div class="n">4.7★</div><div class="l">Store rating (~3k votes)</div></div>
+      <div class="stat"><div class="n accent2"> Featured</div><div class="l">Apple "Dare to Dream"</div></div>
+      <div class="stat"><div class="n">4+ yrs</div><div class="l">Shipping production games</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / TEAM -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">01</span>
+      <div>
+        <h2>The team</h2>
+        <p class="sec-sub">A focused duo: one owns the code and systems end-to-end, the other owns the art and identity. We shipped together before — and we're building again.</p>
+      </div>
+    </div>
+
+    <div class="people">
+      <!-- PHUC -->
+      <div class="person reveal" style="--gc:rgba(110,231,183,.12);--gx:85%">
+        <div class="avatar" style="background:linear-gradient(135deg,var(--accent),#3bbf8a)">P</div>
+        <div class="p-role">Lead Game Developer</div>
+        <h3>Phạm Duy Phúc <span class="p-alias">· Dan / Daniel</span></h3>
+        <p class="bio">Unity developer with 4+ years shipping production games for studios in Canada, the UK and Japan. Owns features end-to-end — gameplay systems, simulation, live-service and performance. Lead developer on <strong style="color:var(--text)">Dream Chaser</strong> (featured by Apple) and <strong style="color:var(--text)">Strixel</strong>, and now building a multiplayer pet-collector RPG on SpacetimeDB. Named Employee of the Year at Magmic.</p>
+        <div class="tags">
+          <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">UniTask</span><span class="tag">UniRx</span><span class="tag">Odin</span><span class="tag">Firebase</span><span class="tag">Unity Gaming Services</span><span class="tag">SpacetimeDB</span><span class="tag">Multiplayer</span><span class="tag">AdMob / IAP</span><span class="tag">Blender</span>
+        </div>
+        <div class="p-links">
+          <a href="https://github.com/Daniel-Pham831" target="_blank" rel="noopener">↗ GitHub</a>
+          <a href="https://www.linkedin.com/in/danielpham831/" target="_blank" rel="noopener">↗ LinkedIn</a>
+          <a href="https://www.facebook.com/horizon.pisces/" target="_blank" rel="noopener">↗ Facebook</a>
+          <a href="mailto:phamphuc0603@gmail.com">↗ Email</a>
+        </div>
+      </div>
+
+      <!-- HIEP -->
+      <div class="person reveal" style="--gc:rgba(124,156,255,.14);--gx:85%">
+        <div class="avatar" style="background:linear-gradient(135deg,var(--accent-2),#5b78d9);color:#fff">H</div>
+        <div class="p-role">Pixel / 2D Artist</div>
+        <h3>Trần Tuấn Hiệp <span class="p-alias">· Winbee</span></h3>
+        <p class="bio">Pixel and 2D artist with 3 years of experience, specializing in weaving Vietnamese cultural and historical elements into game design. Co-creator of <strong style="color:var(--text)">Dream Chaser</strong>, whose art style and emotional storytelling earned it an Apple feature. Active in Vietnam's indie game community.</p>
+        <div class="tags">
+          <span class="tag">Pixel Art</span><span class="tag">2D Art</span><span class="tag">Character Design</span><span class="tag">Environment Art</span><span class="tag">Animation</span><span class="tag">Aseprite</span><span class="tag">Vietnamese Culture</span>
+        </div>
+        <div class="p-links">
+          <a href="https://www.facebook.com/tran.tuan.hiep.886491" target="_blank" rel="noopener">↗ Facebook</a>
+          <a href="https://wechoice.vn/chi-tiet-de-cu-12/tran-tuan-hiep-va-pham-duy-phuc-496.htm" target="_blank" rel="noopener">↗ WeChoice 2024</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DREAM CHASER -->
+<section id="dreamchaser">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">02</span>
+      <div>
+        <h2>Shipped together</h2>
+        <p class="sec-sub">Our flagship — proof that two people can build something the world notices.</p>
+      </div>
+    </div>
+
+    <div class="proj reveal">
+      <div class="proj-top">
+        <div class="proj-body">
+          <span class="proj-badge">● Released · Dec 2023 · iOS &amp; Android</span>
+          <h3>Dream Chaser</h3>
+          <div class="vn">Chạy Trốn Phồn Hoa</div>
+          <p class="desc">A pixel-art endless runner that explores Vietnamese culture — players run through contrasting worlds, from the rush of the city to the calm of the countryside. Known for its cultural depth, art style and emotional storytelling.</p>
+          <div class="proj-stats">
+            <div><div class="n accent">100k</div><div class="l">Total downloads (~71% iOS)</div></div>
+            <div><div class="n">4.7★</div><div class="l">~3k ratings</div></div>
+            <div><div class="n accent2">23.3M</div><div class="l">Lifetime impressions</div></div>
+          </div>
+          <div class="proj-links">
+            <a class="chip" href="https://apps.apple.com/vn/app/id6474929639" target="_blank" rel="noopener"> App Store</a>
+            <a class="chip" href="https://play.google.com/store/apps/details?id=com.themaniacs.dreamchaser" target="_blank" rel="noopener">▶ Google Play</a>
+            <a class="chip" href="https://apple.co/dreamchaser" target="_blank" rel="noopener">★ Apple "Dare to Dream"</a>
+          </div>
+        </div>
+        <div class="proj-visual">
+          <div class="pix" id="pixDC"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IN DEVELOPMENT -->
+<section id="strixel">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">03</span>
+      <div>
+        <h2>In development</h2>
+        <p class="sec-sub">Two projects in motion — one we just started building together, and one deep simulation we're keeping warm as a side project.</p>
+      </div>
+    </div>
+
+    <div class="dev-grid">
+      <!-- MAGIC MONSTER -->
+      <div class="dev-card reveal" style="--gc:rgba(124,156,255,.12)">
+        <span class="proj-badge" style="color:var(--accent-2);border-color:var(--accent-2)">● In progress · together · new</span>
+        <h3>Magic Monster <span class="vn">· working title</span></h3>
+        <p class="desc">A pet-collector × idle RPG for mobile. Hatch eggs, raise and evolve cute pixel pets, send them on idle expeditions to farm resources, and wander a shared-map plaza where players see each other but never fight. Our newest project — built by the full duo: Phúc on systems &amp; backend, Hiệp on pixel art.</p>
+        <div class="tags">
+          <span class="tag">Pet Collector</span><span class="tag">Idle RPG</span><span class="tag">Unity 6</span><span class="tag">URP 2D</span><span class="tag">SpacetimeDB</span><span class="tag">Pixel Art</span><span class="tag">Evolution</span><span class="tag">Shared-map plaza</span>
+        </div>
+      </div>
+
+      <!-- STRIXEL -->
+      <div class="dev-card reveal" style="--gc:rgba(240,184,110,.12)">
+        <span class="proj-badge">● Side project · paused · since Jun 2024</span>
+        <h3>Strixel</h3>
+        <p class="desc">An idle tycoon set on an old Saigon-style street — build food stalls, hire staff and grow a buzzing food block full of personality. About <strong style="color:var(--text)">10 months</strong> of active development built a deep simulation (building, character AI, day/night cycle, economy); now paused while we focus resources, still moving forward as a side project. Pixel art inspired by <em>Đất Ba Miền</em> and <em>Eastward</em>.</p>
+        <div class="tags">
+          <span class="tag">Idle Tycoon</span><span class="tag">Building System</span><span class="tag">Character AI</span><span class="tag">Day / Night Cycle</span><span class="tag">Hiring &amp; Economy</span><span class="tag">Pathfinding</span><span class="tag">Pixel Art</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">04</span>
+      <div>
+        <h2>Track record</h2>
+        <p class="sec-sub">Phúc's professional experience — production games shipped with international studios.</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-when">Jan 2025 — Present</div>
+        <h4>Unity Game Developer · <span class="co">IndiGames (Remote)</span></h4>
+        <p>Outsourcing studio delivering Unity projects for Japanese clients. Worked on 4+ mobile projects (2 shipped, 2 in development) — gameplay systems across casual, puzzle and simulation games, complex UI, REST/Firebase live-service, IAP &amp; ad monetization, and on-device performance optimization. <span style="color:var(--faint)">Most titles are under NDA and can't be shown publicly.</span></p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">Aug 2022 — Aug 2024</div>
+        <h4>Unity Game Developer · <span class="co">Magmic, Canada (Remote)</span></h4>
+        <p>Built and maintained production Unity games for live players, including <a href="https://apps.apple.com/vn/app/the-ball-game-by-playbrk/id6758020837" target="_blank" rel="noopener" style="color:var(--accent)">The Ball Game by Playbrk</a> — a baseball management &amp; tycoon sim with a visual simulation layer driven by runtime match data. Mentored junior developers through code reviews. <strong style="color:var(--text)">Selected as one of three Employees of the Year (2024).</strong></p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">Jan 2022 — Jul 2022</div>
+        <h4>Client Game Developer · <span class="co">Intouch Games – Fairdos Studio (Hybrid)</span></h4>
+        <p>Implemented gameplay and visuals on an in-house engine, working closely with UK-based producers and artists. Delivered optimized, maintainable code and fixed performance bottlenecks across client projects.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">Education</div>
+        <h4>B.Sc. Information Technology · <span class="co">Saigon Technology University (STU)</span></h4>
+        <p>Foundation in software engineering, now applied full-time to building and shipping games.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">05</span>
+      <div><h2>Recognition</h2></div>
+    </div>
+    <div class="ach-grid">
+      <div class="ach reveal">
+        <div class="ic">🍎</div>
+        <h4>Apple App Store Feature</h4>
+        <p>Dream Chaser featured in Apple's "Here's to the Dreamers – Dare to Dream" campaign across SEA (Aug 2024).</p>
+      </div>
+      <div class="ach reveal">
+        <div class="ic">🏆</div>
+        <h4>WeChoice Awards 2024 — Nominee</h4>
+        <p>Trần Tuấn Hiệp &amp; Phạm Duy Phúc nominated as part of Z-Team (talented Gen-Z creators).</p>
+      </div>
+      <div class="ach reveal">
+        <div class="ic">⭐</div>
+        <h4>Employee of the Year — Magmic</h4>
+        <p>One of three honored for exceptional performance and teamwork after a year of work (Mar 2024).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact reveal">
+      <h2>Let's build something<br>worth remembering.</h2>
+      <p>We're applying to Garena Game Jam 2026 and ready for the offline round. Reach out — we'd love to talk.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:phamphuc0603@gmail.com">✉ phamphuc0603@gmail.com</a>
+        <a class="btn btn-ghost" href="https://github.com/Daniel-Pham831" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/danielpham831/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <p class="mono" style="margin-top:22px;font-size:13px;color:var(--faint)">+84 926 624 129 · Ho Chi Minh City, Vietnam</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>© 2026 The Maniacs — Phạm Duy Phúc &amp; Trần Tuấn Hiệp</span>
+    <span class="mono">Made for Garena Game Jam 2026</span>
+  </div>
+</footer>
+
+<script>
+  // nav border on scroll
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10));
+
+  // mobile menu (simple jump-to)
+  document.getElementById('menuBtn').addEventListener('click',()=>{
+    document.getElementById('about').scrollIntoView({behavior:'smooth'});
+  });
+
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4)*60+'ms';io.observe(el);});
+
+  // decorative pixel grid — gentle animated palette
+  const pal=['#6EE7B7','#7C9CFF','#F0B86E','#1b1b21','#1b1b21','#26262e'];
+  const grid=document.getElementById('pixDC');
+  if(grid){
+    for(let i=0;i<36;i++){const s=document.createElement('span');grid.appendChild(s);}
+    const cells=grid.querySelectorAll('span');
+    function tick(){
+      cells.forEach(c=>{
+        if(Math.random()<.18){
+          const col=pal[Math.floor(Math.random()*pal.length)];
+          c.style.background=col;
+          c.style.borderColor=col==='#1b1b21'||col==='#26262e'?'var(--border)':col;
+          c.style.boxShadow=col.startsWith('#6')||col.startsWith('#7')||col.startsWith('#F')?'0 0 10px '+col+'66':'none';
+        }
+      });
+    }
+    tick();setInterval(tick,900);
+  }
+</script>
+</body>
+</html>
