@@ -121,6 +121,9 @@
   .frame::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px oklch(0 0 0 /.06)}
   .frame .cap{position:absolute;left:13px;bottom:11px;z-index:2;font-family:'Silkscreen';font-size:9.5px;color:#fff;
     background:oklch(0.22 0.03 280 / .78);padding:6px 9px;border-radius:7px;backdrop-filter:blur(4px)}
+  .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2vw,22px)}
+  .gallery .frame img{width:100%;display:block}
+  @media(max-width:700px){ .gallery{grid-template-columns:1fr} }
 
   /* MARQUEE */
   .marquee{position:relative;overflow:hidden;background:var(--bg-deep);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:clamp(18px,2.4vw,26px) 0}
@@ -403,9 +406,9 @@
       </div>
       <div class="proj jade reveal">
         <div class="mini" aria-hidden="true"><canvas id="sxCanvas"></canvas><span class="wip">WIP</span></div>
-        <span class="pbadge"><span class="dot"></span>DỰ ÁN PHỤ · TẠM DỪNG · TỪ 6/2024</span>
+        <span class="pbadge"><span class="dot"></span>DỰ ÁN PHỤ · TIẾN ĐỘ CHẬM · TỪ 6/2024</span>
         <h3>Strixel</h3>
-        <p class="desc">Idle tycoon trên con phố Sài Gòn xưa — xây quán ăn, thuê nhân viên, phát triển khu phố ẩm thực. <b>~10 tháng</b> dựng nền mô phỏng sâu (xây dựng, AI nhân vật, ngày/đêm, kinh tế); hiện tạm dừng vì thiếu nguồn lực, vẫn làm dạng side project. Cảm hứng từ <em>Đất Ba Miền</em> và <em>Eastward</em>.</p>
+        <p class="desc">Idle tycoon trên con phố Sài Gòn xưa — xây quán ăn, thuê nhân viên, phát triển khu phố ẩm thực. <b>~10 tháng</b> dựng nền mô phỏng sâu (xây dựng, AI nhân vật, ngày/đêm, kinh tế); vẫn được phát triển dạng side project nhưng tiến độ chậm. Cảm hứng từ <em>Đất Ba Miền</em> và <em>Eastward</em>.</p>
         <div class="tags">
           <span class="tag">Idle Tycoon</span><span class="tag">Hệ thống xây dựng</span><span class="tag">AI nhân vật</span><span class="tag">Chu kỳ ngày/đêm</span><span class="tag">Tuyển dụng & kinh tế</span><span class="tag">Tìm đường</span>
         </div>
@@ -532,6 +535,22 @@
         <h4>Trường Sinh Pháp</h4>
         <p>Vẽ pixel art cho dự án theo hình thức outsource.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ART BY HIỆP -->
+<section id="art">
+  <div class="wrap">
+    <div class="head reveal">
+      <h2>Nét vẽ của Hiệp.</h2>
+      <p>Pixel art bối cảnh Việt — chính tay Hiệp vẽ, từ Dream Chaser tới Mandarin.</p>
+    </div>
+    <div class="gallery">
+      <div class="frame reveal"><img src="assets/art-temple.jpg" alt="Pixel art cổng đền cổ giữa rừng tre xanh trong Dream Chaser" loading="lazy" /><span class="cap">CỔNG ĐỀN GIỮA RỪNG TRE</span></div>
+      <div class="frame reveal"><img src="assets/art-house.jpg" alt="Pixel art mái đình làng Việt giữa rừng tre, ánh nắng xuyên qua" loading="lazy" /><span class="cap">MÁI ĐÌNH NGÀY NẮNG</span></div>
+      <div class="frame reveal"><img src="assets/art-bridge.jpg" alt="Pixel art cầu ngói cổ bắc qua suối trong rừng tre" loading="lazy" /><span class="cap">CẦU NGÓI QUA SUỐI</span></div>
+      <div class="frame reveal"><img src="assets/art-mandarin.jpg" alt="Pixel art bàn cờ Heavenly Arena của game Mandarin – Ô Ăn Quan" loading="lazy" /><span class="cap">HEAVENLY ARENA · MANDARIN</span></div>
     </div>
   </div>
 </section>
