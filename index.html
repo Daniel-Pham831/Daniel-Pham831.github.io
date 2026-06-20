@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>The Maniacs — Phúc & Hiệp · studio game pixel từ Việt Nam</title>
+<title>The Maniacs — studio game pixel từ Việt Nam</title>
 <meta name="description" content="The Maniacs — studio game pixel 2 người từ Việt Nam. Phạm Duy Phúc (Lead Dev) & Trần Tuấn Hiệp (Hoạ sĩ Pixel) — cha đẻ Dream Chaser, được Apple giới thiệu, hơn 100.000 người chơi." />
 <meta name="theme-color" content="#160f28" />
 <meta property="og:title" content="The Maniacs — studio game pixel" />
-<meta property="og:description" content="Hai người Việt làm những thế giới pixel toả sáng trong đêm. Cha đẻ Dream Chaser, được Apple giới thiệu." />
+<meta property="og:description" content="Hai người Việt làm game pixel mang hồn Việt. Cha đẻ Dream Chaser, được Apple giới thiệu." />
 <meta property="og:type" content="website" />
+<meta property="og:image" content="https://daniel-pham831.github.io/assets/dreamchaser-1.jpg" />
+<link rel="icon" type="image/png" href="assets/dreamchaser-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;450;500;600&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
 <script>document.documentElement.classList.add('js')</script>
 <style>
   :root{
-    /* ---- Neon Dusk Arcade · OKLCH committed palette ---- */
-    /* dusk-violet base (the night sky), tinted neutrals lean to the same hue */
     --bg:        oklch(0.16 0.034 290);
     --bg-deep:   oklch(0.12 0.030 290);
     --surface:   oklch(0.215 0.040 289);
@@ -24,68 +24,51 @@
     --border:    oklch(0.34 0.040 289);
     --border-lo: oklch(0.28 0.036 289);
     --border-hi: oklch(0.46 0.052 287);
-
-    /* warm off-white ink, faintly amber so it sits with the neon */
     --ink:    oklch(0.955 0.018 78);
     --muted:  oklch(0.795 0.022 72);
     --faint:  oklch(0.635 0.026 286);
-
-    /* accents: amber neon (primary) + jade (secondary) */
     --amber:    oklch(0.815 0.155 58);
     --amber-hi: oklch(0.875 0.135 70);
-    --amber-dk: oklch(0.205 0.045 56);   /* ink on amber */
+    --amber-dk: oklch(0.205 0.045 56);
     --jade:     oklch(0.835 0.115 168);
     --jade-dk:  oklch(0.205 0.045 175);
-
     --amber-wash: oklch(0.815 0.155 58 / 0.12);
-    --jade-wash:  oklch(0.835 0.115 168 / 0.12);
-
     --ease: cubic-bezier(.16,1,.3,1);
     --r:14px; --r-lg:22px;
     --maxw:1160px;
-
-    --z-base:1; --z-nav:50; --z-scrim:5;
+    --z-nav:50; --z-scrim:5;
   }
-
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'Hanken Grotesk',system-ui,sans-serif;
-    font-weight:450;            /* light type on dark reads heavier — drop a touch */
-    font-size:clamp(15.5px,1.05vw,17px);
-    line-height:1.7;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-    text-rendering:optimizeLegibility;
+    background:var(--bg);color:var(--ink);
+    font-family:'Hanken Grotesk',system-ui,sans-serif;font-weight:450;
+    font-size:clamp(15.5px,1.05vw,17px);line-height:1.7;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;text-rendering:optimizeLegibility;
   }
-  /* faint dusk grain + scanline texture — arcade atmosphere, very low key */
   body::after{
-    content:"";position:fixed;inset:0;pointer-events:none;z-index:var(--z-scrim);mix-blend-mode:soft-light;opacity:.5;
-    background:
-      repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px),
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:var(--z-scrim);mix-blend-mode:soft-light;opacity:.42;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px),
       radial-gradient(120% 80% at 50% -10%, transparent 55%, rgba(0,0,0,.45));
   }
-  @media (prefers-reduced-motion: reduce){ body::after{opacity:.32} }
-
+  @media (prefers-reduced-motion: reduce){ body::after{opacity:.3} }
   h1,h2,h3,h4,.display{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;line-height:1.04;letter-spacing:-.02em;text-wrap:balance}
   p{text-wrap:pretty}
-  .pixel{font-family:'Silkscreen',monospace;letter-spacing:.02em;text-transform:none}
+  .pixel{font-family:'Silkscreen',monospace;letter-spacing:.02em}
   a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,40px)}
   .amber{color:var(--amber-hi)} .jade{color:var(--jade)}
   ::selection{background:var(--amber);color:var(--amber-dk)}
   :focus-visible{outline:2px solid var(--amber-hi);outline-offset:3px;border-radius:4px}
 
-  /* ---------------- NAV ---------------- */
+  /* NAV */
   header.nav{position:sticky;top:0;z-index:var(--z-nav);backdrop-filter:blur(12px) saturate(1.2);
     background:oklch(0.16 0.034 290 / .72);border-bottom:1px solid transparent;transition:border-color .35s var(--ease)}
   header.nav.scrolled{border-bottom-color:var(--border-lo)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px;gap:20px}
-  .brand{display:inline-flex;align-items:center;gap:11px;font-family:'Silkscreen';font-weight:700;font-size:15px;letter-spacing:.01em}
-  .brand .led{width:11px;height:11px;background:var(--amber);box-shadow:0 0 14px var(--amber),0 0 4px #fff inset;animation:flick 3.4s steps(1) infinite}
-  @keyframes flick{0%,92%,100%{opacity:1}94%{opacity:.35}96%{opacity:1}97%{opacity:.5}}
+  .brand{display:inline-flex;align-items:center;gap:11px;font-family:'Silkscreen';font-weight:700;font-size:15px}
+  .brand img{width:26px;height:26px;border-radius:6px;image-rendering:pixelated;box-shadow:0 0 0 1px var(--border-hi)}
   .nav-links{display:flex;gap:30px;align-items:center}
   .nav-links a{color:var(--muted);font-size:14.5px;font-weight:500;transition:color .2s var(--ease);position:relative}
   .nav-links a:hover{color:var(--ink)}
@@ -94,59 +77,68 @@
   .nav-cta{padding:9px 16px;border:1px solid var(--border-hi);border-radius:10px;color:var(--ink)!important;font-size:13.5px;font-weight:600;transition:.25s var(--ease)}
   .nav-cta:hover{border-color:var(--amber);color:var(--amber-hi)!important;box-shadow:0 0 22px -8px var(--amber)}
   .nav-cta::after{display:none}
-  .menu-btn{display:none;background:none;border:0;color:var(--ink);font-family:'Silkscreen';font-size:18px;cursor:pointer}
+  .menu-btn{display:none;background:none;border:0;color:var(--ink);font-family:'Silkscreen';font-size:14px;cursor:pointer}
 
-  /* ---------------- BUTTONS ---------------- */
+  /* BUTTONS */
   .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:12px;font-weight:600;font-size:15.5px;
-    border:1px solid transparent;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease),background .25s var(--ease)}
+    border:1px solid transparent;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease)}
   .btn .ar{transition:transform .3s var(--ease)}
   .btn:hover .ar{transform:translateX(4px)}
-  .btn-primary{background:var(--amber);color:var(--amber-dk);box-shadow:0 0 0 0 var(--amber)}
+  .btn-primary{background:var(--amber);color:var(--amber-dk)}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px -12px var(--amber),0 0 26px -10px var(--amber-hi)}
   .btn-ghost{border-color:var(--border-hi);color:var(--ink)}
   .btn-ghost:hover{border-color:var(--jade);color:var(--jade);transform:translateY(-2px)}
 
-  /* status chip (pixel) — used sparingly, never as per-section grammar */
-  .chip-status{display:inline-flex;align-items:center;gap:9px;font-family:'Silkscreen';font-size:11px;color:var(--amber-hi);
-    border:1px solid var(--border);background:var(--surface);padding:8px 14px;border-radius:999px}
-  a.chip-status{transition:border-color .25s var(--ease),box-shadow .25s var(--ease)}
-  a.chip-status:hover{border-color:var(--amber);box-shadow:0 0 22px -9px var(--amber)}
-  .chip-status .blip{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 0 var(--amber);animation:ping 2.4s var(--ease) infinite}
+  /* HERO — full-bleed art, image-led */
+  .hero{position:relative;min-height:clamp(560px,90vh,880px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+  .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .hero-bg img{width:100%;height:118%;object-fit:cover;object-position:center 30%;image-rendering:pixelated;will-change:transform}
+  .hero-bg::after{content:"";position:absolute;inset:0;
+    background:
+      linear-gradient(90deg, var(--bg) 2%, oklch(0.16 0.034 290 / .9) 28%, oklch(0.16 0.034 290 / .45) 62%, transparent 100%),
+      linear-gradient(0deg, var(--bg) 1%, transparent 32%),
+      radial-gradient(120% 80% at 30% 20%, transparent 40%, oklch(0.12 0.030 290 / .6))}
+  .hero .wrap{position:relative;z-index:2;width:100%;padding-top:clamp(40px,8vw,90px);padding-bottom:clamp(48px,7vw,86px)}
+  .hero-inner{max-width:700px}
+  .kicker{font-family:'Silkscreen';font-size:11px;color:var(--amber-hi);display:inline-flex;align-items:center;gap:9px}
+  .kicker .blip{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber);animation:ping 2.4s var(--ease) infinite}
   @keyframes ping{0%{box-shadow:0 0 0 0 oklch(0.815 0.155 58 / .55)}70%{box-shadow:0 0 0 9px oklch(0.815 0.155 58 / 0)}100%{box-shadow:0 0 0 0 oklch(0.815 0.155 58 / 0)}}
-
-  /* ---------------- HERO ---------------- */
-  .hero{position:relative;padding:clamp(40px,7vw,84px) 0 clamp(56px,8vw,96px)}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,56px);align-items:center}
-  .hero h1{font-size:clamp(2.6rem,7.2vw,5.3rem);font-weight:800;letter-spacing:-.035em;margin:22px 0 0}
-  .hero h1 .glow{color:var(--amber-hi);text-shadow:0 0 32px oklch(0.815 0.155 58 / .45)}
-  .hero h1 .glow-j{color:var(--jade);text-shadow:0 0 32px oklch(0.835 0.115 168 / .4)}
-  .lead{font-size:clamp(16.5px,1.5vw,19px);color:var(--muted);max-width:42ch;margin-top:24px}
+  .hero h1{font-size:clamp(2.7rem,7.6vw,5.6rem);font-weight:800;letter-spacing:-.035em;margin:20px 0 0}
+  .hero h1 .glow{color:var(--amber-hi);text-shadow:0 0 36px oklch(0.815 0.155 58 / .5)}
+  .hero h1 .glow-j{color:var(--jade);text-shadow:0 0 36px oklch(0.835 0.115 168 / .45)}
+  .lead{font-size:clamp(16.5px,1.5vw,19px);color:var(--muted);max-width:46ch;margin-top:22px}
   .lead b{color:var(--ink);font-weight:600}
-  .cred{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:26px;font-size:13.5px;color:var(--faint)}
+  .cred{display:flex;flex-wrap:wrap;align-items:center;gap:9px 15px;margin-top:24px;font-size:13.5px;color:var(--faint)}
   .cred span{display:inline-flex;align-items:center;gap:8px}
   .cred .k{color:var(--ink);font-weight:600}
   .cred .sep{width:5px;height:5px;background:var(--border-hi);border-radius:50%}
-  .hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+  .hero-cta{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
 
-  /* hero canvas frame */
-  .scene{position:relative;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;
-    box-shadow:0 30px 80px -40px #000, inset 0 0 60px -30px oklch(0.835 0.115 168 / .25)}
-  .scene canvas{display:block;width:100%;height:100%;image-rendering:pixelated}
-  .scene::after{content:"";position:absolute;inset:0;pointer-events:none;
-    box-shadow:inset 0 -40px 60px -30px var(--bg-deep), inset 0 0 0 1px oklch(1 0 0 / .03)}
-  .scene-cap{position:absolute;left:14px;bottom:12px;font-family:'Silkscreen';font-size:9.5px;color:var(--ink);
-    background:oklch(0.12 0.030 290 / .7);padding:6px 9px;border-radius:7px;backdrop-filter:blur(4px)}
-  .hero .scene{height:clamp(300px,40vw,440px)}
+  /* MARQUEE — auto-scrolling screenshot filmstrip */
+  .marquee{position:relative;overflow:hidden;background:var(--bg-deep);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:clamp(18px,2.4vw,26px) 0}
+  .marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:11%;z-index:2;pointer-events:none}
+  .marquee::before{left:0;background:linear-gradient(90deg,var(--bg-deep),transparent)}
+  .marquee::after{right:0;background:linear-gradient(270deg,var(--bg-deep),transparent)}
+  .mq-track{display:flex;gap:16px;width:max-content;animation:scroll 54s linear infinite}
+  .marquee:hover .mq-track{animation-play-state:paused}
+  @keyframes scroll{to{transform:translateX(calc(-50% - 8px))}}
+  .shot{flex:0 0 auto;width:clamp(248px,30vw,372px);aspect-ratio:16/9;border-radius:12px;overflow:hidden;
+    border:1px solid var(--border);position:relative;box-shadow:0 16px 40px -24px #000}
+  .shot img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;transition:transform .5s var(--ease)}
+  .shot::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px oklch(1 0 0 /.04);border-radius:12px}
+  .shot:hover img{transform:scale(1.06)}
+  @media (prefers-reduced-motion: reduce){
+    .marquee{overflow-x:auto}
+    .mq-track{animation:none}
+  }
 
-  /* ---------------- SECTIONS ---------------- */
+  /* SECTIONS */
   section{padding:clamp(64px,9vw,108px) 0;position:relative}
-  .head{max-width:640px;margin-bottom:clamp(36px,5vw,56px)}
-  .head .tag{font-family:'Silkscreen';font-size:11px;color:var(--jade);display:inline-block;margin-bottom:14px}
+  .head{max-width:640px;margin-bottom:clamp(34px,5vw,54px)}
   .head h2{font-size:clamp(2rem,4.4vw,3.2rem);font-weight:700;letter-spacing:-.028em}
   .head p{color:var(--muted);margin-top:14px;font-size:clamp(15.5px,1.3vw,17px)}
-  .rule{height:1px;background:linear-gradient(90deg,var(--border-hi),transparent);border:0;margin:0 0 4px}
 
-  /* ---------------- TEAM ---------------- */
+  /* TEAM */
   .makers{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,26px)}
   .maker{position:relative;padding:clamp(26px,2.6vw,34px);border:1px solid var(--border);border-radius:var(--r-lg);
     background:linear-gradient(180deg,var(--surface),oklch(0.16 0.034 290));overflow:hidden;transition:border-color .3s var(--ease),transform .3s var(--ease)}
@@ -164,20 +156,20 @@
   .maker .bio{color:var(--muted);font-size:14.8px;margin-top:14px}
   .maker .bio b{color:var(--ink);font-weight:600}
   .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
-  .tag{font-size:12px;font-weight:500;color:var(--ink);background:var(--surface-2);border:1px solid var(--border);padding:5px 11px;border-radius:8px}
+  .tag{font-size:12px;font-weight:500;color:var(--ink);background:var(--surface-2);border:1px solid var(--border);padding:5px 11px;border-radius:8px;transition:.2s var(--ease)}
   .maker.amber .tag:hover{border-color:var(--amber);color:var(--amber-hi)} .maker.jade .tag:hover{border-color:var(--jade);color:var(--jade)}
-  .tag{transition:.2s var(--ease)}
   .links{display:flex;flex-wrap:wrap;gap:7px 18px;margin-top:22px}
   .links a{font-size:13.5px;color:var(--muted);display:inline-flex;align-items:center;gap:7px;transition:color .2s var(--ease)}
   .links a:hover{color:var(--ink)} .links a .ar{color:var(--amber-hi)}
 
-  /* ---------------- FLAGSHIP (Dream Chaser) ---------------- */
-  .flag{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3.5vw,52px);align-items:center}
-  .flag .scene{height:clamp(280px,34vw,400px)}
+  /* DREAM CHASER */
+  .flag{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(24px,3.5vw,52px);align-items:center}
   .badge{display:inline-flex;align-items:center;gap:9px;font-family:'Silkscreen';font-size:10.5px;color:var(--amber-hi);
     border:1px solid var(--border);padding:7px 13px;border-radius:999px;background:var(--surface)}
   .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber)}
-  .flag h3{font-size:clamp(2rem,3.6vw,2.9rem);margin:18px 0 2px;letter-spacing:-.03em}
+  .flag-title{display:flex;align-items:center;gap:16px;margin:18px 0 2px}
+  .flag-title img{width:62px;height:62px;border-radius:14px;image-rendering:pixelated;box-shadow:0 0 0 1px var(--border-hi),0 14px 30px -16px #000}
+  .flag h3{font-size:clamp(2rem,3.6vw,2.9rem);letter-spacing:-.03em}
   .flag .vn{color:var(--jade);font-size:1.05rem;font-weight:500;font-family:'Hanken Grotesk'}
   .flag .desc{color:var(--muted);margin-top:16px;max-width:48ch}
   .facts{display:flex;flex-wrap:wrap;gap:10px 0;margin-top:26px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -192,14 +184,26 @@
   .store a:hover{border-color:var(--amber);color:var(--amber-hi);transform:translateY(-2px)}
   .store a .g{font-family:'Silkscreen';font-size:11px;color:var(--jade)}
 
-  /* ---------------- IN DEVELOPMENT ---------------- */
+  /* framed screenshot "screen" */
+  .frame{position:relative;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border-hi);
+    box-shadow:0 36px 90px -44px #000, 0 0 60px -34px oklch(0.835 0.115 168 / .4);transition:transform .4s var(--ease)}
+  .frame:hover{transform:translateY(-4px)}
+  .frame img{width:100%;image-rendering:pixelated}
+  .frame::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 1px oklch(1 0 0 /.05);
+    background:radial-gradient(120% 90% at 50% 0%, transparent 70%, oklch(0.12 0.030 290 / .35))}
+  .frame .cap{position:absolute;left:13px;bottom:11px;z-index:2;font-family:'Silkscreen';font-size:9.5px;color:var(--ink);
+    background:oklch(0.12 0.030 290 / .72);padding:6px 9px;border-radius:7px;backdrop-filter:blur(4px)}
+
+  /* IN DEVELOPMENT */
   .building{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,26px)}
   .proj{position:relative;display:flex;flex-direction:column;padding:clamp(26px,2.6vw,34px);border:1px solid var(--border);
     border-radius:var(--r-lg);background:var(--surface);overflow:hidden;transition:border-color .3s var(--ease),transform .3s var(--ease)}
   .proj:hover{transform:translateY(-4px)}
   .proj.amber:hover{border-color:var(--amber)} .proj.jade:hover{border-color:var(--jade)}
-  .proj .mini{height:96px;margin:-6px -6px 20px;border-radius:12px;overflow:hidden;border:1px solid var(--border-lo);position:relative}
+  .proj .mini{height:104px;margin:-6px -6px 20px;border-radius:12px;overflow:hidden;border:1px solid var(--border-lo);position:relative}
   .proj .mini canvas{display:block;width:100%;height:100%;image-rendering:pixelated}
+  .proj .mini .wip{position:absolute;right:9px;top:8px;font-family:'Silkscreen';font-size:8px;color:var(--faint);
+    background:oklch(0.12 0.030 290 / .6);padding:4px 7px;border-radius:6px}
   .pbadge{display:inline-flex;align-items:center;gap:8px;font-family:'Silkscreen';font-size:10px;padding:6px 11px;border-radius:999px;border:1px solid var(--border);width:max-content}
   .proj.amber .pbadge{color:var(--amber-hi)} .proj.jade .pbadge{color:var(--jade)}
   .pbadge .dot{width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
@@ -209,7 +213,7 @@
   .proj .desc b{color:var(--ink);font-weight:600}
   .proj .tags{margin-top:auto;padding-top:20px}
 
-  /* ---------------- TIMELINE ---------------- */
+  /* TIMELINE */
   .tl{position:relative;margin-left:7px;padding-left:30px;border-left:1px solid var(--border);display:flex;flex-direction:column;gap:clamp(28px,3vw,40px)}
   .tl-item{position:relative}
   .tl-item::before{content:"";position:absolute;left:-37px;top:4px;width:13px;height:13px;border-radius:3px;background:var(--bg);
@@ -225,8 +229,8 @@
   .tl-item .nda{color:var(--faint)}
   .tl-item strong{color:var(--ink)}
 
-  /* ---------------- RECOGNITION ---------------- */
-  .awards{display:flex;flex-direction:column;gap:0}
+  /* RECOGNITION */
+  .awards{display:flex;flex-direction:column}
   .award{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(16px,2.2vw,28px);align-items:center;
     padding:clamp(20px,2.4vw,28px) 4px;border-top:1px solid var(--border);transition:background .3s var(--ease)}
   .award:last-child{border-bottom:1px solid var(--border)}
@@ -241,40 +245,42 @@
   .award .press{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px}
   .award .press a{font-size:13.5px;color:var(--muted);text-decoration-color:oklch(0.795 0.022 72 / .35)}
 
-  /* ---------------- CONTACT ---------------- */
+  /* CONTACT */
   .contact{position:relative;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;
-    padding:clamp(44px,6vw,72px) clamp(24px,4vw,48px);text-align:center;background:var(--bg-deep)}
-  .contact canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;opacity:.5;z-index:0}
-  .contact::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(80% 120% at 50% 0%,transparent 30%,var(--bg-deep) 78%)}
+    padding:clamp(44px,6vw,76px) clamp(24px,4vw,48px);text-align:center}
+  .contact .cbg{position:absolute;inset:0;z-index:0}
+  .contact .cbg img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;opacity:.34}
+  .contact::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(95% 130% at 50% 0%, oklch(0.12 0.030 290 / .55) 38%, var(--bg-deep) 84%)}
   .contact > *{position:relative;z-index:2}
   .contact h2{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;letter-spacing:-.03em}
   .contact p{color:var(--muted);max-width:50ch;margin:16px auto 0;font-size:16px}
   .contact .hero-cta{justify-content:center;margin-top:32px}
   .contact .meta{font-family:'Silkscreen';font-size:11px;color:var(--faint);margin-top:26px}
 
-  /* ---------------- FOOTER ---------------- */
+  /* FOOTER */
   footer{border-top:1px solid var(--border);padding:34px 0;margin-top:8px}
   .foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--faint);font-size:13px}
   .foot .pixel{font-size:10px;color:var(--muted)}
 
-  /* ---------------- REVEAL (no blank on headless / reduced-motion) ---------------- */
+  /* REVEAL */
   @media (prefers-reduced-motion: no-preference){
     html.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
     html.js .reveal.in{opacity:1;transform:none}
   }
 
-  /* ---------------- RESPONSIVE ---------------- */
+  /* RESPONSIVE */
   @media(max-width:900px){
     .nav-links{display:none}
     .menu-btn{display:block}
-    .hero-grid{grid-template-columns:1fr}
-    .hero .scene{height:clamp(220px,52vw,340px);order:-1}
     .flag{grid-template-columns:1fr}
+    .flag .frame{order:-1}
     .makers,.building{grid-template-columns:1fr}
+    .hero-bg::after{background:
+      linear-gradient(0deg, var(--bg) 4%, oklch(0.16 0.034 290 / .55) 46%, oklch(0.16 0.034 290 / .82) 100%),
+      linear-gradient(90deg, oklch(0.16 0.034 290 / .6), transparent 80%)}
   }
   @media(max-width:640px){
-    .hero h1{font-size:clamp(1.8rem,7.8vw,3rem);letter-spacing:-.02em}
-    .hero h1 br{display:none}
+    .hero h1{font-size:clamp(2rem,8.4vw,3.1rem);letter-spacing:-.02em}
     .lead{max-width:none}
     .cred{font-size:12.5px}
   }
@@ -282,6 +288,7 @@
     .facts{flex-direction:column}
     .fact{border-right:0;border-bottom:1px solid var(--border);width:100%}
     .fact:last-child{border-bottom:0}
+    .flag-title img{width:50px;height:50px}
     .award{grid-template-columns:auto 1fr;gap:14px}
     .award .mark{grid-row:1;grid-column:1}
     .award .yr{grid-column:2;text-align:right}
@@ -293,15 +300,15 @@
 <!-- NAV -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
-    <a href="#top" class="brand"><span class="led"></span>THE MANIACS</a>
+    <a href="#top" class="brand"><img src="assets/dreamchaser-icon.png" alt="" width="26" height="26" />THE MANIACS</a>
     <nav class="nav-links">
-      <a href="#team">Đội ngũ</a>
       <a href="#dreamchaser">Dream Chaser</a>
       <a href="#building">Đang làm</a>
+      <a href="#team">Đội ngũ</a>
       <a href="#track">Kinh nghiệm</a>
       <a href="#contact" class="nav-cta">Liên hệ</a>
     </nav>
-    <button class="menu-btn pixel" id="menuBtn" aria-label="Jump to team">MENU</button>
+    <button class="menu-btn pixel" id="menuBtn" aria-label="Tới phần Dream Chaser">MENU</button>
   </div>
 </header>
 
@@ -309,11 +316,14 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <a href="https://gamejam.garena.vn/vi" target="_blank" rel="noopener" class="chip-status reveal"><span class="blip"></span>ỨNG TUYỂN — GARENA GAME JAM 2026</a>
-      <h1 class="reveal">Thế giới pixel <br><span class="glow">toả sáng</span> giữa màn <span class="glow-j">đêm</span>.</h1>
-      <p class="lead reveal">Studio 2 người từ Việt Nam. <b>Phúc</b> code, <b>Hiệp</b> vẽ pixel. Cùng nhau làm <b>Dream Chaser</b> — game được Apple giới thiệu, hơn 100.000 người chơi.</p>
+  <div class="hero-bg" aria-hidden="true">
+    <img id="heroImg" src="assets/dreamchaser-7.jpg" alt="" fetchpriority="high" />
+  </div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <span class="kicker reveal"><span class="blip"></span>STUDIO GAME PIXEL · VIỆT NAM</span>
+      <h1 class="reveal">Tụi mình làm game <span class="glow">pixel</span> mang <span class="glow-j">hồn Việt</span>.</h1>
+      <p class="lead reveal">The Maniacs là studio 2 người: <b>Phúc</b> code, <b>Hiệp</b> vẽ. Game đầu tay <b>Dream Chaser</b> được Apple giới thiệu và hơn 100.000 người chơi.</p>
       <div class="cred reveal">
         <span><span class="k">Apple giới thiệu</span></span><i class="sep"></i>
         <span><span class="k">100K+</span> người chơi</span><i class="sep"></i>
@@ -321,13 +331,84 @@
         <span>Đề cử <span class="k">WeChoice 2024</span></span>
       </div>
       <div class="hero-cta reveal">
-        <a href="#dreamchaser" class="btn btn-primary">Xem game của tụi mình <span class="ar">→</span></a>
-        <a href="#team" class="btn btn-ghost">Gặp tụi mình</a>
+        <a href="#dreamchaser" class="btn btn-primary">Khám phá Dream Chaser <span class="ar">→</span></a>
+        <a href="#team" class="btn btn-ghost">Về tụi mình</a>
       </div>
     </div>
-    <div class="scene reveal" aria-hidden="true">
-      <canvas id="cityCanvas"></canvas>
-      <span class="scene-cap pixel">PHỐ ĐÊM · 18:42</span>
+  </div>
+</section>
+
+<!-- SCREENSHOT MARQUEE -->
+<div class="marquee" aria-label="Ảnh trong game Dream Chaser">
+  <div class="mq-track" id="mqTrack">
+    <a class="shot" href="#dreamchaser"><img src="assets/dreamchaser-1.jpg" alt="Cổng tam quan pixel, hai nhân vật chèo thuyền trong Dream Chaser" loading="lazy" /></a>
+    <a class="shot" href="#dreamchaser"><img src="assets/dreamchaser-7.jpg" alt="Cảnh gameplay: nhân vật múa lân đối đầu quái bóng tối giữa núi tím" loading="lazy" /></a>
+    <a class="shot" href="#dreamchaser"><img src="assets/dreamchaser-3.jpg" alt="Hoàng thành đỏ vàng với dàn nhân vật và ngai vàng" loading="lazy" /></a>
+    <a class="shot" href="#dreamchaser"><img src="assets/dreamchaser-5.jpg" alt="Làng quê tre xanh, hai nhân vật bên kiến trúc đền Việt" loading="lazy" /></a>
+    <a class="shot" href="#dreamchaser"><img src="assets/dreamchaser-2.jpg" alt="Dàn nhân vật mặc cổ phục Việt Nam" loading="lazy" /></a>
+    <a class="shot" href="#dreamchaser"><img src="assets/dreamchaser-6.jpg" alt="Cảnh gameplay ban ngày với hai nhân vật bên cổng đá" loading="lazy" /></a>
+    <a class="shot" href="#dreamchaser"><img src="assets/dreamchaser-4.jpg" alt="Cảnh trong game Dream Chaser" loading="lazy" /></a>
+  </div>
+</div>
+
+<!-- DREAM CHASER -->
+<section id="dreamchaser">
+  <div class="wrap">
+    <div class="flag">
+      <div class="reveal">
+        <span class="badge"><span class="dot"></span>ĐÃ PHÁT HÀNH · 12/2023 · iOS</span>
+        <div class="flag-title">
+          <img src="assets/dreamchaser-icon.png" alt="Biểu tượng game Dream Chaser" width="62" height="62" />
+          <div>
+            <h3>Dream Chaser</h3>
+            <div class="vn">Chạy Trốn Phồn Hoa</div>
+          </div>
+        </div>
+        <p class="desc">Game pixel endless-runner về văn hoá Việt, bối cảnh triều Nguyễn — chạy qua những thế giới đối lập, từ phố thị náo nhiệt đến làng quê yên bình.</p>
+        <div class="facts">
+          <div class="fact"><div class="n a">100K</div><div class="l">lượt tải · ~71% iOS</div></div>
+          <div class="fact"><div class="n">4.7★</div><div class="l">~3.000 đánh giá</div></div>
+          <div class="fact"><div class="n j">23.3M</div><div class="l">lượt hiển thị</div></div>
+        </div>
+        <div class="store">
+          <a href="https://apps.apple.com/vn/app/id6474929639" target="_blank" rel="noopener"><span class="g">iOS</span> App Store</a>
+          <a href="https://apps.apple.com/story/id1750600803" target="_blank" rel="noopener"><span class="g">★</span> Apple “Dare to Dream”</a>
+        </div>
+      </div>
+      <div class="frame reveal">
+        <img src="assets/dreamchaser-1.jpg" alt="Key art Dream Chaser: cổng tam quan, hai nhân vật chèo thuyền dưới logo Chạy Trốn Phồn Hoa" />
+        <span class="cap">CHẠY TRỐN PHỒN HOA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IN DEVELOPMENT -->
+<section id="building">
+  <div class="wrap">
+    <div class="head reveal">
+      <h2>Đang làm gì.</h2>
+      <p>Một dự án mới làm chung, một mô phỏng để dành làm tiếp.</p>
+    </div>
+    <div class="building">
+      <div class="proj amber reveal">
+        <div class="mini" aria-hidden="true"><canvas id="mmCanvas"></canvas><span class="wip">WIP</span></div>
+        <span class="pbadge"><span class="dot"></span>ĐANG LÀM · CHUNG · MỚI</span>
+        <h3>Magic Monster <span class="wt">· tên tạm</span></h3>
+        <p class="desc">Game nuôi thú × idle RPG mobile. Ấp trứng, nuôi và tiến hoá thú pixel, gửi đi farm idle, dạo quảng trường chung nơi người chơi thấy nhau mà không đánh nhau. <b>Phúc</b> lo hệ thống & backend, <b>Hiệp</b> lo pixel art.</p>
+        <div class="tags">
+          <span class="tag">Nuôi thú</span><span class="tag">Idle RPG</span><span class="tag">Unity 6</span><span class="tag">URP 2D</span><span class="tag">SpacetimeDB</span><span class="tag">Tiến hoá</span><span class="tag">Bản đồ chung</span>
+        </div>
+      </div>
+      <div class="proj jade reveal">
+        <div class="mini" aria-hidden="true"><canvas id="sxCanvas"></canvas><span class="wip">WIP</span></div>
+        <span class="pbadge"><span class="dot"></span>DỰ ÁN PHỤ · TẠM DỪNG · TỪ 6/2024</span>
+        <h3>Strixel</h3>
+        <p class="desc">Idle tycoon trên con phố Sài Gòn xưa — xây quán ăn, thuê nhân viên, phát triển khu phố ẩm thực. <b>~10 tháng</b> dựng nền mô phỏng sâu (xây dựng, AI nhân vật, ngày/đêm, kinh tế); hiện tạm dừng vì thiếu nguồn lực, vẫn làm dạng side project. Cảm hứng từ <em>Đất Ba Miền</em> và <em>Eastward</em>.</p>
+        <div class="tags">
+          <span class="tag">Idle Tycoon</span><span class="tag">Hệ thống xây dựng</span><span class="tag">AI nhân vật</span><span class="tag">Chu kỳ ngày/đêm</span><span class="tag">Tuyển dụng & kinh tế</span><span class="tag">Tìm đường</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -367,63 +448,6 @@
         <div class="links">
           <a href="https://www.facebook.com/tran.tuan.hiep.886491" target="_blank" rel="noopener"><span class="ar">↗</span> Facebook</a>
           <a href="https://kevesko.vn/20241015/gap-go-tran-tuan-hiep-tac-gia-tua-game-viet-duoc-apple-vinh-danh-32382306.html" target="_blank" rel="noopener"><span class="ar">↗</span> Phỏng vấn (Sputnik)</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DREAM CHASER -->
-<section id="dreamchaser">
-  <div class="wrap">
-    <div class="flag">
-      <div class="reveal">
-        <span class="badge"><span class="dot"></span>ĐÃ PHÁT HÀNH · 12/2023 · iOS &amp; ANDROID</span>
-        <h3>Dream Chaser</h3>
-        <div class="vn">Chạy Trốn Phồn Hoa</div>
-        <p class="desc">Game pixel endless-runner về văn hoá Việt — chạy qua những thế giới đối lập, từ phố thị náo nhiệt đến làng quê yên bình.</p>
-        <div class="facts">
-          <div class="fact"><div class="n a">100K</div><div class="l">lượt tải · ~71% iOS</div></div>
-          <div class="fact"><div class="n">4.7★</div><div class="l">~3.000 đánh giá</div></div>
-          <div class="fact"><div class="n j">23.3M</div><div class="l">lượt hiển thị</div></div>
-        </div>
-        <div class="store">
-          <a href="https://apps.apple.com/vn/app/id6474929639" target="_blank" rel="noopener"><span class="g">iOS</span> App Store</a>
-          <a href="https://apps.apple.com/story/id1750600803" target="_blank" rel="noopener"><span class="g">★</span> Apple “Dare to Dream”</a>
-        </div>
-      </div>
-      <div class="scene reveal" aria-hidden="true">
-        <canvas id="runCanvas"></canvas>
-        <span class="scene-cap pixel">PHỐ THỊ → LÀNG QUÊ</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- IN DEVELOPMENT -->
-<section id="building">
-  <div class="wrap">
-    <div class="head reveal">
-      <h2>Đang làm gì.</h2>
-      <p>Một dự án mới làm chung, một mô phỏng để dành làm tiếp.</p>
-    </div>
-    <div class="building">
-      <div class="proj amber reveal">
-        <div class="mini" aria-hidden="true"><canvas id="mmCanvas"></canvas></div>
-        <span class="pbadge"><span class="dot"></span>ĐANG LÀM · CHUNG · MỚI</span>
-        <h3>Magic Monster <span class="wt">· tên tạm</span></h3>
-        <p class="desc">Game nuôi thú × idle RPG mobile. Ấp trứng, nuôi và tiến hoá thú pixel, gửi đi farm idle, dạo quảng trường chung nơi người chơi thấy nhau mà không đánh nhau. <b>Phúc</b> lo hệ thống & backend, <b>Hiệp</b> lo pixel art.</p>
-        <div class="tags">
-          <span class="tag">Nuôi thú</span><span class="tag">Idle RPG</span><span class="tag">Unity 6</span><span class="tag">URP 2D</span><span class="tag">SpacetimeDB</span><span class="tag">Tiến hoá</span><span class="tag">Bản đồ chung</span>
-        </div>
-      </div>
-      <div class="proj jade reveal">
-        <div class="mini" aria-hidden="true"><canvas id="sxCanvas"></canvas></div>
-        <span class="pbadge"><span class="dot"></span>DỰ ÁN PHỤ · TẠM DỪNG · TỪ 6/2024</span>
-        <h3>Strixel</h3>
-        <p class="desc">Idle tycoon trên con phố Sài Gòn xưa — xây quán ăn, thuê nhân viên, phát triển khu phố ẩm thực. <b>~10 tháng</b> dựng nền mô phỏng sâu (xây dựng, AI nhân vật, ngày/đêm, kinh tế); hiện tạm dừng vì thiếu nguồn lực, vẫn làm dạng side project. Cảm hứng từ <em>Đất Ba Miền</em> và <em>Eastward</em>.</p>
-        <div class="tags">
-          <span class="tag">Idle Tycoon</span><span class="tag">Hệ thống xây dựng</span><span class="tag">AI nhân vật</span><span class="tag">Chu kỳ ngày/đêm</span><span class="tag">Tuyển dụng & kinh tế</span><span class="tag">Tìm đường</span>
         </div>
       </div>
     </div>
@@ -478,6 +502,14 @@
         <div class="yr">08/2024</div>
       </div>
       <div class="award reveal">
+        <div class="mark pixel">B</div>
+        <div>
+          <h4><a href="https://www.facebook.com/share/1L1S98vNN1/" target="_blank" rel="noopener">Indie Games Awards — Thắng giải Best Mobile</a></h4>
+          <p>Chạy Trốn Phồn Hoa thắng hạng mục <b>Best Mobile</b> tại Indie Games Awards do Indie Games VN tổ chức.</p>
+        </div>
+        <div class="yr">2024</div>
+      </div>
+      <div class="award reveal">
         <div class="mark pixel">W</div>
         <div>
           <h4>Đề cử WeChoice Awards 2024 — Z-Team</h4>
@@ -514,13 +546,13 @@
 <section id="contact">
   <div class="wrap">
     <div class="contact reveal">
-      <canvas id="contactCanvas" aria-hidden="true"></canvas>
-      <h2>Cùng tạo nên điều<br>đáng nhớ.</h2>
-      <p>Tụi mình đang ứng tuyển Garena Game Jam 2026 và sẵn sàng cho vòng offline. Nếu bạn đang đọc dòng này — mình nói chuyện nhé.</p>
+      <div class="cbg" aria-hidden="true"><img src="assets/dreamchaser-3.jpg" alt="" loading="lazy" /></div>
+      <h2>Cùng làm game nhé?</h2>
+      <p>Tụi mình luôn mở lòng với dự án mới, cơ hội hợp tác, hay chỉ là tám chuyện về game. Ghé chơi nha.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="mailto:phamphuc0603@gmail.com">✉ phamphuc0603@gmail.com</a>
+        <a class="btn btn-ghost" href="https://www.youtube.com/@danordaniel" target="_blank" rel="noopener">YouTube</a>
         <a class="btn btn-ghost" href="https://github.com/Daniel-Pham831" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/danielpham831/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
       <div class="meta pixel">+84 926 624 129 · TP. HỒ CHÍ MINH, VIỆT NAM</div>
     </div>
@@ -530,7 +562,7 @@
 <footer>
   <div class="wrap foot">
     <span>© 2026 The Maniacs — Phạm Duy Phúc &amp; Trần Tuấn Hiệp</span>
-    <span class="pixel">LÀM CHO GARENA GAME JAM 2026</span>
+    <span class="pixel">STUDIO GAME PIXEL · VIỆT NAM</span>
   </div>
 </footer>
 
@@ -539,182 +571,113 @@
   "use strict";
   var REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- nav border on scroll ---- */
   var nav = document.getElementById('nav');
   addEventListener('scroll', function(){ nav.classList.toggle('scrolled', scrollY > 8); }, {passive:true});
   document.getElementById('menuBtn').addEventListener('click', function(){
-    document.getElementById('team').scrollIntoView({behavior: REDUCE ? 'auto':'smooth'});
+    document.getElementById('dreamchaser').scrollIntoView({behavior: REDUCE ? 'auto':'smooth'});
   });
 
-  /* ---- reveal on scroll — content is visible by default; this only enhances ---- */
+  /* reveal — visible by default, only enhanced */
   var reveals = [].slice.call(document.querySelectorAll('.reveal'));
   function showAll(){ reveals.forEach(function(el){ el.classList.add('in'); }); }
-  if (REDUCE || !('IntersectionObserver' in window)) {
-    showAll();
-  } else {
+  if (REDUCE || !('IntersectionObserver' in window)) { showAll(); }
+  else {
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
     }, {threshold:.14, rootMargin:'0px 0px -8% 0px'});
     reveals.forEach(function(el){ io.observe(el); });
-    // failsafe: never let anything stay hidden (hidden tabs / odd renderers)
     setTimeout(showAll, 1600);
   }
 
-  /* ---------- pixel-art canvas engine ---------- */
-  var SKY = ['#241a3d','#2b1d49','#3a2550'];
-  function dpr(){ return Math.min(window.devicePixelRatio || 1, 2); }
+  /* hero parallax — subtle, motion-safe */
+  var heroImg = document.getElementById('heroImg');
+  if(heroImg && !REDUCE){
+    var ticking=false;
+    addEventListener('scroll', function(){
+      if(ticking) return; ticking=true;
+      requestAnimationFrame(function(){
+        var y = Math.min(scrollY, 900);
+        heroImg.style.transform = 'translateY(' + (y*0.18) + 'px) scale(1.02)';
+        ticking=false;
+      });
+    }, {passive:true});
+  }
 
-  // A glowing dusk skyline with twinkling windows + neon + a running figure.
+  /* seamless marquee — duplicate the strip so the -50% loop is gapless */
+  var track = document.getElementById('mqTrack');
+  if(track){
+    var clone = track.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.setAttribute('aria-hidden','true');
+    while(clone.firstChild){ track.appendChild(clone.firstChild); }
+  }
+
+  /* ---- bespoke pixel canvas (Magic Monster / Strixel minis — no public art yet) ---- */
+  function dpr(){ return Math.min(window.devicePixelRatio || 1, 2); }
   function makeCity(canvas, cfg){
     cfg = cfg || {};
     var ctx = canvas.getContext('2d');
-    var cell = cfg.cell || 7;
-    var W=0,H=0,cols=0,rows=0, buildings=[], stars=[], moon=null, runX=0, frame=0, raf=0, last=0;
-
+    var cell = cfg.cell || 6;
+    var W=0,H=0,cols=0,rows=0, buildings=[], stars=[], moon=null, raf=0;
     function build(){
       cols = Math.ceil(W/cell); rows = Math.ceil(H/cell);
-      buildings = []; stars = [];
-      // pseudo-random but stable per build
-      var seed = 1337; function rnd(){ seed = (seed*1103515245 + 12345) & 0x7fffffff; return seed/0x7fffffff; }
-      // two parallax bands of buildings
+      buildings=[]; stars=[];
+      var seed=1337; function rnd(){ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; }
       var x=0;
-      while(x < cols+2){
-        var w = 2 + Math.floor(rnd()*4);
-        var h = Math.floor(rows*(0.30 + rnd()*0.5));
-        var far = rnd() < 0.45;
-        var b = {x:x, w:w, h:h, far:far, win:[]};
-        for(var wx=1; wx<w; wx++){
-          for(var wy=2; wy<h-1; wy+=2){
-            if(rnd() < (far?0.16:0.34)){
-              b.win.push({x:wx, y:wy, lit: rnd()<0.7, hue: rnd()<0.78 ? 'a':'j', ph: rnd()});
-            }
-          }
+      while(x<cols+2){
+        var w=2+Math.floor(rnd()*4), h=Math.floor(rows*(0.30+rnd()*0.5)), far=rnd()<0.45;
+        var b={x:x,w:w,h:h,far:far,win:[]};
+        for(var wx=1;wx<w;wx++) for(var wy=2;wy<h-1;wy+=2){
+          if(rnd()<(far?0.16:0.34)) b.win.push({x:wx,y:wy,lit:rnd()<0.7,hue:rnd()<0.78?'a':'j',ph:rnd()});
         }
-        buildings.push(b); x += w + (rnd()<0.3?1:0);
+        buildings.push(b); x+=w+(rnd()<0.3?1:0);
       }
-      var sCount = Math.floor(cols*rows*0.012);
-      for(var i=0;i<sCount;i++){ stars.push({x:Math.floor(rnd()*cols), y:Math.floor(rnd()*rows*0.55), b:rnd()}); }
-      moon = {x: Math.floor(cols*0.80), y: Math.floor(rows*0.20), r: Math.max(2, Math.floor(cols*0.035))};
-      runX = -6;
+      var sC=Math.floor(cols*rows*0.012);
+      for(var i=0;i<sC;i++) stars.push({x:Math.floor(rnd()*cols),y:Math.floor(rnd()*rows*0.55),b:rnd()});
+      moon={x:Math.floor(cols*0.80),y:Math.floor(rows*0.22),r:Math.max(2,Math.floor(cols*0.04))};
     }
-
-    function px(cx,cy,col){ ctx.fillStyle=col; ctx.fillRect(cx*cell, cy*cell, cell, cell); }
-
+    function px(cx,cy,c){ ctx.fillStyle=c; ctx.fillRect(cx*cell,cy*cell,cell,cell); }
     function draw(ts){
-      // sky gradient
-      var g = ctx.createLinearGradient(0,0,0,H);
-      g.addColorStop(0, '#1b1230'); g.addColorStop(0.55, '#2a1b45'); g.addColorStop(1, '#3c2547');
+      var g=ctx.createLinearGradient(0,0,0,H);
+      g.addColorStop(0,'#1b1230'); g.addColorStop(0.55,'#2a1b45'); g.addColorStop(1,'#3c2547');
       ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
-
-      // stars
-      for(var i=0;i<stars.length;i++){
-        var s=stars[i];
-        var tw = REDUCE ? 0.8 : 0.55 + 0.45*Math.sin((ts||0)/700 + s.b*9);
-        ctx.globalAlpha = 0.35 + 0.5*tw*s.b;
-        px(s.x, s.y, s.b>0.85 ? '#ffd9a0' : '#efe6d4');
+      for(var i=0;i<stars.length;i++){ var s=stars[i];
+        var tw=REDUCE?0.8:0.55+0.45*Math.sin((ts||0)/700+s.b*9);
+        ctx.globalAlpha=0.35+0.5*tw*s.b; px(s.x,s.y,s.b>0.85?'#ffd9a0':'#efe6d4'); }
+      ctx.globalAlpha=1;
+      if(moon){ for(var my=-moon.r;my<=moon.r;my++) for(var mx=-moon.r;mx<=moon.r;mx++)
+        if(mx*mx+my*my<=moon.r*moon.r) px(moon.x+mx,moon.y+my,'#f6ead0'); }
+      for(var pass=0;pass<2;pass++) for(var b2=0;b2<buildings.length;b2++){
+        var b=buildings[b2]; if((b.far?0:1)!==pass) continue;
+        var baseY=rows-b.h;
+        ctx.fillStyle=b.far?'#241a3d':'#160f28'; ctx.fillRect(b.x*cell,baseY*cell,b.w*cell,(b.h+1)*cell);
+        ctx.fillStyle=b.far?'#2f2350':'#221634'; ctx.fillRect(b.x*cell,baseY*cell,b.w*cell,cell);
+        for(var k=0;k<b.win.length;k++){ var wn=b.win[k]; var lit=wn.lit;
+          if(!REDUCE){ var fl=Math.sin((ts||0)/900+wn.ph*12); lit=wn.lit?fl>-0.85:fl>0.93; }
+          if(lit) px(b.x+wn.x,baseY+wn.y,wn.hue==='a'?'#ffb866':'#7fe0c0'); }
       }
-      ctx.globalAlpha = 1;
-
-      // moon (pixel disc)
-      if(moon){
-        for(var my=-moon.r;my<=moon.r;my++) for(var mx=-moon.r;mx<=moon.r;mx++){
-          if(mx*mx+my*my <= moon.r*moon.r){ px(moon.x+mx, moon.y+my, '#f6ead0'); }
-        }
-        ctx.globalAlpha=0.18; ctx.fillStyle='#ffcf99';
-        ctx.beginPath(); ctx.arc(moon.x*cell, moon.y*cell, moon.r*cell*2.4, 0, 7); ctx.fill();
-        ctx.globalAlpha=1;
-      }
-
-      // buildings (far first)
-      for(var pass=0; pass<2; pass++){
-        for(var b2=0;b2<buildings.length;b2++){
-          var b=buildings[b2]; if((b.far?0:1)!==pass) continue;
-          var baseY = rows - b.h, body = b.far ? '#241a3d' : '#160f28';
-          ctx.fillStyle = body;
-          ctx.fillRect(b.x*cell, baseY*cell, b.w*cell, (b.h+1)*cell);
-          // roof edge highlight
-          ctx.fillStyle = b.far ? '#2f2350' : '#221634';
-          ctx.fillRect(b.x*cell, baseY*cell, b.w*cell, cell);
-          // windows
-          for(var k=0;k<b.win.length;k++){
-            var wn=b.win[k];
-            var lit = wn.lit;
-            if(!REDUCE){ var fl = Math.sin((ts||0)/900 + wn.ph*12); lit = wn.lit ? fl>-0.85 : fl>0.93; }
-            if(lit){
-              var col = wn.hue==='a' ? '#ffb866' : '#7fe0c0';
-              px(b.x+wn.x, baseY+wn.y, col);
-            }
-          }
-        }
-      }
-
-      // ground glow line (neon street)
-      ctx.fillStyle='#ff9d5c'; ctx.globalAlpha=0.0; // base
-      ctx.globalAlpha=1; px(0, rows-1, '#160f28');
-      var gy=(rows-0.5)*cell;
-      var lg=ctx.createLinearGradient(0,gy-cell*2,0,gy+cell);
-      lg.addColorStop(0,'rgba(255,157,92,0)'); lg.addColorStop(1,'rgba(255,157,92,.5)');
-      ctx.fillStyle=lg; ctx.fillRect(0, gy-cell*2, W, cell*3);
-
-      // running figure (Dream Chaser nod)
-      if(cfg.runner){
-        if(!REDUCE){ runX += 0.10; if(runX*cell > W+8*cell) runX = -6; }
-        var rx = Math.floor(runX), ry = rows-4;
-        frame = REDUCE ? 0 : (Math.floor((ts||0)/120) % 2);
-        // body
-        px(rx, ry-2, '#1a1020');               // head outline
-        px(rx, ry-2.0|0, '#ffd8a0');
-        px(rx, (ry-1)|0, '#ff8f6a');           // torso
-        px(rx, ry|0, '#ff8f6a');
-        // legs (2-frame run)
-        if(frame===0){ px(rx-1, (ry+1)|0, '#ffd8a0'); px(rx+1, (ry+1)|0, '#1a1020'); }
-        else { px(rx+1, (ry+1)|0, '#ffd8a0'); px(rx-1, (ry+1)|0, '#1a1020'); }
-        // arm
-        px(rx+1, ry|0, '#ffd8a0');
-        // glow
-        ctx.globalAlpha=0.25; ctx.fillStyle='#ffb866';
-        ctx.beginPath(); ctx.arc((rx+0.5)*cell,(ry-0.5)*cell, cell*3.2,0,7); ctx.fill(); ctx.globalAlpha=1;
-      }
-
-      if(!REDUCE) raf = requestAnimationFrame(draw);
+      if(!REDUCE) raf=requestAnimationFrame(draw);
     }
-
     function resize(){
-      var r = canvas.getBoundingClientRect();
-      if(r.width<2){ return; }
-      var d = dpr();
-      canvas.width = Math.max(1,Math.floor(r.width*d));
-      canvas.height = Math.max(1,Math.floor(r.height*d));
-      W = canvas.width; H = canvas.height;
-      cell = Math.max(4, Math.round((cfg.cell||7) * d * (cfg.scale||1)));
-      ctx.imageSmoothingEnabled = false;
-      build();
-      cancelAnimationFrame(raf);
-      draw(0);
+      var r=canvas.getBoundingClientRect(); if(r.width<2) return;
+      var d=dpr(); canvas.width=Math.max(1,Math.floor(r.width*d)); canvas.height=Math.max(1,Math.floor(r.height*d));
+      W=canvas.width; H=canvas.height; cell=Math.max(4,Math.round((cfg.cell||6)*d));
+      ctx.imageSmoothingEnabled=false; build(); cancelAnimationFrame(raf); draw(0);
     }
-
-    var ro = ('ResizeObserver' in window) ? new ResizeObserver(resize) : null;
-    if(ro) ro.observe(canvas); else addEventListener('resize', resize);
+    var ro=('ResizeObserver' in window)?new ResizeObserver(resize):null;
+    if(ro) ro.observe(canvas); else addEventListener('resize',resize);
     resize();
-    // pause animation when offscreen
     if(!REDUCE && 'IntersectionObserver' in window){
-      new IntersectionObserver(function(es){
-        es.forEach(function(e){
-          if(e.isIntersecting){ if(!raf) draw(performance.now()); }
-          else { cancelAnimationFrame(raf); raf=0; }
-        });
-      }, {threshold:0}).observe(canvas);
+      new IntersectionObserver(function(es){ es.forEach(function(e){
+        if(e.isIntersecting){ if(!raf) draw(performance.now()); } else { cancelAnimationFrame(raf); raf=0; }
+      }); },{threshold:0}).observe(canvas);
     }
   }
-
   function init(){
-    var city = document.getElementById('cityCanvas'); if(city) makeCity(city, {cell:7});
-    var run = document.getElementById('runCanvas');   if(run)  makeCity(run,  {cell:7, runner:true});
-    var mm = document.getElementById('mmCanvas');      if(mm)   makeCity(mm,   {cell:5, scale:1});
-    var sx = document.getElementById('sxCanvas');      if(sx)   makeCity(sx,   {cell:5});
-    var ct = document.getElementById('contactCanvas'); if(ct)  makeCity(ct,   {cell:8});
+    var mm=document.getElementById('mmCanvas'); if(mm) makeCity(mm,{cell:5});
+    var sx=document.getElementById('sxCanvas'); if(sx) makeCity(sx,{cell:5});
   }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init); else init();
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
 })();
 </script>
 </body>
