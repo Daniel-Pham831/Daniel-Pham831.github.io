@@ -125,6 +125,25 @@
   .gallery .frame img{width:100%;display:block}
   @media(max-width:700px){ .gallery{grid-template-columns:1fr} }
 
+  /* TROPHY WALL (visual achievements) */
+  .trophies{display:grid;grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:clamp(16px,2vw,22px)}
+  .trophy{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;background:var(--surface);box-shadow:var(--sh-sm);transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease)}
+  .trophy:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(--amber)}
+  .trophy .ts{aspect-ratio:16/9;overflow:hidden;background:var(--bg-deep)}
+  .trophy .ts img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;transition:transform .5s var(--ease)}
+  .trophy:hover .ts img{transform:scale(1.05)}
+  .trophy .tb{padding:15px 17px 17px;display:flex;flex-direction:column;gap:5px;flex:1}
+  .trophy h4{font-size:1.05rem;font-weight:600;line-height:1.25}
+  .trophy .ty{font-family:'Silkscreen';font-size:9.5px;color:var(--faint);margin-top:auto;padding-top:6px}
+  .trophy .ty b{color:var(--amber-hi);font-weight:400}
+  .trophy.txt .ts{display:grid;place-items:center}
+  .trophy.txt .ts .mk{font-family:'Silkscreen';font-size:38px;color:var(--amber-dk);text-shadow:0 2px 0 oklch(0 0 0 /.12)}
+  .trophy.amber.txt .ts{background:linear-gradient(135deg,var(--amber),oklch(0.46 0.17 28))}
+  .trophy.jade.txt .ts{background:linear-gradient(135deg,var(--jade),oklch(0.40 0.11 176))}
+  .trophy .plinks{display:flex;flex-wrap:wrap;gap:5px 13px;margin-top:2px}
+  .trophy .plinks a{font-size:13px;color:var(--muted);text-decoration:underline;text-decoration-color:oklch(0.445 0.030 272 /.35);text-underline-offset:3px}
+  .trophy .plinks a:hover{color:var(--jade)}
+
   /* MARQUEE */
   .marquee{position:relative;overflow:hidden;background:var(--bg-deep);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:clamp(18px,2.4vw,26px) 0}
   .marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:10%;z-index:2;pointer-events:none}
@@ -205,6 +224,7 @@
   .proj.amber:hover{border-color:var(--amber)} .proj.jade:hover{border-color:var(--jade)}
   .proj .mini{height:104px;margin:-6px -6px 20px;border-radius:12px;overflow:hidden;border:1px solid var(--border-lo);position:relative}
   .proj .mini canvas{display:block;width:100%;height:100%;image-rendering:pixelated}
+  .proj .mini img{display:block;width:100%;height:100%;object-fit:cover;image-rendering:pixelated}
   .proj .mini .wip{position:absolute;right:9px;top:8px;font-family:'Silkscreen';font-size:8px;color:#fff;
     background:oklch(0.20 0.03 280 / .55);padding:4px 7px;border-radius:6px}
   .pbadge{display:inline-flex;align-items:center;gap:8px;font-family:'Silkscreen';font-size:10px;padding:6px 11px;border-radius:999px;border:1px solid var(--border);width:max-content}
@@ -405,7 +425,7 @@
         </div>
       </div>
       <div class="proj jade reveal">
-        <div class="mini" aria-hidden="true"><canvas id="sxCanvas"></canvas><span class="wip">WIP</span></div>
+        <div class="mini" aria-hidden="true"><img src="assets/strixel-1.jpg" alt="" loading="lazy" /></div>
         <span class="pbadge"><span class="dot"></span>DỰ ÁN PHỤ · TIẾN ĐỘ CHẬM · TỪ 6/2024</span>
         <h3>Strixel</h3>
         <p class="desc">Idle tycoon trên con phố Sài Gòn xưa — xây quán ăn, thuê nhân viên, phát triển khu phố ẩm thực. <b>~10 tháng</b> dựng nền mô phỏng sâu (xây dựng, AI nhân vật, ngày/đêm, kinh tế); vẫn được phát triển dạng side project nhưng tiến độ chậm. Cảm hứng từ <em>Đất Ba Miền</em> và <em>Eastward</em>.</p>
@@ -560,60 +580,47 @@
   <div class="wrap">
     <div class="head reveal">
       <h2>Thành tựu.</h2>
+      <p>Giải thưởng &amp; ghi nhận của tụi mình và các dự án liên quan.</p>
     </div>
-    <div class="awards">
-      <div class="award reveal">
-        <div class="mark pixel">A</div>
-        <div>
-          <h4><a href="https://apps.apple.com/story/id1750600803" target="_blank" rel="noopener">Được Apple giới thiệu — “Dare to Dream”</a></h4>
-          <p>Dream Chaser xuất hiện trong chiến dịch “Here's to the Dreamers — Dare to Dream” của Apple khắp Đông Nam Á.</p>
-        </div>
-        <div class="yr">08/2024</div>
+    <div class="trophies">
+      <a class="trophy reveal" href="https://apps.apple.com/story/id1750600803" target="_blank" rel="noopener">
+        <div class="ts"><img src="assets/award-apple.jpg" alt="Banner Apple “Dare to Dream” có Dream Chaser" loading="lazy" /></div>
+        <div class="tb"><h4>Apple giới thiệu — “Dare to Dream”</h4><div class="ty">08/2024 · APP STORE ĐÔNG NAM Á</div></div>
+      </a>
+      <a class="trophy reveal" href="https://www.facebook.com/share/1L1S98vNN1/" target="_blank" rel="noopener">
+        <div class="ts"><img src="assets/award-bestmobile.jpg" alt="Banner Indie Games Awards Best Mobile" loading="lazy" /></div>
+        <div class="tb"><h4>Indie Games Awards — Best Mobile</h4><div class="ty"><b>THẮNG GIẢI</b> · DREAM CHASER · 2024</div></div>
+      </a>
+      <div class="trophy reveal">
+        <div class="ts"><img src="assets/award-miro-1st.jpg" alt="Banner MIRO Game Contest Giải Nhất — Mandarin" loading="lazy" /></div>
+        <div class="tb"><h4>MIRO Game Contest 2024 — Giải Nhất</h4><div class="ty"><b>GIẢI NHẤT</b> · MANDARIN — HEAVENLY ARENA</div></div>
       </div>
-      <div class="award reveal">
-        <div class="mark pixel">B</div>
-        <div>
-          <h4><a href="https://www.facebook.com/share/1L1S98vNN1/" target="_blank" rel="noopener">Indie Games Awards — Thắng giải Best Mobile</a></h4>
-          <p>Chạy Trốn Phồn Hoa thắng hạng mục <b>Best Mobile</b> tại Indie Games Awards do Indie Games VN tổ chức.</p>
-        </div>
-        <div class="yr">2024</div>
+      <div class="trophy reveal">
+        <div class="ts"><img src="assets/award-miro-3rd.jpg" alt="Banner MIRO Game Contest Giải Ba — Dream Chaser" loading="lazy" /></div>
+        <div class="tb"><h4>MIRO Game Contest 2024 — Giải Ba</h4><div class="ty">DREAM CHASER · PVN STUDIO</div></div>
       </div>
-      <div class="award reveal">
-        <div class="mark pixel">M</div>
-        <div>
-          <h4>MIRO Game Contest 2024 — Giải Ba &amp; Video Demo yêu thích nhất</h4>
-          <p>Dream Chaser (team PVN Studio) đoạt <b>Giải Ba</b> và <b>Video Demo được yêu thích nhất</b>. Hiệp còn cùng team <b>Mandarin</b> thắng <b>Giải Nhất</b> với <em>Heavenly Arena</em>.</p>
-        </div>
-        <div class="yr">2024</div>
+      <div class="trophy reveal">
+        <div class="ts"><img src="assets/award-miro-video.jpg" alt="Banner MIRO Game Contest Video Demo yêu thích nhất" loading="lazy" /></div>
+        <div class="tb"><h4>MIRO 2024 — Video Demo yêu thích nhất</h4><div class="ty">DREAM CHASER · PVN STUDIO</div></div>
       </div>
-      <div class="award reveal">
-        <div class="mark pixel">W</div>
-        <div>
-          <h4>Đề cử WeChoice Awards 2024 — Z-Team</h4>
-          <p>Hạng mục <b>Nhóm Gen Z Tài Năng</b>. Trần Tuấn Hiệp &amp; Phạm Duy Phúc — vinh danh nhóm Gen Z có sức ảnh hưởng tới giới trẻ Việt.</p>
-        </div>
-        <div class="yr">12/2024</div>
+      <div class="trophy reveal">
+        <div class="ts"><img src="assets/award-wechoice.jpg" alt="Card WeChoice Awards 2024 Gen Z với Phúc và Hiệp" loading="lazy" /></div>
+        <div class="tb"><h4>WeChoice Awards 2024 — Z-Team</h4><div class="ty">ĐỀ CỬ · NHÓM GEN Z TÀI NĂNG</div></div>
       </div>
-      <div class="award reveal">
-        <div class="mark pixel">P</div>
-        <div>
-          <h4>Báo chí trong &amp; ngoài nước đưa tin</h4>
-          <div class="press">
-            <a href="https://vnexpress.net/apple-vinh-danh-hai-nha-phat-trien-viet-trong-du-an-dam-uoc-mo-4780060.html" target="_blank" rel="noopener">↗ VnExpress</a>
-            <a href="https://thanhnien.vn/game-chay-tron-phon-hoa-duoc-apple-vinh-danh-185240917191411922.htm" target="_blank" rel="noopener">↗ Thanh Niên</a>
-            <a href="https://cafef.vn/gap-doi-ban-tre-dung-sau-chay-tron-phon-hoa-tua-game-dua-ban-sac-van-hoa-viet-nam-den-lang-game-the-gioi-188240811080328091.chn" target="_blank" rel="noopener">↗ CafeF</a>
-            <a href="https://www.hardwarezone.com.sg/entertainment/gaming/feature-apple-app-store-game-development-dreamchaser-vietnam" target="_blank" rel="noopener">↗ HardwareZone SG</a>
+      <div class="trophy amber txt reveal">
+        <div class="ts"><span class="mk">★</span></div>
+        <div class="tb"><h4>Employee of the Year — Magmic</h4><div class="ty">03/2024 · MAGMIC, CANADA</div></div>
+      </div>
+      <div class="trophy jade txt reveal">
+        <div class="ts"><span class="mk">P</span></div>
+        <div class="tb"><h4>Báo chí đưa tin</h4>
+          <div class="plinks">
+            <a href="https://vnexpress.net/apple-vinh-danh-hai-nha-phat-trien-viet-trong-du-an-dam-uoc-mo-4780060.html" target="_blank" rel="noopener">VnExpress</a>
+            <a href="https://thanhnien.vn/game-chay-tron-phon-hoa-duoc-apple-vinh-danh-185240917191411922.htm" target="_blank" rel="noopener">Thanh Niên</a>
+            <a href="https://cafef.vn/gap-doi-ban-tre-dung-sau-chay-tron-phon-hoa-tua-game-dua-ban-sac-van-hoa-viet-nam-den-lang-game-the-gioi-188240811080328091.chn" target="_blank" rel="noopener">CafeF</a>
+            <a href="https://www.hardwarezone.com.sg/entertainment/gaming/feature-apple-app-store-game-development-dreamchaser-vietnam" target="_blank" rel="noopener">HardwareZone</a>
           </div>
         </div>
-        <div class="yr">2024</div>
-      </div>
-      <div class="award reveal">
-        <div class="mark pixel">★</div>
-        <div>
-          <h4>Employee of the Year — Magmic</h4>
-          <p>Phúc là một trong ba người được vinh danh vì thành tích và tinh thần đồng đội.</p>
-        </div>
-        <div class="yr">03/2024</div>
       </div>
     </div>
   </div>
