@@ -166,6 +166,11 @@
   .links{display:flex;flex-wrap:wrap;gap:7px 18px;margin-top:22px}
   .links a{font-size:13.5px;color:var(--muted);display:inline-flex;align-items:center;gap:7px;transition:color .2s var(--ease)}
   .links a:hover{color:var(--ink)} .links a .ar{color:var(--amber-hi)}
+  .detail{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-weight:600;font-size:14.5px;color:var(--amber-hi)}
+  .maker.jade .detail{color:var(--jade)}
+  .detail .ar{transition:transform .3s var(--ease)}
+  .detail:hover{text-decoration:underline;text-underline-offset:4px}
+  .detail:hover .ar{transform:translateX(4px)}
 
   /* DREAM CHASER */
   .flag{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(24px,3.5vw,52px);align-items:center}
@@ -418,7 +423,7 @@
     </div>
     <div class="frame reveal" style="margin-bottom:clamp(20px,3vw,32px)">
       <img src="assets/dreamchaser-5.jpg" alt="Phúc (trái) và Hiệp (phải) được Hiệp vẽ thành nhân vật pixel trong Dream Chaser, giữa khung cảnh làng quê tre xanh" loading="lazy" />
-      <span class="cap">PHÚC (TRÁI) · HIỆP (PHẢI) — HIỆP TỰ VẼ TỤI MÌNH</span>
+      <span class="cap">PHÚC (TRÁI) · HIỆP (PHẢI)</span>
     </div>
     <div class="makers">
       <div class="maker amber reveal">
@@ -436,6 +441,7 @@
           <a href="https://www.facebook.com/horizon.pisces/" target="_blank" rel="noopener"><span class="ar">↗</span> Facebook</a>
           <a href="mailto:phamphuc0603@gmail.com"><span class="ar">↗</span> Email</a>
         </div>
+        <a class="detail" href="#track">Xem hành trình của Phúc <span class="ar">→</span></a>
       </div>
       <div class="maker jade reveal">
         <div class="pfp"><img src="assets/hiep.jpg" alt="Trần Tuấn Hiệp" width="66" height="66" loading="lazy" /></div>
@@ -450,6 +456,7 @@
           <a href="https://drive.google.com/drive/folders/1cSu3pDU9bfrrIlgk0uXV1NSm64_pV9jb" target="_blank" rel="noopener"><span class="ar">↗</span> Portfolio</a>
           <a href="https://kevesko.vn/20241015/gap-go-tran-tuan-hiep-tac-gia-tua-game-viet-duoc-apple-vinh-danh-32382306.html" target="_blank" rel="noopener"><span class="ar">↗</span> Phỏng vấn (Sputnik)</a>
         </div>
+        <a class="detail" href="#hiep">Xem hành trình của Hiệp <span class="ar">→</span></a>
       </div>
     </div>
   </div>
@@ -459,7 +466,7 @@
 <section id="track">
   <div class="wrap">
     <div class="head reveal">
-      <h2>Nơi Phúc từng ship game.</h2>
+      <h2>Phúc đã ship những gì.</h2>
       <p>Game thương mại làm cùng studio ở Canada, Anh và Nhật.</p>
     </div>
     <div class="tl">
@@ -482,6 +489,48 @@
         <div class="tl-when">HỌC VẤN</div>
         <h4>Cử nhân CNTT · <span class="co">Đại học Công nghệ Sài Gòn (STU)</span></h4>
         <p>Nền tảng kỹ thuật phần mềm, giờ dồn hết vào làm và ship game.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIỆP DETAIL -->
+<section id="hiep">
+  <div class="wrap">
+    <div class="head reveal">
+      <h2>Hiệp đã vẽ những gì.</h2>
+      <p>Hoạ sĩ pixel từ Quảng Ngãi — đưa văn hoá &amp; lịch sử Việt vào từng khung hình.</p>
+    </div>
+    <div class="tl">
+      <div class="tl-item now reveal">
+        <div class="tl-when">ĐANG LÀM · PIXEL ARTIST</div>
+        <h4>Magic Monster <span class="co">· tên tạm</span></h4>
+        <p>Dự án mới làm chung với Phúc — Hiệp phụ trách toàn bộ pixel art cho game nuôi thú.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">ĐỒNG TÁC GIẢ · PIXEL ARTIST</div>
+        <h4>Dream Chaser <span class="co">· Chạy Trốn Phồn Hoa</span></h4>
+        <p>Ý tưởng nảy ra khi Hiệp vẽ những công trình Việt đã bị chiến tranh tàn phá. Game được <strong>Apple giới thiệu</strong>, thắng <strong>Best Mobile</strong> (Indie Games) và <strong>Giải Ba</strong> + Video Demo yêu thích nhất tại MIRO 2024.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">ĐỒNG SÁNG LẬP · PIXEL ARTIST</div>
+        <h4>Mandarin <span class="co">— Ô Ăn Quan</span></h4>
+        <p>Game đấu tướng Việt lấy cảm hứng từ trò ô ăn quan tuổi thơ. Team Mandarin thắng <strong>Giải Nhất</strong> tại MIRO 2024 với <em>Heavenly Arena</em>.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">PIXEL ARTIST</div>
+        <h4>Treasure Hunter <span class="co">· Survival Online</span></h4>
+        <p>Vẽ pixel art cho một tựa game sinh tồn online.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">2D ARTIST · OUTSOURCE</div>
+        <h4>Knight Age <span class="co">· Thời Đại Hiệp Sĩ</span></h4>
+        <p>Vẽ 2D cho dự án theo hình thức outsource.</p>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-when">PIXEL ARTIST · OUTSOURCE</div>
+        <h4>Trường Sinh Pháp</h4>
+        <p>Vẽ pixel art cho dự án theo hình thức outsource.</p>
       </div>
     </div>
   </div>
