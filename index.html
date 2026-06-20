@@ -3,197 +3,282 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>The Maniacs — Phúc & Hiệp · Indie Game Studio</title>
-<meta name="description" content="The Maniacs — a two-person indie game team from Vietnam. Phạm Duy Phúc (Lead Developer) & Trần Tuấn Hiệp (Pixel Artist). Makers of Dream Chaser, featured by Apple." />
+<title>The Maniacs — Phúc & Hiệp · pixel-art game studio from Việt Nam</title>
+<meta name="description" content="The Maniacs is a two-person pixel-art game studio from Việt Nam. Phạm Duy Phúc (Lead Developer) and Trần Tuấn Hiệp (Pixel Artist) — makers of Dream Chaser, featured by Apple and played by 100,000+ people." />
+<meta name="theme-color" content="#160f28" />
+<meta property="og:title" content="The Maniacs — pixel-art game studio" />
+<meta property="og:description" content="Two makers from Việt Nam building pixel worlds that glow after dark. Makers of Dream Chaser, featured by Apple." />
+<meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;450;500;600&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+<script>document.documentElement.classList.add('js')</script>
 <style>
   :root{
-    --bg:#08080a;
-    --bg-soft:#101013;
-    --surface:#141418;
-    --surface-2:#1b1b21;
-    --border:#26262e;
-    --text:#ECECEE;
-    --muted:#9A9AA5;
-    --faint:#65656f;
-    --accent:#6EE7B7;      /* mint */
-    --accent-2:#7C9CFF;    /* periwinkle */
-    --accent-3:#F0B86E;    /* warm amber */
-    --radius:16px;
-    --maxw:1120px;
+    /* ---- Neon Dusk Arcade · OKLCH committed palette ---- */
+    /* dusk-violet base (the night sky), tinted neutrals lean to the same hue */
+    --bg:        oklch(0.16 0.034 290);
+    --bg-deep:   oklch(0.12 0.030 290);
+    --surface:   oklch(0.215 0.040 289);
+    --surface-2: oklch(0.265 0.045 287);
+    --border:    oklch(0.34 0.040 289);
+    --border-lo: oklch(0.28 0.036 289);
+    --border-hi: oklch(0.46 0.052 287);
+
+    /* warm off-white ink, faintly amber so it sits with the neon */
+    --ink:    oklch(0.955 0.018 78);
+    --muted:  oklch(0.795 0.022 72);
+    --faint:  oklch(0.635 0.026 286);
+
+    /* accents: amber neon (primary) + jade (secondary) */
+    --amber:    oklch(0.815 0.155 58);
+    --amber-hi: oklch(0.875 0.135 70);
+    --amber-dk: oklch(0.205 0.045 56);   /* ink on amber */
+    --jade:     oklch(0.835 0.115 168);
+    --jade-dk:  oklch(0.205 0.045 175);
+
+    --amber-wash: oklch(0.815 0.155 58 / 0.12);
+    --jade-wash:  oklch(0.835 0.115 168 / 0.12);
+
+    --ease: cubic-bezier(.16,1,.3,1);
+    --r:14px; --r-lg:22px;
+    --maxw:1160px;
+
+    --z-base:1; --z-nav:50; --z-scrim:5;
   }
+
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
     background:var(--bg);
-    color:var(--text);
-    font-family:'Inter',system-ui,sans-serif;
-    line-height:1.6;
+    color:var(--ink);
+    font-family:'Hanken Grotesk',system-ui,sans-serif;
+    font-weight:450;            /* light type on dark reads heavier — drop a touch */
+    font-size:clamp(15.5px,1.05vw,17px);
+    line-height:1.7;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+    text-rendering:optimizeLegibility;
   }
-  /* ambient background glow */
-  body::before{
-    content:"";
-    position:fixed;inset:0;z-index:-1;
+  /* faint dusk grain + scanline texture — arcade atmosphere, very low key */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:var(--z-scrim);mix-blend-mode:soft-light;opacity:.5;
     background:
-      radial-gradient(620px 420px at 12% -8%, rgba(124,156,255,.10), transparent 70%),
-      radial-gradient(560px 380px at 92% 4%, rgba(110,231,183,.08), transparent 70%),
-      radial-gradient(700px 500px at 50% 120%, rgba(240,184,110,.06), transparent 70%);
+      repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px),
+      radial-gradient(120% 80% at 50% -10%, transparent 55%, rgba(0,0,0,.45));
   }
+  @media (prefers-reduced-motion: reduce){ body::after{opacity:.32} }
+
+  h1,h2,h3,h4,.display{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;line-height:1.04;letter-spacing:-.02em;text-wrap:balance}
+  p{text-wrap:pretty}
+  .pixel{font-family:'Silkscreen',monospace;letter-spacing:.02em;text-transform:none}
   a{color:inherit;text-decoration:none}
-  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-height:1.1}
-  .mono{font-family:'JetBrains Mono',monospace}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  .accent{color:var(--accent)}
-  .accent2{color:var(--accent-2)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+  .amber{color:var(--amber-hi)} .jade{color:var(--jade)}
+  ::selection{background:var(--amber);color:var(--amber-dk)}
+  :focus-visible{outline:2px solid var(--amber-hi);outline-offset:3px;border-radius:4px}
 
-  /* ---------- NAV ---------- */
-  header.nav{
-    position:sticky;top:0;z-index:50;
-    backdrop-filter:blur(14px);
-    background:rgba(8,8,10,.66);
-    border-bottom:1px solid transparent;
-    transition:border-color .3s;
-  }
-  header.nav.scrolled{border-bottom-color:var(--border)}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;font-size:16px}
-  .brand .dot{width:10px;height:10px;border-radius:3px;background:var(--accent);box-shadow:0 0 16px var(--accent)}
-  .nav-links{display:flex;gap:28px;align-items:center}
-  .nav-links a{color:var(--muted);font-size:14px;font-weight:500;transition:color .2s}
-  .nav-links a:hover{color:var(--text)}
-  .nav-cta{border:1px solid var(--border);padding:8px 14px;border-radius:10px;font-size:13px;color:var(--text)!important;transition:.2s}
-  .nav-cta:hover{border-color:var(--accent);color:var(--accent)!important}
-  .menu-btn{display:none;background:none;border:0;color:var(--text);font-size:22px;cursor:pointer}
+  /* ---------------- NAV ---------------- */
+  header.nav{position:sticky;top:0;z-index:var(--z-nav);backdrop-filter:blur(12px) saturate(1.2);
+    background:oklch(0.16 0.034 290 / .72);border-bottom:1px solid transparent;transition:border-color .35s var(--ease)}
+  header.nav.scrolled{border-bottom-color:var(--border-lo)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px;gap:20px}
+  .brand{display:inline-flex;align-items:center;gap:11px;font-family:'Silkscreen';font-weight:700;font-size:15px;letter-spacing:.01em}
+  .brand .led{width:11px;height:11px;background:var(--amber);box-shadow:0 0 14px var(--amber),0 0 4px #fff inset;animation:flick 3.4s steps(1) infinite}
+  @keyframes flick{0%,92%,100%{opacity:1}94%{opacity:.35}96%{opacity:1}97%{opacity:.5}}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:14.5px;font-weight:500;transition:color .2s var(--ease);position:relative}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:var(--amber);transition:right .3s var(--ease)}
+  .nav-links a:hover::after{right:0}
+  .nav-cta{padding:9px 16px;border:1px solid var(--border-hi);border-radius:10px;color:var(--ink)!important;font-size:13.5px;font-weight:600;transition:.25s var(--ease)}
+  .nav-cta:hover{border-color:var(--amber);color:var(--amber-hi)!important;box-shadow:0 0 22px -8px var(--amber)}
+  .nav-cta::after{display:none}
+  .menu-btn{display:none;background:none;border:0;color:var(--ink);font-family:'Silkscreen';font-size:18px;cursor:pointer}
 
-  /* ---------- HERO ---------- */
-  .hero{padding:96px 0 72px;position:relative}
-  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:7px 14px;border-radius:999px;background:var(--surface)}
-  .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(110,231,183,.6);animation:pulse 2.2s infinite}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(110,231,183,.5)}70%{box-shadow:0 0 0 10px rgba(110,231,183,0)}100%{box-shadow:0 0 0 0 rgba(110,231,183,0)}}
-  .hero h1{font-size:clamp(40px,7vw,76px);font-weight:700;margin:26px 0 0}
-  .hero h1 .grad{background:linear-gradient(120deg,var(--accent),var(--accent-2) 60%,var(--accent-3));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero p.lead{font-size:clamp(16px,2.2vw,20px);color:var(--muted);max-width:620px;margin:24px 0 0}
-  .hero-cta{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:12px;font-weight:600;font-size:15px;transition:.2s;cursor:pointer;border:1px solid transparent}
-  .btn-primary{background:var(--accent);color:#062a1c}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(110,231,183,.5)}
-  .btn-ghost{border-color:var(--border);color:var(--text)}
-  .btn-ghost:hover{border-color:var(--muted);background:var(--surface)}
+  /* ---------------- BUTTONS ---------------- */
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:12px;font-weight:600;font-size:15.5px;
+    border:1px solid transparent;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease),background .25s var(--ease)}
+  .btn .ar{transition:transform .3s var(--ease)}
+  .btn:hover .ar{transform:translateX(4px)}
+  .btn-primary{background:var(--amber);color:var(--amber-dk);box-shadow:0 0 0 0 var(--amber)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px -12px var(--amber),0 0 26px -10px var(--amber-hi)}
+  .btn-ghost{border-color:var(--border-hi);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--jade);color:var(--jade);transform:translateY(-2px)}
 
-  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:64px;border-top:1px solid var(--border);padding-top:34px}
-  .stat .n{font-family:'Space Grotesk';font-size:clamp(26px,4vw,38px);font-weight:700}
-  .stat .l{font-size:13px;color:var(--muted);margin-top:2px}
+  /* status chip (pixel) — used sparingly, never as per-section grammar */
+  .chip-status{display:inline-flex;align-items:center;gap:9px;font-family:'Silkscreen';font-size:11px;color:var(--amber-hi);
+    border:1px solid var(--border);background:var(--surface);padding:8px 14px;border-radius:999px}
+  .chip-status .blip{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 0 var(--amber);animation:ping 2.4s var(--ease) infinite}
+  @keyframes ping{0%{box-shadow:0 0 0 0 oklch(0.815 0.155 58 / .55)}70%{box-shadow:0 0 0 9px oklch(0.815 0.155 58 / 0)}100%{box-shadow:0 0 0 0 oklch(0.815 0.155 58 / 0)}}
 
-  /* ---------- SECTIONS ---------- */
-  section{padding:84px 0}
-  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:44px}
-  .sec-num{font-family:'JetBrains Mono';font-size:13px;color:var(--accent)}
-  .sec-head h2{font-size:clamp(28px,4vw,42px);font-weight:700}
-  .sec-sub{color:var(--muted);max-width:560px;margin-top:10px;font-size:15.5px}
+  /* ---------------- HERO ---------------- */
+  .hero{position:relative;padding:clamp(40px,7vw,84px) 0 clamp(56px,8vw,96px)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,56px);align-items:center}
+  .hero h1{font-size:clamp(2.6rem,7.2vw,5.3rem);font-weight:800;letter-spacing:-.035em;margin:22px 0 0}
+  .hero h1 .glow{color:var(--amber-hi);text-shadow:0 0 32px oklch(0.815 0.155 58 / .45)}
+  .hero h1 .glow-j{color:var(--jade);text-shadow:0 0 32px oklch(0.835 0.115 168 / .4)}
+  .lead{font-size:clamp(16.5px,1.5vw,19px);color:var(--muted);max-width:42ch;margin-top:24px}
+  .lead b{color:var(--ink);font-weight:600}
+  .cred{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:26px;font-size:13.5px;color:var(--faint)}
+  .cred span{display:inline-flex;align-items:center;gap:8px}
+  .cred .k{color:var(--ink);font-weight:600}
+  .cred .sep{width:5px;height:5px;background:var(--border-hi);border-radius:50%}
+  .hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
 
-  /* about cards */
-  .people{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-  .person{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:30px;position:relative;overflow:hidden;transition:.3s}
-  .person:hover{border-color:#34343f;transform:translateY(-3px)}
-  .person::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(380px 200px at var(--gx,80%) -10%,var(--gc,rgba(110,231,183,.10)),transparent 70%)}
-  .person .avatar{width:62px;height:62px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:24px;color:#08080a}
-  .p-role{font-family:'JetBrains Mono';font-size:12.5px;letter-spacing:.04em;color:var(--muted);margin-top:18px;text-transform:uppercase}
-  .person h3{font-size:24px;margin-top:6px}
-  .p-alias{color:var(--faint);font-weight:500;font-size:16px}
-  .person p.bio{color:var(--muted);font-size:14.5px;margin-top:14px}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-  .tag{font-size:12px;font-family:'JetBrains Mono';color:var(--text);background:var(--surface-2);border:1px solid var(--border);padding:5px 10px;border-radius:8px}
-  .p-links{display:flex;gap:16px;margin-top:22px;flex-wrap:wrap}
-  .p-links a{font-size:13px;color:var(--muted);display:inline-flex;align-items:center;gap:6px;transition:.2s}
-  .p-links a:hover{color:var(--accent)}
+  /* hero canvas frame */
+  .scene{position:relative;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;
+    box-shadow:0 30px 80px -40px #000, inset 0 0 60px -30px oklch(0.835 0.115 168 / .25)}
+  .scene canvas{display:block;width:100%;height:100%;image-rendering:pixelated}
+  .scene::after{content:"";position:absolute;inset:0;pointer-events:none;
+    box-shadow:inset 0 -40px 60px -30px var(--bg-deep), inset 0 0 0 1px oklch(1 0 0 / .03)}
+  .scene-cap{position:absolute;left:14px;bottom:12px;font-family:'Silkscreen';font-size:9.5px;color:var(--ink);
+    background:oklch(0.12 0.030 290 / .7);padding:6px 9px;border-radius:7px;backdrop-filter:blur(4px)}
+  .hero .scene{height:clamp(300px,40vw,440px)}
 
-  /* project featured */
-  .proj{background:linear-gradient(180deg,var(--surface),var(--bg-soft));border:1px solid var(--border);border-radius:20px;overflow:hidden}
-  .proj-top{display:grid;grid-template-columns:1.1fr .9fr;gap:0}
-  .proj-body{padding:40px}
-  .proj-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-family:'JetBrains Mono';color:var(--accent-3);border:1px solid var(--border);padding:5px 12px;border-radius:999px}
-  .proj h3{font-size:clamp(28px,4vw,40px);margin:18px 0 4px}
-  .proj .vn{color:var(--faint);font-size:16px;font-weight:500}
-  .proj p.desc{color:var(--muted);margin-top:16px;font-size:15px;max-width:46ch}
-  .proj-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
-  .proj-stats .n{font-family:'Space Grotesk';font-size:26px;font-weight:700}
-  .proj-stats .l{font-size:12px;color:var(--muted)}
-  .proj-links{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
-  .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:var(--surface-2);padding:10px 16px;border-radius:11px;font-size:13.5px;font-weight:500;transition:.2s}
-  .chip:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
-  .proj-visual{background:
-      radial-gradient(120% 120% at 100% 0%, rgba(124,156,255,.16), transparent 55%),
-      linear-gradient(135deg,#16161b,#0d0d11);
-      position:relative;min-height:340px;display:flex;align-items:center;justify-content:center;border-left:1px solid var(--border)}
-  /* pixel motif */
-  .pix{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;width:74%;opacity:.92}
-  .pix span{aspect-ratio:1;border-radius:5px;background:var(--surface-2);border:1px solid var(--border)}
-  .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:8px}
-  .feat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;transition:.25s}
-  .feat:hover{border-color:#34343f;transform:translateY(-3px)}
-  .feat h4{font-family:'Space Grotesk';font-size:16px;margin-bottom:6px}
-  .feat p{color:var(--muted);font-size:13.5px}
-  .feat .ic{font-size:20px;margin-bottom:10px;display:block}
+  /* ---------------- SECTIONS ---------------- */
+  section{padding:clamp(64px,9vw,108px) 0;position:relative}
+  .head{max-width:640px;margin-bottom:clamp(36px,5vw,56px)}
+  .head .tag{font-family:'Silkscreen';font-size:11px;color:var(--jade);display:inline-block;margin-bottom:14px}
+  .head h2{font-size:clamp(2rem,4.4vw,3.2rem);font-weight:700;letter-spacing:-.028em}
+  .head p{color:var(--muted);margin-top:14px;font-size:clamp(15.5px,1.3vw,17px)}
+  .rule{height:1px;background:linear-gradient(90deg,var(--border-hi),transparent);border:0;margin:0 0 4px}
 
-  /* in-development cards (two side by side) */
-  .dev-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-  .dev-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;transition:.3s}
-  .dev-card:hover{border-color:#34343f;transform:translateY(-3px)}
-  .dev-card h3{font-size:24px;margin:16px 0 2px}
-  .dev-card .vn{color:var(--faint);font-size:15px;font-weight:500}
-  .dev-card p.desc{color:var(--muted);font-size:14.5px;margin-top:14px}
-  .dev-card .tags{margin-top:auto;padding-top:20px}
+  /* ---------------- TEAM ---------------- */
+  .makers{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,26px)}
+  .maker{position:relative;padding:clamp(26px,2.6vw,34px);border:1px solid var(--border);border-radius:var(--r-lg);
+    background:linear-gradient(180deg,var(--surface),oklch(0.16 0.034 290));overflow:hidden;transition:border-color .3s var(--ease),transform .3s var(--ease)}
+  .maker:hover{transform:translateY(-4px)}
+  .maker.amber:hover{border-color:var(--amber)} .maker.jade:hover{border-color:var(--jade)}
+  .maker::before{content:"";position:absolute;inset:0 0 auto 0;height:3px}
+  .maker.amber::before{background:linear-gradient(90deg,var(--amber),transparent 70%)}
+  .maker.jade::before{background:linear-gradient(90deg,var(--jade),transparent 70%)}
+  .pfp{width:60px;height:60px;display:grid;place-items:center;font-family:'Silkscreen';font-size:24px;color:var(--amber-dk);
+    border-radius:4px;box-shadow:0 0 0 4px var(--bg),0 0 0 5px currentColor}
+  .maker.amber .pfp{background:var(--amber)} .maker.jade .pfp{background:var(--jade);color:var(--jade-dk)}
+  .role{font-family:'Silkscreen';font-size:10.5px;color:var(--muted);margin-top:22px}
+  .maker h3{font-size:1.55rem;margin-top:8px}
+  .maker h3 .alias{color:var(--faint);font-family:'Hanken Grotesk';font-weight:500;font-size:1rem}
+  .maker .bio{color:var(--muted);font-size:14.8px;margin-top:14px}
+  .maker .bio b{color:var(--ink);font-weight:600}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+  .tag{font-size:12px;font-weight:500;color:var(--ink);background:var(--surface-2);border:1px solid var(--border);padding:5px 11px;border-radius:8px}
+  .maker.amber .tag:hover{border-color:var(--amber);color:var(--amber-hi)} .maker.jade .tag:hover{border-color:var(--jade);color:var(--jade)}
+  .tag{transition:.2s var(--ease)}
+  .links{display:flex;flex-wrap:wrap;gap:7px 18px;margin-top:22px}
+  .links a{font-size:13.5px;color:var(--muted);display:inline-flex;align-items:center;gap:7px;transition:color .2s var(--ease)}
+  .links a:hover{color:var(--ink)} .links a .ar{color:var(--amber-hi)}
 
-  /* experience timeline */
-  .timeline{position:relative;margin-left:6px;border-left:1px solid var(--border);padding-left:30px;display:flex;flex-direction:column;gap:34px}
+  /* ---------------- FLAGSHIP (Dream Chaser) ---------------- */
+  .flag{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3.5vw,52px);align-items:center}
+  .flag .scene{height:clamp(280px,34vw,400px)}
+  .badge{display:inline-flex;align-items:center;gap:9px;font-family:'Silkscreen';font-size:10.5px;color:var(--amber-hi);
+    border:1px solid var(--border);padding:7px 13px;border-radius:999px;background:var(--surface)}
+  .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber)}
+  .flag h3{font-size:clamp(2rem,3.6vw,2.9rem);margin:18px 0 2px;letter-spacing:-.03em}
+  .flag .vn{color:var(--jade);font-size:1.05rem;font-weight:500;font-family:'Hanken Grotesk'}
+  .flag .desc{color:var(--muted);margin-top:16px;max-width:48ch}
+  .facts{display:flex;flex-wrap:wrap;gap:10px 0;margin-top:26px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .fact{flex:1;min-width:120px;padding:16px 18px 16px 0;border-right:1px solid var(--border)}
+  .fact:last-child{border-right:0}
+  .fact .n{font-family:'Bricolage Grotesque';font-weight:700;font-size:1.6rem;letter-spacing:-.02em}
+  .fact .n.a{color:var(--amber-hi)} .fact .n.j{color:var(--jade)}
+  .fact .l{font-size:12px;color:var(--muted);margin-top:2px}
+  .store{display:flex;gap:11px;margin-top:26px;flex-wrap:wrap}
+  .store a{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--border);background:var(--surface);
+    padding:11px 17px;border-radius:11px;font-size:13.5px;font-weight:600;transition:.25s var(--ease)}
+  .store a:hover{border-color:var(--amber);color:var(--amber-hi);transform:translateY(-2px)}
+  .store a .g{font-family:'Silkscreen';font-size:11px;color:var(--jade)}
+
+  /* ---------------- IN DEVELOPMENT ---------------- */
+  .building{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,26px)}
+  .proj{position:relative;display:flex;flex-direction:column;padding:clamp(26px,2.6vw,34px);border:1px solid var(--border);
+    border-radius:var(--r-lg);background:var(--surface);overflow:hidden;transition:border-color .3s var(--ease),transform .3s var(--ease)}
+  .proj:hover{transform:translateY(-4px)}
+  .proj.amber:hover{border-color:var(--amber)} .proj.jade:hover{border-color:var(--jade)}
+  .proj .mini{height:96px;margin:-6px -6px 20px;border-radius:12px;overflow:hidden;border:1px solid var(--border-lo);position:relative}
+  .proj .mini canvas{display:block;width:100%;height:100%;image-rendering:pixelated}
+  .pbadge{display:inline-flex;align-items:center;gap:8px;font-family:'Silkscreen';font-size:10px;padding:6px 11px;border-radius:999px;border:1px solid var(--border);width:max-content}
+  .proj.amber .pbadge{color:var(--amber-hi)} .proj.jade .pbadge{color:var(--jade)}
+  .pbadge .dot{width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
+  .proj h3{font-size:1.5rem;margin:16px 0 2px}
+  .proj h3 .wt{font-family:'Hanken Grotesk';font-weight:500;font-size:.95rem;color:var(--faint)}
+  .proj .desc{color:var(--muted);font-size:14.6px;margin-top:12px}
+  .proj .desc b{color:var(--ink);font-weight:600}
+  .proj .tags{margin-top:auto;padding-top:20px}
+
+  /* ---------------- TIMELINE ---------------- */
+  .tl{position:relative;margin-left:7px;padding-left:30px;border-left:1px solid var(--border);display:flex;flex-direction:column;gap:clamp(28px,3vw,40px)}
   .tl-item{position:relative}
-  .tl-item::before{content:"";position:absolute;left:-37px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
-  .tl-when{font-family:'JetBrains Mono';font-size:12.5px;color:var(--accent)}
-  .tl-item h4{font-family:'Space Grotesk';font-size:18px;margin-top:4px}
-  .tl-item .co{color:var(--muted);font-size:14px}
-  .tl-item p{color:var(--muted);font-size:14px;margin-top:8px;max-width:62ch}
+  .tl-item::before{content:"";position:absolute;left:-37px;top:4px;width:13px;height:13px;border-radius:3px;background:var(--bg);
+    border:2px solid var(--jade);box-shadow:0 0 12px -2px var(--jade)}
+  .tl-item.now::before{border-color:var(--amber);box-shadow:0 0 14px -1px var(--amber)}
+  .tl-when{font-family:'Silkscreen';font-size:10.5px;color:var(--jade)}
+  .tl-item.now .tl-when{color:var(--amber-hi)}
+  .tl-item h4{font-size:1.18rem;margin-top:7px;font-weight:600}
+  .tl-item h4 .co{color:var(--muted);font-weight:500;font-family:'Hanken Grotesk'}
+  .tl-item p{color:var(--muted);font-size:14.6px;margin-top:9px;max-width:64ch}
+  .tl-item a{color:var(--amber-hi);text-decoration:underline;text-decoration-color:oklch(0.875 0.135 70 / .4);text-underline-offset:3px}
+  .tl-item a:hover{text-decoration-color:var(--amber-hi)}
+  .tl-item .nda{color:var(--faint)}
+  .tl-item strong{color:var(--ink)}
 
-  /* achievements */
-  .ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .ach{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px;transition:.25s}
-  .ach:hover{transform:translateY(-3px);border-color:#34343f}
-  .ach .ic{font-size:26px}
-  .ach h4{font-family:'Space Grotesk';font-size:17px;margin:14px 0 6px}
-  .ach p{color:var(--muted);font-size:13.5px}
+  /* ---------------- RECOGNITION ---------------- */
+  .awards{display:flex;flex-direction:column;gap:0}
+  .award{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(16px,2.2vw,28px);align-items:center;
+    padding:clamp(20px,2.4vw,28px) 4px;border-top:1px solid var(--border);transition:background .3s var(--ease)}
+  .award:last-child{border-bottom:1px solid var(--border)}
+  .award:hover{background:linear-gradient(90deg,var(--amber-wash),transparent 60%)}
+  .award .yr{font-family:'Silkscreen';font-size:11px;color:var(--faint)}
+  .award h4{font-size:1.22rem;font-weight:600}
+  .award p{color:var(--muted);font-size:14px;margin-top:3px;max-width:60ch}
+  .award .mark{font-family:'Silkscreen';font-size:22px;color:var(--amber-hi);text-shadow:0 0 18px oklch(0.815 0.155 58 / .4)}
+  .award:nth-child(2) .mark{color:var(--jade);text-shadow:0 0 18px oklch(0.835 0.115 168 / .4)}
 
-  /* contact */
-  .contact{background:linear-gradient(180deg,var(--bg-soft),var(--bg));border:1px solid var(--border);border-radius:24px;padding:56px 40px;text-align:center}
-  .contact h2{font-size:clamp(30px,5vw,48px);font-weight:700}
-  .contact p{color:var(--muted);max-width:520px;margin:16px auto 0;font-size:16px}
-  .contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  /* ---------------- CONTACT ---------------- */
+  .contact{position:relative;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;
+    padding:clamp(44px,6vw,72px) clamp(24px,4vw,48px);text-align:center;background:var(--bg-deep)}
+  .contact canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;opacity:.5;z-index:0}
+  .contact::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(80% 120% at 50% 0%,transparent 30%,var(--bg-deep) 78%)}
+  .contact > *{position:relative;z-index:2}
+  .contact h2{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;letter-spacing:-.03em}
+  .contact p{color:var(--muted);max-width:50ch;margin:16px auto 0;font-size:16px}
+  .contact .hero-cta{justify-content:center;margin-top:32px}
+  .contact .meta{font-family:'Silkscreen';font-size:11px;color:var(--faint);margin-top:26px}
 
-  footer{border-top:1px solid var(--border);padding:36px 0;margin-top:40px}
-  .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--faint);font-size:13px}
+  /* ---------------- FOOTER ---------------- */
+  footer{border-top:1px solid var(--border);padding:34px 0;margin-top:8px}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--faint);font-size:13px}
+  .foot .pixel{font-size:10px;color:var(--muted)}
 
-  /* reveal animation */
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
-  .reveal.in{opacity:1;transform:none}
+  /* ---------------- REVEAL (no blank on headless / reduced-motion) ---------------- */
+  @media (prefers-reduced-motion: no-preference){
+    html.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+    html.js .reveal.in{opacity:1;transform:none}
+  }
 
-  /* ---------- RESPONSIVE ---------- */
-  @media(max-width:860px){
+  /* ---------------- RESPONSIVE ---------------- */
+  @media(max-width:900px){
     .nav-links{display:none}
     .menu-btn{display:block}
-    .people{grid-template-columns:1fr}
-    .proj-top{grid-template-columns:1fr}
-    .proj-visual{border-left:0;border-top:1px solid var(--border);min-height:240px}
-    .feature-grid{grid-template-columns:1fr}
-    .dev-grid{grid-template-columns:1fr}
-    .ach-grid{grid-template-columns:1fr}
-    .stat-row{grid-template-columns:1fr 1fr;gap:26px 18px}
+    .hero-grid{grid-template-columns:1fr}
+    .hero .scene{height:clamp(220px,52vw,340px);order:-1}
+    .flag{grid-template-columns:1fr}
+    .makers,.building{grid-template-columns:1fr}
   }
-  @media(max-width:520px){
-    .proj-stats{grid-template-columns:1fr 1fr}
-    .proj-body{padding:28px}
-    .contact{padding:40px 22px}
+  @media(max-width:640px){
+    .hero h1{font-size:clamp(1.8rem,7.8vw,3rem);letter-spacing:-.02em}
+    .hero h1 br{display:none}
+    .lead{max-width:none}
+    .cred{font-size:12.5px}
+  }
+  @media(max-width:560px){
+    .facts{flex-direction:column}
+    .fact{border-right:0;border-bottom:1px solid var(--border);width:100%}
+    .fact:last-child{border-bottom:0}
+    .award{grid-template-columns:auto 1fr;gap:14px}
+    .award .mark{grid-row:1;grid-column:1}
+    .award .yr{grid-column:2;text-align:right}
   }
 </style>
 </head>
@@ -202,80 +287,80 @@
 <!-- NAV -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
-    <a href="#top" class="brand"><span class="dot"></span> THE&nbsp;MANIACS</a>
+    <a href="#top" class="brand"><span class="led"></span>THE MANIACS</a>
     <nav class="nav-links">
-      <a href="#about">Team</a>
+      <a href="#team">Team</a>
       <a href="#dreamchaser">Dream Chaser</a>
-      <a href="#strixel">In dev</a>
-      <a href="#experience">Experience</a>
+      <a href="#building">In dev</a>
+      <a href="#track">Track record</a>
       <a href="#contact" class="nav-cta">Get in touch</a>
     </nav>
-    <button class="menu-btn" id="menuBtn" aria-label="menu">☰</button>
+    <button class="menu-btn pixel" id="menuBtn" aria-label="Jump to team">MENU</button>
   </div>
 </header>
 
-<!-- HERO -->
 <a id="top"></a>
-<section class="hero">
-  <div class="wrap">
-    <span class="eyebrow reveal"><span class="pulse"></span> Applying · Garena Game Jam 2026</span>
-    <h1 class="reveal">We build <span class="grad">culture-rich games</span><br>that people remember.</h1>
-    <p class="lead reveal">The Maniacs is a two-person indie team from Vietnam — <strong style="color:var(--text)">Phúc</strong>, a Unity developer with shipped commercial titles, and <strong style="color:var(--text)">Hiệp</strong>, a pixel artist weaving Vietnamese culture into every frame. Our game <em>Dream Chaser</em> was featured by Apple and played by 100,000+ people.</p>
-    <div class="hero-cta reveal">
-      <a href="#dreamchaser" class="btn btn-primary">See our work →</a>
-      <a href="#contact" class="btn btn-ghost">Contact the team</a>
-    </div>
 
-    <div class="stat-row reveal">
-      <div class="stat"><div class="n accent">100k+</div><div class="l">Downloads · Dream Chaser</div></div>
-      <div class="stat"><div class="n">4.7★</div><div class="l">Store rating (~3k votes)</div></div>
-      <div class="stat"><div class="n accent2"> Featured</div><div class="l">Apple "Dare to Dream"</div></div>
-      <div class="stat"><div class="n">4+ yrs</div><div class="l">Shipping production games</div></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="chip-status reveal"><span class="blip"></span>APPLYING — GARENA GAME JAM 2026</span>
+      <h1 class="reveal">We build pixel worlds <br>that <span class="glow">glow</span> after <span class="glow-j">dark</span>.</h1>
+      <p class="lead reveal">The Maniacs is a two-person studio from Việt Nam. <b>Phúc</b> writes the code and the systems; <b>Hiệp</b> draws every pixel. Together we made <b>Dream Chaser</b> — a game Apple featured and 100,000+ people played.</p>
+      <div class="cred reveal">
+        <span><span class="k">Featured by Apple</span></span><i class="sep"></i>
+        <span><span class="k">100K+</span> players</span><i class="sep"></i>
+        <span><span class="k">4.7★</span> App Store</span><i class="sep"></i>
+        <span>WeChoice <span class="k">2024</span> nominee</span>
+      </div>
+      <div class="hero-cta reveal">
+        <a href="#dreamchaser" class="btn btn-primary">See our games <span class="ar">→</span></a>
+        <a href="#team" class="btn btn-ghost">Meet the makers</a>
+      </div>
+    </div>
+    <div class="scene reveal" aria-hidden="true">
+      <canvas id="cityCanvas"></canvas>
+      <span class="scene-cap pixel">DUSK CITY · 06:42 PM</span>
     </div>
   </div>
 </section>
 
-<!-- ABOUT / TEAM -->
-<section id="about">
+<!-- TEAM -->
+<section id="team">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="sec-num">01</span>
-      <div>
-        <h2>The team</h2>
-        <p class="sec-sub">A focused duo: one owns the code and systems end-to-end, the other owns the art and identity. We shipped together before — and we're building again.</p>
-      </div>
+    <div class="head reveal">
+      <span class="tag">// THE STUDIO</span>
+      <h2>Two makers, one studio.</h2>
+      <p>A developer and an artist who shipped a hit together — and kept building. One owns the systems end to end, the other owns the art and the feeling.</p>
     </div>
-
-    <div class="people">
-      <!-- PHUC -->
-      <div class="person reveal" style="--gc:rgba(110,231,183,.12);--gx:85%">
-        <div class="avatar" style="background:linear-gradient(135deg,var(--accent),#3bbf8a)">P</div>
-        <div class="p-role">Lead Game Developer</div>
-        <h3>Phạm Duy Phúc <span class="p-alias">· Dan / Daniel</span></h3>
-        <p class="bio">Unity developer with 4+ years shipping production games for studios in Canada, the UK and Japan. Owns features end-to-end — gameplay systems, simulation, live-service and performance. Lead developer on <strong style="color:var(--text)">Dream Chaser</strong> (featured by Apple) and <strong style="color:var(--text)">Strixel</strong>, and now building a multiplayer pet-collector RPG on SpacetimeDB. Named Employee of the Year at Magmic.</p>
+    <div class="makers">
+      <div class="maker amber reveal">
+        <div class="pfp">P</div>
+        <div class="role">LEAD GAME DEVELOPER</div>
+        <h3>Phạm Duy Phúc <span class="alias">· Dan / Daniel</span></h3>
+        <p class="bio">Unity developer with 4+ years shipping production games for studios in Canada, the UK and Japan. Owns features end to end — gameplay systems, simulation, live-service, performance. Lead dev on <b>Dream Chaser</b> (featured by Apple) and <b>Strixel</b>, now building a multiplayer pet-collector RPG on SpacetimeDB. Named Employee of the Year at Magmic.</p>
         <div class="tags">
-          <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">UniTask</span><span class="tag">UniRx</span><span class="tag">Odin</span><span class="tag">Firebase</span><span class="tag">Unity Gaming Services</span><span class="tag">SpacetimeDB</span><span class="tag">Multiplayer</span><span class="tag">AdMob / IAP</span><span class="tag">Blender</span>
+          <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">UniTask</span><span class="tag">UniRx</span><span class="tag">Odin</span><span class="tag">Firebase</span><span class="tag">Unity Gaming Services</span><span class="tag">SpacetimeDB</span><span class="tag">Multiplayer</span><span class="tag">AdMob / IAP</span>
         </div>
-        <div class="p-links">
-          <a href="https://github.com/Daniel-Pham831" target="_blank" rel="noopener">↗ GitHub</a>
-          <a href="https://www.linkedin.com/in/danielpham831/" target="_blank" rel="noopener">↗ LinkedIn</a>
-          <a href="https://www.facebook.com/horizon.pisces/" target="_blank" rel="noopener">↗ Facebook</a>
-          <a href="mailto:phamphuc0603@gmail.com">↗ Email</a>
+        <div class="links">
+          <a href="https://github.com/Daniel-Pham831" target="_blank" rel="noopener"><span class="ar">↗</span> GitHub</a>
+          <a href="https://www.linkedin.com/in/danielpham831/" target="_blank" rel="noopener"><span class="ar">↗</span> LinkedIn</a>
+          <a href="https://www.facebook.com/horizon.pisces/" target="_blank" rel="noopener"><span class="ar">↗</span> Facebook</a>
+          <a href="mailto:phamphuc0603@gmail.com"><span class="ar">↗</span> Email</a>
         </div>
       </div>
-
-      <!-- HIEP -->
-      <div class="person reveal" style="--gc:rgba(124,156,255,.14);--gx:85%">
-        <div class="avatar" style="background:linear-gradient(135deg,var(--accent-2),#5b78d9);color:#fff">H</div>
-        <div class="p-role">Pixel / 2D Artist</div>
-        <h3>Trần Tuấn Hiệp <span class="p-alias">· Winbee</span></h3>
-        <p class="bio">Pixel and 2D artist with 3 years of experience, specializing in weaving Vietnamese cultural and historical elements into game design. Co-creator of <strong style="color:var(--text)">Dream Chaser</strong>, whose art style and emotional storytelling earned it an Apple feature. Active in Vietnam's indie game community.</p>
+      <div class="maker jade reveal">
+        <div class="pfp">H</div>
+        <div class="role">PIXEL &amp; 2D ARTIST</div>
+        <h3>Trần Tuấn Hiệp <span class="alias">· Winbee</span></h3>
+        <p class="bio">Pixel and 2D artist with 3 years of experience, weaving Vietnamese culture and history into every frame. Co-creator of <b>Dream Chaser</b>, whose art style and emotional storytelling earned it an Apple feature. Active in Việt Nam's indie game community, and now shaping the art of our new project with Phúc.</p>
         <div class="tags">
           <span class="tag">Pixel Art</span><span class="tag">2D Art</span><span class="tag">Character Design</span><span class="tag">Environment Art</span><span class="tag">Animation</span><span class="tag">Aseprite</span><span class="tag">Vietnamese Culture</span>
         </div>
-        <div class="p-links">
-          <a href="https://www.facebook.com/tran.tuan.hiep.886491" target="_blank" rel="noopener">↗ Facebook</a>
-          <a href="https://wechoice.vn/chi-tiet-de-cu-12/tran-tuan-hiep-va-pham-duy-phuc-496.htm" target="_blank" rel="noopener">↗ WeChoice 2024</a>
+        <div class="links">
+          <a href="https://www.facebook.com/tran.tuan.hiep.886491" target="_blank" rel="noopener"><span class="ar">↗</span> Facebook</a>
+          <a href="https://wechoice.vn/chi-tiet-de-cu-12/tran-tuan-hiep-va-pham-duy-phuc-496.htm" target="_blank" rel="noopener"><span class="ar">↗</span> WeChoice 2024</a>
         </div>
       </div>
     </div>
@@ -285,133 +370,126 @@
 <!-- DREAM CHASER -->
 <section id="dreamchaser">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="sec-num">02</span>
-      <div>
-        <h2>Shipped together</h2>
-        <p class="sec-sub">Our flagship — proof that two people can build something the world notices.</p>
+    <div class="flag">
+      <div class="reveal">
+        <span class="badge"><span class="dot"></span>SHIPPED · DEC 2023 · iOS &amp; ANDROID</span>
+        <h3>Dream Chaser</h3>
+        <div class="vn">Chạy Trốn Phồn Hoa</div>
+        <p class="desc">A pixel-art endless runner about Vietnamese culture — players run through contrasting worlds, from the rush of the city to the calm of the countryside. Known for its cultural depth, its art, and its quiet emotional storytelling.</p>
+        <div class="facts">
+          <div class="fact"><div class="n a">100K</div><div class="l">downloads · ~71% iOS</div></div>
+          <div class="fact"><div class="n">4.7★</div><div class="l">~3,000 ratings</div></div>
+          <div class="fact"><div class="n j">23.3M</div><div class="l">lifetime impressions</div></div>
+        </div>
+        <div class="store">
+          <a href="https://apps.apple.com/vn/app/id6474929639" target="_blank" rel="noopener"><span class="g">iOS</span> App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.themaniacs.dreamchaser" target="_blank" rel="noopener"><span class="g">AND</span> Google Play</a>
+          <a href="https://apple.co/dreamchaser" target="_blank" rel="noopener"><span class="g">★</span> Apple “Dare to Dream”</a>
+        </div>
       </div>
-    </div>
-
-    <div class="proj reveal">
-      <div class="proj-top">
-        <div class="proj-body">
-          <span class="proj-badge">● Released · Dec 2023 · iOS &amp; Android</span>
-          <h3>Dream Chaser</h3>
-          <div class="vn">Chạy Trốn Phồn Hoa</div>
-          <p class="desc">A pixel-art endless runner that explores Vietnamese culture — players run through contrasting worlds, from the rush of the city to the calm of the countryside. Known for its cultural depth, art style and emotional storytelling.</p>
-          <div class="proj-stats">
-            <div><div class="n accent">100k</div><div class="l">Total downloads (~71% iOS)</div></div>
-            <div><div class="n">4.7★</div><div class="l">~3k ratings</div></div>
-            <div><div class="n accent2">23.3M</div><div class="l">Lifetime impressions</div></div>
-          </div>
-          <div class="proj-links">
-            <a class="chip" href="https://apps.apple.com/vn/app/id6474929639" target="_blank" rel="noopener"> App Store</a>
-            <a class="chip" href="https://play.google.com/store/apps/details?id=com.themaniacs.dreamchaser" target="_blank" rel="noopener">▶ Google Play</a>
-            <a class="chip" href="https://apple.co/dreamchaser" target="_blank" rel="noopener">★ Apple "Dare to Dream"</a>
-          </div>
-        </div>
-        <div class="proj-visual">
-          <div class="pix" id="pixDC"></div>
-        </div>
+      <div class="scene reveal" aria-hidden="true">
+        <canvas id="runCanvas"></canvas>
+        <span class="scene-cap pixel">CITY → COUNTRYSIDE</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- IN DEVELOPMENT -->
-<section id="strixel">
+<section id="building">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="sec-num">03</span>
-      <div>
-        <h2>In development</h2>
-        <p class="sec-sub">Two projects in motion — one we just started building together, and one deep simulation we're keeping warm as a side project.</p>
-      </div>
+    <div class="head reveal">
+      <span class="tag">// IN THE WORKSHOP</span>
+      <h2>What we're building now.</h2>
+      <p>One project we just started together, and one deep simulation we're keeping warm on the side.</p>
     </div>
-
-    <div class="dev-grid">
-      <!-- MAGIC MONSTER -->
-      <div class="dev-card reveal" style="--gc:rgba(124,156,255,.12)">
-        <span class="proj-badge" style="color:var(--accent-2);border-color:var(--accent-2)">● In progress · together · new</span>
-        <h3>Magic Monster <span class="vn">· working title</span></h3>
-        <p class="desc">A pet-collector × idle RPG for mobile. Hatch eggs, raise and evolve cute pixel pets, send them on idle expeditions to farm resources, and wander a shared-map plaza where players see each other but never fight. Our newest project — built by the full duo: Phúc on systems &amp; backend, Hiệp on pixel art.</p>
+    <div class="building">
+      <div class="proj amber reveal">
+        <div class="mini" aria-hidden="true"><canvas id="mmCanvas"></canvas></div>
+        <span class="pbadge"><span class="dot"></span>IN PROGRESS · TOGETHER · NEW</span>
+        <h3>Magic Monster <span class="wt">· working title</span></h3>
+        <p class="desc">A pet-collector × idle RPG for mobile. Hatch eggs, raise and evolve cute pixel pets, send them on idle expeditions to farm resources, and wander a shared-map plaza where players see each other but never fight. Built by the full duo — <b>Phúc</b> on systems &amp; backend, <b>Hiệp</b> on pixel art.</p>
         <div class="tags">
-          <span class="tag">Pet Collector</span><span class="tag">Idle RPG</span><span class="tag">Unity 6</span><span class="tag">URP 2D</span><span class="tag">SpacetimeDB</span><span class="tag">Pixel Art</span><span class="tag">Evolution</span><span class="tag">Shared-map plaza</span>
+          <span class="tag">Pet Collector</span><span class="tag">Idle RPG</span><span class="tag">Unity 6</span><span class="tag">URP 2D</span><span class="tag">SpacetimeDB</span><span class="tag">Evolution</span><span class="tag">Shared-map plaza</span>
         </div>
       </div>
-
-      <!-- STRIXEL -->
-      <div class="dev-card reveal" style="--gc:rgba(240,184,110,.12)">
-        <span class="proj-badge">● Side project · paused · since Jun 2024</span>
+      <div class="proj jade reveal">
+        <div class="mini" aria-hidden="true"><canvas id="sxCanvas"></canvas></div>
+        <span class="pbadge"><span class="dot"></span>SIDE PROJECT · PAUSED · SINCE JUN 2024</span>
         <h3>Strixel</h3>
-        <p class="desc">An idle tycoon set on an old Saigon-style street — build food stalls, hire staff and grow a buzzing food block full of personality. About <strong style="color:var(--text)">10 months</strong> of active development built a deep simulation (building, character AI, day/night cycle, economy); now paused while we focus resources, still moving forward as a side project. Pixel art inspired by <em>Đất Ba Miền</em> and <em>Eastward</em>.</p>
+        <p class="desc">An idle tycoon set on an old Saigon-style street — build food stalls, hire staff, grow a buzzing food block full of personality. About <b>10 months</b> of work built a deep simulation (building, character AI, day/night cycle, economy); now paused while we focus resources, still moving as a side project. Pixel art inspired by <em>Đất Ba Miền</em> and <em>Eastward</em>.</p>
         <div class="tags">
-          <span class="tag">Idle Tycoon</span><span class="tag">Building System</span><span class="tag">Character AI</span><span class="tag">Day / Night Cycle</span><span class="tag">Hiring &amp; Economy</span><span class="tag">Pathfinding</span><span class="tag">Pixel Art</span>
+          <span class="tag">Idle Tycoon</span><span class="tag">Building System</span><span class="tag">Character AI</span><span class="tag">Day / Night Cycle</span><span class="tag">Hiring &amp; Economy</span><span class="tag">Pathfinding</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section id="experience">
+<!-- TRACK RECORD -->
+<section id="track">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="sec-num">04</span>
-      <div>
-        <h2>Track record</h2>
-        <p class="sec-sub">Phúc's professional experience — production games shipped with international studios.</p>
-      </div>
+    <div class="head reveal">
+      <span class="tag">// PHÚC'S TRACK RECORD</span>
+      <h2>Where Phúc has shipped.</h2>
+      <p>Production games built with international studios across Canada, the UK and Japan.</p>
     </div>
-
-    <div class="timeline">
-      <div class="tl-item reveal">
-        <div class="tl-when">Jan 2025 — Present</div>
+    <div class="tl">
+      <div class="tl-item now reveal">
+        <div class="tl-when">JAN 2025 — PRESENT</div>
         <h4>Unity Game Developer · <span class="co">IndiGames (Remote)</span></h4>
-        <p>Outsourcing studio delivering Unity projects for Japanese clients. Worked on 4+ mobile projects (2 shipped, 2 in development) — gameplay systems across casual, puzzle and simulation games, complex UI, REST/Firebase live-service, IAP &amp; ad monetization, and on-device performance optimization. <span style="color:var(--faint)">Most titles are under NDA and can't be shown publicly.</span></p>
+        <p>Outsourcing studio delivering Unity projects for Japanese clients. 4+ mobile projects (2 shipped, 2 in development) — gameplay systems across casual, puzzle and simulation games, complex UI, REST/Firebase live-service, IAP &amp; ad monetization, and on-device performance work. <span class="nda">Most titles are under NDA and can't be shown publicly.</span></p>
       </div>
       <div class="tl-item reveal">
-        <div class="tl-when">Aug 2022 — Aug 2024</div>
+        <div class="tl-when">AUG 2022 — AUG 2024</div>
         <h4>Unity Game Developer · <span class="co">Magmic, Canada (Remote)</span></h4>
-        <p>Built and maintained production Unity games for live players, including <a href="https://apps.apple.com/vn/app/the-ball-game-by-playbrk/id6758020837" target="_blank" rel="noopener" style="color:var(--accent)">The Ball Game by Playbrk</a> — a baseball management &amp; tycoon sim with a visual simulation layer driven by runtime match data. Mentored junior developers through code reviews. <strong style="color:var(--text)">Selected as one of three Employees of the Year (2024).</strong></p>
+        <p>Built and maintained production Unity games for live players, including <a href="https://apps.apple.com/vn/app/the-ball-game-by-playbrk/id6758020837" target="_blank" rel="noopener">The Ball Game by Playbrk</a> — a baseball management &amp; tycoon sim with a visual simulation layer driven by runtime match data. Mentored junior developers through code reviews. <strong>Selected as one of three Employees of the Year (2024).</strong></p>
       </div>
       <div class="tl-item reveal">
-        <div class="tl-when">Jan 2022 — Jul 2022</div>
-        <h4>Client Game Developer · <span class="co">Intouch Games – Fairdos Studio (Hybrid)</span></h4>
-        <p>Implemented gameplay and visuals on an in-house engine, working closely with UK-based producers and artists. Delivered optimized, maintainable code and fixed performance bottlenecks across client projects.</p>
+        <div class="tl-when">JAN 2022 — JUL 2022</div>
+        <h4>Client Game Developer · <span class="co">Intouch Games — Fairdos Studio (Hybrid)</span></h4>
+        <p>Implemented gameplay and visuals on an in-house engine with UK-based producers and artists. Delivered optimized, maintainable code and fixed performance bottlenecks across client projects.</p>
       </div>
       <div class="tl-item reveal">
-        <div class="tl-when">Education</div>
+        <div class="tl-when">EDUCATION</div>
         <h4>B.Sc. Information Technology · <span class="co">Saigon Technology University (STU)</span></h4>
-        <p>Foundation in software engineering, now applied full-time to building and shipping games.</p>
+        <p>A foundation in software engineering, now applied full-time to building and shipping games.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ACHIEVEMENTS -->
-<section id="achievements">
+<!-- RECOGNITION -->
+<section id="recognition">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="sec-num">05</span>
-      <div><h2>Recognition</h2></div>
+    <div class="head reveal">
+      <span class="tag">// RECOGNITION</span>
+      <h2>Where the work landed.</h2>
     </div>
-    <div class="ach-grid">
-      <div class="ach reveal">
-        <div class="ic">🍎</div>
-        <h4>Apple App Store Feature</h4>
-        <p>Dream Chaser featured in Apple's "Here's to the Dreamers – Dare to Dream" campaign across SEA (Aug 2024).</p>
+    <div class="awards">
+      <div class="award reveal">
+        <div class="mark pixel">A</div>
+        <div>
+          <h4>Featured by Apple — “Dare to Dream”</h4>
+          <p>Dream Chaser featured in Apple's “Here's to the Dreamers — Dare to Dream” campaign across South-East Asia.</p>
+        </div>
+        <div class="yr">AUG 2024</div>
       </div>
-      <div class="ach reveal">
-        <div class="ic">🏆</div>
-        <h4>WeChoice Awards 2024 — Nominee</h4>
-        <p>Trần Tuấn Hiệp &amp; Phạm Duy Phúc nominated as part of Z-Team (talented Gen-Z creators).</p>
+      <div class="award reveal">
+        <div class="mark pixel">W</div>
+        <div>
+          <h4>WeChoice Awards — Nominee</h4>
+          <p>Trần Tuấn Hiệp &amp; Phạm Duy Phúc nominated as part of Z-Team — talented Gen-Z creators.</p>
+        </div>
+        <div class="yr">DEC 2024</div>
       </div>
-      <div class="ach reveal">
-        <div class="ic">⭐</div>
-        <h4>Employee of the Year — Magmic</h4>
-        <p>One of three honored for exceptional performance and teamwork after a year of work (Mar 2024).</p>
+      <div class="award reveal">
+        <div class="mark pixel">★</div>
+        <div>
+          <h4>Employee of the Year — Magmic</h4>
+          <p>Phúc named one of three honored for exceptional performance and teamwork over the year.</p>
+        </div>
+        <div class="yr">MAR 2024</div>
       </div>
     </div>
   </div>
@@ -421,59 +499,208 @@
 <section id="contact">
   <div class="wrap">
     <div class="contact reveal">
+      <canvas id="contactCanvas" aria-hidden="true"></canvas>
       <h2>Let's build something<br>worth remembering.</h2>
-      <p>We're applying to Garena Game Jam 2026 and ready for the offline round. Reach out — we'd love to talk.</p>
-      <div class="contact-links">
+      <p>We're applying to Garena Game Jam 2026 and ready for the offline round. If you're reading this — let's talk.</p>
+      <div class="hero-cta">
         <a class="btn btn-primary" href="mailto:phamphuc0603@gmail.com">✉ phamphuc0603@gmail.com</a>
         <a class="btn btn-ghost" href="https://github.com/Daniel-Pham831" target="_blank" rel="noopener">GitHub</a>
         <a class="btn btn-ghost" href="https://www.linkedin.com/in/danielpham831/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
-      <p class="mono" style="margin-top:22px;font-size:13px;color:var(--faint)">+84 926 624 129 · Ho Chi Minh City, Vietnam</p>
+      <div class="meta pixel">+84 926 624 129 · HO CHI MINH CITY, VIỆT NAM</div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap foot-inner">
+  <div class="wrap foot">
     <span>© 2026 The Maniacs — Phạm Duy Phúc &amp; Trần Tuấn Hiệp</span>
-    <span class="mono">Made for Garena Game Jam 2026</span>
+    <span class="pixel">MADE FOR GARENA GAME JAM 2026</span>
   </div>
 </footer>
 
 <script>
-  // nav border on scroll
-  const nav=document.getElementById('nav');
-  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10));
+(function(){
+  "use strict";
+  var REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // mobile menu (simple jump-to)
-  document.getElementById('menuBtn').addEventListener('click',()=>{
-    document.getElementById('about').scrollIntoView({behavior:'smooth'});
+  /* ---- nav border on scroll ---- */
+  var nav = document.getElementById('nav');
+  addEventListener('scroll', function(){ nav.classList.toggle('scrolled', scrollY > 8); }, {passive:true});
+  document.getElementById('menuBtn').addEventListener('click', function(){
+    document.getElementById('team').scrollIntoView({behavior: REDUCE ? 'auto':'smooth'});
   });
 
-  // reveal on scroll
-  const io=new IntersectionObserver((es)=>{
-    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4)*60+'ms';io.observe(el);});
-
-  // decorative pixel grid — gentle animated palette
-  const pal=['#6EE7B7','#7C9CFF','#F0B86E','#1b1b21','#1b1b21','#26262e'];
-  const grid=document.getElementById('pixDC');
-  if(grid){
-    for(let i=0;i<36;i++){const s=document.createElement('span');grid.appendChild(s);}
-    const cells=grid.querySelectorAll('span');
-    function tick(){
-      cells.forEach(c=>{
-        if(Math.random()<.18){
-          const col=pal[Math.floor(Math.random()*pal.length)];
-          c.style.background=col;
-          c.style.borderColor=col==='#1b1b21'||col==='#26262e'?'var(--border)':col;
-          c.style.boxShadow=col.startsWith('#6')||col.startsWith('#7')||col.startsWith('#F')?'0 0 10px '+col+'66':'none';
-        }
-      });
-    }
-    tick();setInterval(tick,900);
+  /* ---- reveal on scroll — content is visible by default; this only enhances ---- */
+  var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+  function showAll(){ reveals.forEach(function(el){ el.classList.add('in'); }); }
+  if (REDUCE || !('IntersectionObserver' in window)) {
+    showAll();
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.14, rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+    // failsafe: never let anything stay hidden (hidden tabs / odd renderers)
+    setTimeout(showAll, 1600);
   }
+
+  /* ---------- pixel-art canvas engine ---------- */
+  var SKY = ['#241a3d','#2b1d49','#3a2550'];
+  function dpr(){ return Math.min(window.devicePixelRatio || 1, 2); }
+
+  // A glowing dusk skyline with twinkling windows + neon + a running figure.
+  function makeCity(canvas, cfg){
+    cfg = cfg || {};
+    var ctx = canvas.getContext('2d');
+    var cell = cfg.cell || 7;
+    var W=0,H=0,cols=0,rows=0, buildings=[], stars=[], moon=null, runX=0, frame=0, raf=0, last=0;
+
+    function build(){
+      cols = Math.ceil(W/cell); rows = Math.ceil(H/cell);
+      buildings = []; stars = [];
+      // pseudo-random but stable per build
+      var seed = 1337; function rnd(){ seed = (seed*1103515245 + 12345) & 0x7fffffff; return seed/0x7fffffff; }
+      // two parallax bands of buildings
+      var x=0;
+      while(x < cols+2){
+        var w = 2 + Math.floor(rnd()*4);
+        var h = Math.floor(rows*(0.30 + rnd()*0.5));
+        var far = rnd() < 0.45;
+        var b = {x:x, w:w, h:h, far:far, win:[]};
+        for(var wx=1; wx<w; wx++){
+          for(var wy=2; wy<h-1; wy+=2){
+            if(rnd() < (far?0.16:0.34)){
+              b.win.push({x:wx, y:wy, lit: rnd()<0.7, hue: rnd()<0.78 ? 'a':'j', ph: rnd()});
+            }
+          }
+        }
+        buildings.push(b); x += w + (rnd()<0.3?1:0);
+      }
+      var sCount = Math.floor(cols*rows*0.012);
+      for(var i=0;i<sCount;i++){ stars.push({x:Math.floor(rnd()*cols), y:Math.floor(rnd()*rows*0.55), b:rnd()}); }
+      moon = {x: Math.floor(cols*0.80), y: Math.floor(rows*0.20), r: Math.max(2, Math.floor(cols*0.035))};
+      runX = -6;
+    }
+
+    function px(cx,cy,col){ ctx.fillStyle=col; ctx.fillRect(cx*cell, cy*cell, cell, cell); }
+
+    function draw(ts){
+      // sky gradient
+      var g = ctx.createLinearGradient(0,0,0,H);
+      g.addColorStop(0, '#1b1230'); g.addColorStop(0.55, '#2a1b45'); g.addColorStop(1, '#3c2547');
+      ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+
+      // stars
+      for(var i=0;i<stars.length;i++){
+        var s=stars[i];
+        var tw = REDUCE ? 0.8 : 0.55 + 0.45*Math.sin((ts||0)/700 + s.b*9);
+        ctx.globalAlpha = 0.35 + 0.5*tw*s.b;
+        px(s.x, s.y, s.b>0.85 ? '#ffd9a0' : '#efe6d4');
+      }
+      ctx.globalAlpha = 1;
+
+      // moon (pixel disc)
+      if(moon){
+        for(var my=-moon.r;my<=moon.r;my++) for(var mx=-moon.r;mx<=moon.r;mx++){
+          if(mx*mx+my*my <= moon.r*moon.r){ px(moon.x+mx, moon.y+my, '#f6ead0'); }
+        }
+        ctx.globalAlpha=0.18; ctx.fillStyle='#ffcf99';
+        ctx.beginPath(); ctx.arc(moon.x*cell, moon.y*cell, moon.r*cell*2.4, 0, 7); ctx.fill();
+        ctx.globalAlpha=1;
+      }
+
+      // buildings (far first)
+      for(var pass=0; pass<2; pass++){
+        for(var b2=0;b2<buildings.length;b2++){
+          var b=buildings[b2]; if((b.far?0:1)!==pass) continue;
+          var baseY = rows - b.h, body = b.far ? '#241a3d' : '#160f28';
+          ctx.fillStyle = body;
+          ctx.fillRect(b.x*cell, baseY*cell, b.w*cell, (b.h+1)*cell);
+          // roof edge highlight
+          ctx.fillStyle = b.far ? '#2f2350' : '#221634';
+          ctx.fillRect(b.x*cell, baseY*cell, b.w*cell, cell);
+          // windows
+          for(var k=0;k<b.win.length;k++){
+            var wn=b.win[k];
+            var lit = wn.lit;
+            if(!REDUCE){ var fl = Math.sin((ts||0)/900 + wn.ph*12); lit = wn.lit ? fl>-0.85 : fl>0.93; }
+            if(lit){
+              var col = wn.hue==='a' ? '#ffb866' : '#7fe0c0';
+              px(b.x+wn.x, baseY+wn.y, col);
+            }
+          }
+        }
+      }
+
+      // ground glow line (neon street)
+      ctx.fillStyle='#ff9d5c'; ctx.globalAlpha=0.0; // base
+      ctx.globalAlpha=1; px(0, rows-1, '#160f28');
+      var gy=(rows-0.5)*cell;
+      var lg=ctx.createLinearGradient(0,gy-cell*2,0,gy+cell);
+      lg.addColorStop(0,'rgba(255,157,92,0)'); lg.addColorStop(1,'rgba(255,157,92,.5)');
+      ctx.fillStyle=lg; ctx.fillRect(0, gy-cell*2, W, cell*3);
+
+      // running figure (Dream Chaser nod)
+      if(cfg.runner){
+        if(!REDUCE){ runX += 0.10; if(runX*cell > W+8*cell) runX = -6; }
+        var rx = Math.floor(runX), ry = rows-4;
+        frame = REDUCE ? 0 : (Math.floor((ts||0)/120) % 2);
+        // body
+        px(rx, ry-2, '#1a1020');               // head outline
+        px(rx, ry-2.0|0, '#ffd8a0');
+        px(rx, (ry-1)|0, '#ff8f6a');           // torso
+        px(rx, ry|0, '#ff8f6a');
+        // legs (2-frame run)
+        if(frame===0){ px(rx-1, (ry+1)|0, '#ffd8a0'); px(rx+1, (ry+1)|0, '#1a1020'); }
+        else { px(rx+1, (ry+1)|0, '#ffd8a0'); px(rx-1, (ry+1)|0, '#1a1020'); }
+        // arm
+        px(rx+1, ry|0, '#ffd8a0');
+        // glow
+        ctx.globalAlpha=0.25; ctx.fillStyle='#ffb866';
+        ctx.beginPath(); ctx.arc((rx+0.5)*cell,(ry-0.5)*cell, cell*3.2,0,7); ctx.fill(); ctx.globalAlpha=1;
+      }
+
+      if(!REDUCE) raf = requestAnimationFrame(draw);
+    }
+
+    function resize(){
+      var r = canvas.getBoundingClientRect();
+      if(r.width<2){ return; }
+      var d = dpr();
+      canvas.width = Math.max(1,Math.floor(r.width*d));
+      canvas.height = Math.max(1,Math.floor(r.height*d));
+      W = canvas.width; H = canvas.height;
+      cell = Math.max(4, Math.round((cfg.cell||7) * d * (cfg.scale||1)));
+      ctx.imageSmoothingEnabled = false;
+      build();
+      cancelAnimationFrame(raf);
+      draw(0);
+    }
+
+    var ro = ('ResizeObserver' in window) ? new ResizeObserver(resize) : null;
+    if(ro) ro.observe(canvas); else addEventListener('resize', resize);
+    resize();
+    // pause animation when offscreen
+    if(!REDUCE && 'IntersectionObserver' in window){
+      new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(e.isIntersecting){ if(!raf) draw(performance.now()); }
+          else { cancelAnimationFrame(raf); raf=0; }
+        });
+      }, {threshold:0}).observe(canvas);
+    }
+  }
+
+  function init(){
+    var city = document.getElementById('cityCanvas'); if(city) makeCity(city, {cell:7});
+    var run = document.getElementById('runCanvas');   if(run)  makeCity(run,  {cell:7, runner:true});
+    var mm = document.getElementById('mmCanvas');      if(mm)   makeCity(mm,   {cell:5, scale:1});
+    var sx = document.getElementById('sxCanvas');      if(sx)   makeCity(sx,   {cell:5});
+    var ct = document.getElementById('contactCanvas'); if(ct)  makeCity(ct,   {cell:8});
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
 </script>
 </body>
 </html>
