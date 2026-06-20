@@ -109,6 +109,8 @@
   /* status chip (pixel) — used sparingly, never as per-section grammar */
   .chip-status{display:inline-flex;align-items:center;gap:9px;font-family:'Silkscreen';font-size:11px;color:var(--amber-hi);
     border:1px solid var(--border);background:var(--surface);padding:8px 14px;border-radius:999px}
+  a.chip-status{transition:border-color .25s var(--ease),box-shadow .25s var(--ease)}
+  a.chip-status:hover{border-color:var(--amber);box-shadow:0 0 22px -9px var(--amber)}
   .chip-status .blip{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 0 var(--amber);animation:ping 2.4s var(--ease) infinite}
   @keyframes ping{0%{box-shadow:0 0 0 0 oklch(0.815 0.155 58 / .55)}70%{box-shadow:0 0 0 9px oklch(0.815 0.155 58 / 0)}100%{box-shadow:0 0 0 0 oklch(0.815 0.155 58 / 0)}}
 
@@ -234,8 +236,10 @@
   .award p{color:var(--muted);font-size:14px;margin-top:3px;max-width:60ch}
   .award .mark{font-family:'Silkscreen';font-size:22px;color:var(--amber-hi);text-shadow:0 0 18px oklch(0.815 0.155 58 / .4)}
   .award:nth-child(2) .mark{color:var(--jade);text-shadow:0 0 18px oklch(0.835 0.115 168 / .4)}
-  .award h4 a{color:inherit;text-decoration:underline;text-decoration-color:oklch(0.835 0.115 168 / .38);text-underline-offset:3px;transition:.2s var(--ease)}
-  .award h4 a:hover{text-decoration-color:var(--jade);color:var(--jade)}
+  .award a{color:inherit;text-decoration:underline;text-decoration-color:oklch(0.835 0.115 168 / .38);text-underline-offset:3px;transition:.2s var(--ease)}
+  .award a:hover{text-decoration-color:var(--jade);color:var(--jade)}
+  .award .press{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px}
+  .award .press a{font-size:13.5px;color:var(--muted);text-decoration-color:oklch(0.795 0.022 72 / .35)}
 
   /* ---------------- CONTACT ---------------- */
   .contact{position:relative;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;
@@ -307,7 +311,7 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="chip-status reveal"><span class="blip"></span>ỨNG TUYỂN — GARENA GAME JAM 2026</span>
+      <a href="https://gamejam.garena.vn/vi" target="_blank" rel="noopener" class="chip-status reveal"><span class="blip"></span>ỨNG TUYỂN — GARENA GAME JAM 2026</a>
       <h1 class="reveal">Thế giới pixel <br><span class="glow">toả sáng</span> giữa màn <span class="glow-j">đêm</span>.</h1>
       <p class="lead reveal">Studio 2 người từ Việt Nam. <b>Phúc</b> code, <b>Hiệp</b> vẽ pixel. Cùng nhau làm <b>Dream Chaser</b> — game được Apple giới thiệu, hơn 100.000 người chơi.</p>
       <div class="cred reveal">
@@ -346,6 +350,7 @@
         </div>
         <div class="links">
           <a href="https://github.com/Daniel-Pham831" target="_blank" rel="noopener"><span class="ar">↗</span> GitHub</a>
+          <a href="https://www.youtube.com/@danordaniel" target="_blank" rel="noopener"><span class="ar">↗</span> YouTube</a>
           <a href="https://www.linkedin.com/in/danielpham831/" target="_blank" rel="noopener"><span class="ar">↗</span> LinkedIn</a>
           <a href="https://www.facebook.com/horizon.pisces/" target="_blank" rel="noopener"><span class="ar">↗</span> Facebook</a>
           <a href="mailto:phamphuc0603@gmail.com"><span class="ar">↗</span> Email</a>
@@ -476,7 +481,7 @@
       <div class="award reveal">
         <div class="mark pixel">W</div>
         <div>
-          <h4><a href="https://wechoice.vn/chi-tiet-de-cu-12/tran-tuan-hiep-va-pham-duy-phuc-496.htm" target="_blank" rel="noopener">Đề cử WeChoice Awards 2024 — Z-Team</a></h4>
+          <h4>Đề cử WeChoice Awards 2024 — Z-Team</h4>
           <p>Hạng mục <b>Nhóm Gen Z Tài Năng</b>. Trần Tuấn Hiệp &amp; Phạm Duy Phúc — vinh danh nhóm Gen Z có sức ảnh hưởng tới giới trẻ Việt.</p>
         </div>
         <div class="yr">12/2024</div>
@@ -484,8 +489,13 @@
       <div class="award reveal">
         <div class="mark pixel">P</div>
         <div>
-          <h4><a href="https://www.hardwarezone.com.sg/entertainment/gaming/feature-apple-app-store-game-development-dreamchaser-vietnam" target="_blank" rel="noopener">Báo quốc tế đưa tin — HardwareZone SG</a></h4>
-          <p>Bài viết về hành trình hai người Việt làm Dream Chaser ngoài giờ, vừa đi làm full-time vừa làm game.</p>
+          <h4>Báo chí trong &amp; ngoài nước đưa tin</h4>
+          <div class="press">
+            <a href="https://vnexpress.net/apple-vinh-danh-hai-nha-phat-trien-viet-trong-du-an-dam-uoc-mo-4780060.html" target="_blank" rel="noopener">↗ VnExpress</a>
+            <a href="https://thanhnien.vn/game-chay-tron-phon-hoa-duoc-apple-vinh-danh-185240917191411922.htm" target="_blank" rel="noopener">↗ Thanh Niên</a>
+            <a href="https://cafef.vn/gap-doi-ban-tre-dung-sau-chay-tron-phon-hoa-tua-game-dua-ban-sac-van-hoa-viet-nam-den-lang-game-the-gioi-188240811080328091.chn" target="_blank" rel="noopener">↗ CafeF</a>
+            <a href="https://www.hardwarezone.com.sg/entertainment/gaming/feature-apple-app-store-game-development-dreamchaser-vietnam" target="_blank" rel="noopener">↗ HardwareZone SG</a>
+          </div>
         </div>
         <div class="yr">2024</div>
       </div>
