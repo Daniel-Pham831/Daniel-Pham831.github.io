@@ -151,9 +151,10 @@
   .maker::before{content:"";position:absolute;inset:0 0 auto 0;height:3px}
   .maker.amber::before{background:linear-gradient(90deg,var(--amber),transparent 72%)}
   .maker.jade::before{background:linear-gradient(90deg,var(--jade),transparent 72%)}
-  .pfp{width:60px;height:60px;display:grid;place-items:center;font-family:'Silkscreen';font-size:24px;color:var(--amber-dk);border-radius:10px}
-  .maker.amber .pfp{background:var(--amber);box-shadow:0 10px 22px -10px var(--amber)}
-  .maker.jade .pfp{background:var(--jade);color:var(--jade-dk);box-shadow:0 10px 22px -10px var(--jade)}
+  .pfp{width:66px;height:66px;border-radius:13px;overflow:hidden}
+  .pfp img{width:100%;height:100%;object-fit:cover;display:block}
+  .maker.amber .pfp{box-shadow:0 0 0 2px var(--amber),0 12px 24px -12px var(--amber)}
+  .maker.jade .pfp{box-shadow:0 0 0 2px var(--jade),0 12px 24px -12px var(--jade)}
   .role{font-family:'Silkscreen';font-size:10.5px;color:var(--muted);margin-top:22px}
   .maker h3{font-size:1.55rem;margin-top:8px}
   .maker h3 .alias{color:var(--faint);font-family:'Hanken Grotesk';font-weight:500;font-size:1rem}
@@ -421,7 +422,7 @@
     </div>
     <div class="makers">
       <div class="maker amber reveal">
-        <div class="pfp">P</div>
+        <div class="pfp"><img src="assets/phuc.jpg" alt="Phạm Duy Phúc" width="66" height="66" loading="lazy" /></div>
         <div class="role">LẬP TRÌNH GAME · LEAD</div>
         <h3>Phạm Duy Phúc <span class="alias">· Dan / Daniel</span></h3>
         <p class="bio">Lập trình viên Unity, 4+ năm ship game thương mại cho studio ở Canada, Anh, Nhật. Lead dev của <b>Dream Chaser</b> & <b>Strixel</b>, đang làm game multiplayer trên SpacetimeDB. Employee of the Year tại Magmic.</p>
@@ -437,7 +438,7 @@
         </div>
       </div>
       <div class="maker jade reveal">
-        <div class="pfp">H</div>
+        <div class="pfp"><img src="assets/hiep.jpg" alt="Trần Tuấn Hiệp" width="66" height="66" loading="lazy" /></div>
         <div class="role">HOẠ SĨ PIXEL / 2D</div>
         <h3>Trần Tuấn Hiệp <span class="alias">· Winbee</span></h3>
         <p class="bio">Hoạ sĩ pixel & 2D, 3 năm kinh nghiệm, đưa văn hoá – lịch sử Việt vào từng khung hình. Đồng tác giả <b>Dream Chaser</b> — tựa game được Apple giới thiệu nhờ nghệ thuật và cảm xúc.</p>
