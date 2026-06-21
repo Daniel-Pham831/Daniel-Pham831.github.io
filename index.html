@@ -152,6 +152,19 @@
   .trophy .plinks{display:flex;flex-wrap:wrap;gap:5px 13px;margin-top:2px}
   .trophy .plinks a{font-size:13px;color:var(--muted);text-decoration:underline;text-decoration-color:oklch(0.445 0.030 272 /.35);text-underline-offset:3px}
   .trophy .plinks a:hover{color:var(--jade)}
+  .trophy .src{align-self:flex-start;margin-top:8px;font-size:13px;font-weight:600;color:var(--amber-hi);text-decoration:underline;text-decoration-color:oklch(0.505 0.200 36 /.4);text-underline-offset:3px}
+  .trophy .src:hover{text-decoration-color:var(--amber-hi)}
+  .trophy .tnote{font-size:13px;color:var(--muted);margin-top:3px}
+  .trophy .tnote b{color:var(--ink);font-weight:600}
+
+  /* LIGHTBOX */
+  .frame img,.trophy .ts img,.proj .mini img{cursor:zoom-in}
+  .lb{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,40px);background:oklch(0.20 0.03 280 / .82);backdrop-filter:blur(6px);opacity:0;transition:opacity .25s var(--ease)}
+  .lb.open{opacity:1}
+  .lb[hidden]{display:none}
+  .lb img{max-width:min(1120px,95vw);max-height:90vh;border-radius:14px;image-rendering:pixelated;box-shadow:0 30px 90px -28px #000;border:1px solid oklch(1 0 0 / .14)}
+  .lb-x{position:absolute;top:16px;right:18px;width:44px;height:44px;border-radius:12px;border:1px solid oklch(1 0 0 / .25);background:oklch(0.20 0.03 280 / .55);color:#fff;font-size:18px;cursor:pointer;display:grid;place-items:center;transition:.2s var(--ease)}
+  .lb-x:hover{background:oklch(0.20 0.03 280 / .85)}
 
   /* MARQUEE */
   .marquee{position:relative;overflow:hidden;background:var(--bg-deep);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:clamp(18px,2.4vw,26px) 0}
@@ -614,14 +627,16 @@
       <p>Vài giải thưởng &amp; ghi nhận tụi mình từng nhận được.</p>
     </div>
     <div class="trophies">
-      <a class="trophy reveal" href="https://apps.apple.com/story/id1750600803" target="_blank" rel="noopener">
+      <div class="trophy reveal">
         <div class="ts"><img src="assets/award-apple.jpg" alt="Banner Apple “Dare to Dream” có Dream Chaser" loading="lazy" /></div>
-        <div class="tb"><h4>Apple giới thiệu — “Dare to Dream”</h4><div class="ty">08/2024 · APP STORE ĐÔNG NAM Á</div></div>
-      </a>
-      <a class="trophy reveal" href="https://www.facebook.com/share/1L1S98vNN1/" target="_blank" rel="noopener">
+        <div class="tb"><h4>Apple giới thiệu — “Dare to Dream”</h4><div class="ty">08/2024 · APP STORE ĐÔNG NAM Á</div>
+          <a class="src" href="https://apps.apple.com/story/id1750600803" target="_blank" rel="noopener">↗ Apple Story</a></div>
+      </div>
+      <div class="trophy reveal">
         <div class="ts"><img src="assets/award-bestmobile.jpg" alt="Banner Indie Games Awards Best Mobile" loading="lazy" /></div>
-        <div class="tb"><h4>Indie Games Awards — Best Mobile</h4><div class="ty"><b>THẮNG GIẢI</b> · DREAM CHASER · 2024</div></div>
-      </a>
+        <div class="tb"><h4>Indie Games Awards — Best Mobile</h4><div class="ty"><b>THẮNG GIẢI</b> · DREAM CHASER · 2024</div>
+          <a class="src" href="https://www.facebook.com/indiegamesvietnam/posts/pfbid02ncxyeR27i4UmFP1xTSkmiMDkHiRWY52wLXECmbbp1jBFe69PCSBc1zDoBAvPvkvql" target="_blank" rel="noopener">↗ Bài Indie Games VN</a></div>
+      </div>
       <div class="trophy reveal">
         <div class="ts"><img src="assets/award-miro-1st.jpg" alt="Banner MIRO Game Contest Giải Nhất — Mandarin" loading="lazy" /></div>
         <div class="tb"><h4>MIRO Game Contest 2024 — Giải Nhất</h4><div class="ty"><b>GIẢI NHẤT</b> · MANDARIN — HEAVENLY ARENA</div></div>
@@ -640,7 +655,7 @@
       </div>
       <div class="trophy amber txt reveal">
         <div class="ts"><span class="mk">★</span></div>
-        <div class="tb"><h4>Employee of the Year — Magmic</h4><div class="ty">03/2024 · MAGMIC, CANADA</div></div>
+        <div class="tb"><h4>Employee of the Year — Magmic</h4><p class="tnote">Giải cá nhân của <b>Phúc</b> (không phải của team).</p><div class="ty">03/2024 · MAGMIC, CANADA</div></div>
       </div>
       <div class="trophy jade txt reveal">
         <div class="ts"><span class="mk">P</span></div>
@@ -681,6 +696,11 @@
   </div>
 </footer>
 
+<div id="lb" class="lb" hidden role="dialog" aria-modal="true" aria-label="Xem ảnh đầy đủ">
+  <button id="lb-x" class="lb-x" aria-label="Đóng">✕</button>
+  <img id="lb-img" alt="" />
+</div>
+
 <script>
 (function(){
   "use strict";
@@ -709,6 +729,23 @@
     var clone = track.cloneNode(true);
     clone.removeAttribute('id'); clone.setAttribute('aria-hidden','true');
     while(clone.firstChild){ track.appendChild(clone.firstChild); }
+  }
+
+  /* lightbox — click an image to preview it full */
+  var lb=document.getElementById('lb'), lbImg=document.getElementById('lb-img');
+  if(lb && lbImg){
+    document.querySelectorAll('.frame img,.trophy .ts img,.proj .mini img').forEach(function(im){
+      im.addEventListener('click', function(e){
+        e.preventDefault();
+        lbImg.src=im.currentSrc||im.src; lbImg.alt=im.alt||'';
+        lb.hidden=false; requestAnimationFrame(function(){ lb.classList.add('open'); });
+        document.body.style.overflow='hidden';
+      });
+    });
+    function lbClose(){ lb.classList.remove('open'); document.body.style.overflow=''; setTimeout(function(){ lb.hidden=true; lbImg.removeAttribute('src'); },250); }
+    lb.addEventListener('click', function(e){ if(e.target!==lbImg) lbClose(); });
+    document.getElementById('lb-x').addEventListener('click', lbClose);
+    addEventListener('keydown', function(e){ if(e.key==='Escape' && !lb.hidden) lbClose(); });
   }
 
 })();
