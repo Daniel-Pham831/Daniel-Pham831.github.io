@@ -14,7 +14,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;450;500;600&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
-<script>document.documentElement.classList.add('js')</script>
+<script>
+(function(){var d=document.documentElement;d.classList.add('js');
+var u=new URLSearchParams(location.search).get('theme');
+var t=u||localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+d.setAttribute('data-theme',t==='dark'?'dark':'light');})();
+</script>
 <style>
   :root{
     /* ---- Bright studio · light theme · OKLCH ---- */
@@ -46,6 +51,28 @@
     --maxw:1160px;
     --z-nav:50;
   }
+  /* ---- Dark theme (Neon Dusk) — toggled via [data-theme=dark] ---- */
+  :root[data-theme="dark"]{
+    --bg:        oklch(0.165 0.034 290);
+    --bg-deep:   oklch(0.125 0.030 290);
+    --surface:   oklch(0.215 0.040 289);
+    --surface-2: oklch(0.255 0.044 287);
+    --border:    oklch(0.340 0.040 289);
+    --border-lo: oklch(0.285 0.036 289);
+    --border-hi: oklch(0.460 0.052 287);
+    --ink:    oklch(0.955 0.018 80);
+    --muted:  oklch(0.800 0.022 76);
+    --faint:  oklch(0.640 0.026 286);
+    --amber:    oklch(0.800 0.155 58);
+    --amber-hi: oklch(0.865 0.135 70);
+    --amber-dk: oklch(0.205 0.045 56);
+    --jade:     oklch(0.820 0.115 168);
+    --jade-dk:  oklch(0.200 0.045 175);
+    --amber-wash: oklch(0.800 0.155 58 / 0.13);
+    --sh-sm: 0 2px 10px -5px oklch(0 0 0 / .5);
+    --sh:    0 16px 40px -26px oklch(0 0 0 / .6);
+    --sh-lg: 0 34px 80px -42px oklch(0 0 0 / .72);
+  }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
@@ -74,7 +101,7 @@
 
   /* NAV */
   header.nav{position:sticky;top:0;z-index:var(--z-nav);backdrop-filter:blur(12px) saturate(1.3);
-    background:oklch(0.950 0.015 264 / .82);border-bottom:1px solid transparent;transition:border-color .35s var(--ease)}
+    background:color-mix(in srgb, var(--bg) 82%, transparent);border-bottom:1px solid transparent;transition:border-color .35s var(--ease)}
   header.nav.scrolled{border-bottom-color:var(--border)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px;gap:20px}
   .brand{display:inline-flex;align-items:center;gap:9px;font-family:'Bricolage Grotesque';font-weight:800;font-size:17px;letter-spacing:-.015em}
@@ -89,13 +116,20 @@
   .nav-cta:hover{border-color:var(--amber);color:var(--amber-hi)!important;background:var(--amber-wash)}
   .nav-cta::after{display:none}
   .menu-btn{display:none;background:none;border:0;color:var(--ink);font-family:'Silkscreen';font-size:14px;cursor:pointer}
+  .nav-end{display:flex;align-items:center;gap:clamp(14px,2vw,26px)}
+  .icon-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--border-hi);background:var(--surface);color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:border-color .2s var(--ease),color .2s var(--ease),background .2s var(--ease)}
+  .icon-btn:hover{border-color:var(--amber);color:var(--amber-hi)}
+  .icon-btn svg{width:17px;height:17px}
+  .icon-btn .ic-moon{display:block} .icon-btn .ic-sun{display:none}
+  :root[data-theme="dark"] .icon-btn .ic-moon{display:none}
+  :root[data-theme="dark"] .icon-btn .ic-sun{display:block}
 
   /* BUTTONS */
   .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:12px;font-weight:600;font-size:15.5px;
     border:1px solid transparent;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease)}
   .btn .ar{transition:transform .3s var(--ease)}
   .btn:hover .ar{transform:translateX(4px)}
-  .btn-primary{background:linear-gradient(180deg, oklch(0.605 0.185 42), var(--amber));color:var(--amber-dk);box-shadow:var(--sh-sm)}
+  .btn-primary{background:linear-gradient(180deg, color-mix(in oklab, var(--amber), white 14%), var(--amber));color:var(--amber-dk);box-shadow:var(--sh-sm)}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px -14px var(--amber)}
   .btn-ghost{border-color:var(--border-hi);color:var(--ink);background:var(--surface)}
   .btn-ghost:hover{border-color:var(--jade);color:var(--jade);transform:translateY(-2px)}
@@ -136,7 +170,7 @@
 
   /* TROPHY WALL (visual achievements) */
   .trophies{display:grid;grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:clamp(16px,2vw,22px)}
-  .trophy{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;background:linear-gradient(180deg, oklch(1 0 0), var(--surface-2));box-shadow:var(--sh-sm);transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease)}
+  .trophy{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;background:linear-gradient(180deg, var(--surface), var(--surface-2));box-shadow:var(--sh-sm);transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease)}
   .trophy:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(--amber)}
   .trophy .ts{aspect-ratio:16/9;overflow:hidden;background:var(--bg-deep)}
   .trophy .ts img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;transition:transform .5s var(--ease)}
@@ -200,7 +234,7 @@
   /* TEAM */
   .makers{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,26px)}
   .maker{position:relative;padding:clamp(26px,2.6vw,34px);border:1px solid var(--border);border-radius:var(--r-lg);
-    background:linear-gradient(180deg, oklch(1 0 0), var(--surface-2));overflow:hidden;box-shadow:var(--sh-sm);transition:border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease)}
+    background:linear-gradient(180deg, var(--surface), var(--surface-2));overflow:hidden;box-shadow:var(--sh-sm);transition:border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease)}
   .maker:hover{transform:translateY(-4px);box-shadow:var(--sh)}
   .maker.amber:hover{border-color:var(--amber)} .maker.jade:hover{border-color:var(--jade)}
   .maker::before{content:"";position:absolute;inset:0 0 auto 0;height:3px}
@@ -253,7 +287,7 @@
   /* IN DEVELOPMENT */
   .building{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,26px)}
   .proj{position:relative;display:flex;flex-direction:column;padding:clamp(26px,2.6vw,34px);border:1px solid var(--border);
-    border-radius:var(--r-lg);background:linear-gradient(180deg, oklch(1 0 0), var(--surface-2));overflow:hidden;box-shadow:var(--sh-sm);transition:border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease)}
+    border-radius:var(--r-lg);background:linear-gradient(180deg, var(--surface), var(--surface-2));overflow:hidden;box-shadow:var(--sh-sm);transition:border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease)}
   .proj:hover{transform:translateY(-4px);box-shadow:var(--sh)}
   .proj.amber:hover{border-color:var(--amber)} .proj.jade:hover{border-color:var(--jade)}
   .proj .mini{height:104px;margin:-6px -6px 20px;border-radius:12px;overflow:hidden;border:1px solid var(--border-lo);position:relative}
@@ -306,7 +340,7 @@
     padding:clamp(44px,6vw,76px) clamp(24px,4vw,48px);text-align:center;background:var(--surface)}
   .contact .cbg{position:absolute;inset:0;z-index:0}
   .contact .cbg img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;opacity:.16}
-  .contact::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(95% 130% at 50% 0%, oklch(1 0 0 / .35) 36%, var(--surface) 86%)}
+  .contact::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(95% 130% at 50% 0%, transparent 34%, var(--surface) 86%)}
   .contact > *{position:relative;z-index:2}
   .contact h2{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;letter-spacing:-.03em}
   .contact p{color:var(--muted);max-width:50ch;margin:16px auto 0;font-size:16px}
@@ -357,14 +391,20 @@
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a href="#top" class="brand"><span class="bdot"></span>Hai Đứa Làm Game</a>
-    <nav class="nav-links">
-      <a href="#dreamchaser">Dream Chaser</a>
-      <a href="#building">Đang làm</a>
-      <a href="#team">Đội ngũ</a>
-      <a href="#track">Kinh nghiệm</a>
-      <a href="#contact" class="nav-cta">Liên hệ</a>
-    </nav>
-    <button class="menu-btn pixel" id="menuBtn" aria-label="Tới phần Dream Chaser">MENU</button>
+    <div class="nav-end">
+      <nav class="nav-links">
+        <a href="#dreamchaser">Dream Chaser</a>
+        <a href="#building">Đang làm</a>
+        <a href="#team">Đội ngũ</a>
+        <a href="#track">Kinh nghiệm</a>
+        <a href="#contact" class="nav-cta">Liên hệ</a>
+      </nav>
+      <button id="themeBtn" class="icon-btn" aria-label="Đổi giao diện sáng/tối" title="Sáng / Tối">
+        <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="menu-btn pixel" id="menuBtn" aria-label="Tới phần Dream Chaser">MENU</button>
+    </div>
   </div>
 </header>
 
@@ -711,6 +751,19 @@
   document.getElementById('menuBtn').addEventListener('click', function(){
     document.getElementById('dreamchaser').scrollIntoView({behavior: REDUCE ? 'auto':'smooth'});
   });
+
+  /* light / dark theme toggle */
+  var themeBtn=document.getElementById('themeBtn');
+  if(themeBtn){
+    var meta=document.querySelector('meta[name="theme-color"]');
+    themeBtn.addEventListener('click', function(){
+      var dark=document.documentElement.getAttribute('data-theme')==='dark';
+      var nx=dark?'light':'dark';
+      document.documentElement.setAttribute('data-theme', nx);
+      try{ localStorage.setItem('theme', nx); }catch(e){}
+      if(meta) meta.setAttribute('content', nx==='dark'?'#161122':'#e9eaf2');
+    });
+  }
 
   var reveals = [].slice.call(document.querySelectorAll('.reveal'));
   function showAll(){ reveals.forEach(function(el){ el.classList.add('in'); }); }
